@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [vue()],
   base: process.env.NODE_ENV == "production" ? "/client/" : "/",
   server: {
-    port: 5656
+    port: 5858
   },
   resolve: {
     extensions: ['.js', '.json', '.vue', '.scss', '.css', '.less'],

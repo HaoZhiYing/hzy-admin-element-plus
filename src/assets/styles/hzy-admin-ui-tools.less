@@ -47,60 +47,49 @@
 /*
 循环
 */
-@function go_for($count, $stylename, $name, $base) {
-    @for $i from 1 through $count {
-        $name-$i {
-            $stylename: ($base * $i)+"px" !important;
-        }
+.go_for(@count, @stylename, @name, @base) when (@count >=0) {
+    .@{name}-@{count} {
+        @{stylename}: @base * @count  !important;
     }
+.go_for((@count - 1), (@stylename), (@name), @base);
 }
-
-
-
-// .go_for(@count, @stylename, @name, @base) when (@count >=0) {
-//     .@{name}-@{count} {
-//         @{stylename}: @base * @count  !important;
-//     }
-
-//     .go_for((@count - 1), (@stylename), (@name), @base);
-// }
 
 /*
 end
 */
 
 // ======================================================padding
-go_for(100, padding, ".p", 1);
-go_for(100, padding-left, pl, 1);
-go_for(100, padding-top, pt, 1);
-go_for(100, padding-bottom, pb, 1);
-go_for(100, padding-right, pr, 1);
+.go_for(100, padding, p, 1px);
+.go_for(100, padding-left, pl, 1px);
+.go_for(100, padding-top, pt, 1px);
+.go_for(100, padding-bottom, pb, 1px);
+.go_for(100, padding-right, pr, 1px);
 //负数
-go_for(100, padding, p-, -1);
-go_for(100, padding-left, pl-, -1);
-go_for(100, padding-top, pt-, -1);
-go_for(100, padding-bottom, pb-, -1);
-go_for(100, padding-right, pr-, -1);
+.go_for(100, padding, p-, -1px);
+.go_for(100, padding-left, pl-, -1px);
+.go_for(100, padding-top, pt-, -1px);
+.go_for(100, padding-bottom, pb-, -1px);
+.go_for(100, padding-right, pr-, -1px);
 // ======================================================margin
-go_for(100, margin, m, 1);
-go_for(100, margin-left, ml, 1);
-go_for(100, margin-top, mt, 1);
-go_for(100, margin-bottom, mb, 1);
-go_for(100, margin-right, mr, 1);
+.go_for(100, margin, m, 1px);
+.go_for(100, margin-left, ml, 1px);
+.go_for(100, margin-top, mt, 1px);
+.go_for(100, margin-bottom, mb, 1px);
+.go_for(100, margin-right, mr, 1px);
 //负数
-go_for(100, margin, m-, -1);
-go_for(100, margin-left, ml-, -1);
-go_for(100, margin-top, mt-, -1);
-go_for(100, margin-bottom, mb-, -1);
-go_for(100, margin-right, mr-, -1);
+.go_for(100, margin, m-, -1px);
+.go_for(100, margin-left, ml-, -1px);
+.go_for(100, margin-top, mt-, -1px);
+.go_for(100, margin-bottom, mb-, -1px);
+.go_for(100, margin-right, mr-, -1px);
 // ======================================================font size
-go_for(100, font-size, fs, 1);
+.go_for(100, font-size, fs, 1px);
 // ======================================================Width
-go_for(100, width, w, 1);
-go_for(100, width, w-, -1);
+.go_for(100, width, w, 1px);
+.go_for(100, width, w-, -1px);
 // ======================================================Height
-go_for(100, height, h, 1);
-go_for(100, height, h-, -1);
+.go_for(100, height, h, 1px);
+.go_for(100, height, h-, -1px);
 
 // ======================================================Height
 @media (max-width: 576px) {
