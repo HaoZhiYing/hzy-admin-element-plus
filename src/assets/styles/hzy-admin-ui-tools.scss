@@ -1,0 +1,151 @@
+//工具样式库
+
+/*   全局样式   */
+
+// ======================================================text
+.text-danger {
+    color: #F56C6C !important;
+}
+
+.text-blue {
+    color: #91d5ff !important;
+}
+
+.text-lime {
+    color: #d3f261 !important;
+}
+
+.text-cyan {
+    color: #87e8de !important;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+// ======================================================height / width
+.h100 {
+    height: 100% !important;
+}
+
+.w100 {
+    width: 100% !important;
+}
+
+.bg-white {
+    background-color: #fff;
+}
+
+/*
+循环
+*/
+@function go_for($count, $stylename, $name, $base) {
+    @for $i from 1 through $count {
+        $name-$i {
+            $stylename: ($base * $i)+"px" !important;
+        }
+    }
+}
+
+
+
+// .go_for(@count, @stylename, @name, @base) when (@count >=0) {
+//     .@{name}-@{count} {
+//         @{stylename}: @base * @count  !important;
+//     }
+
+//     .go_for((@count - 1), (@stylename), (@name), @base);
+// }
+
+/*
+end
+*/
+
+// ======================================================padding
+go_for(100, padding, ".p", 1);
+go_for(100, padding-left, pl, 1);
+go_for(100, padding-top, pt, 1);
+go_for(100, padding-bottom, pb, 1);
+go_for(100, padding-right, pr, 1);
+//负数
+go_for(100, padding, p-, -1);
+go_for(100, padding-left, pl-, -1);
+go_for(100, padding-top, pt-, -1);
+go_for(100, padding-bottom, pb-, -1);
+go_for(100, padding-right, pr-, -1);
+// ======================================================margin
+go_for(100, margin, m, 1);
+go_for(100, margin-left, ml, 1);
+go_for(100, margin-top, mt, 1);
+go_for(100, margin-bottom, mb, 1);
+go_for(100, margin-right, mr, 1);
+//负数
+go_for(100, margin, m-, -1);
+go_for(100, margin-left, ml-, -1);
+go_for(100, margin-top, mt-, -1);
+go_for(100, margin-bottom, mb-, -1);
+go_for(100, margin-right, mr-, -1);
+// ======================================================font size
+go_for(100, font-size, fs, 1);
+// ======================================================Width
+go_for(100, width, w, 1);
+go_for(100, width, w-, -1);
+// ======================================================Height
+go_for(100, height, h, 1);
+go_for(100, height, h-, -1);
+
+// ======================================================Height
+@media (max-width: 576px) {
+    .xs-hide {
+        display: none !important;
+    }
+
+    .logo {
+        width: 200px;
+    }
+
+    .xs-w100 {
+        width: 100% !important;
+    }
+}
+
+@media (min-width:576px) and (max-width: 1200px) {
+    .xs-w100 {
+        width: 85% !important;
+    }
+}
+
+//公共样式
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    width: 8px;
+    background: rgba(#606266, 0.1);
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(#606266, 0.8);
+    background-clip: padding-box;
+    min-height: 28px;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(#606266, 1);
+}
