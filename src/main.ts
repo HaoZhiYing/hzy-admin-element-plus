@@ -8,9 +8,12 @@ import "./assets/styles/hzy-admin-ui-tools.less";
 import "./assets/styles/hzy-admin-ui-transition.less";
 //
 import router from './router/Index';
+//图标注册
+import { useAllIcons } from "@/assets/scripts/icons";
 
 const app = createApp(App);
 
 app.use(ElementPlus);
 app.use(router);
+app.use(useAllIcons);
 app.mount('#app');
