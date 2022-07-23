@@ -1,17 +1,23 @@
 <script setup lang="ts">
-
+import LayoutHeaderVue from "./LayoutHeader.vue";
+import LayoutMenuVue from "./LayoutMenu.vue";
+import LayoutTabsVue from "./LayoutTabs.vue";
 </script>
 
 <template>
   <el-container class="hzy-layout">
-    <el-aside width="200px">Aside</el-aside>
+    <!-- 菜单 -->
+    <LayoutMenuVue />
     <el-container>
-      <el-container>
-        <el-main>
-          <router-view />
-        </el-main>
-        <el-footer>Footer</el-footer>
-      </el-container>
+      <!-- 头部 -->
+      <LayoutHeaderVue />
+      <LayoutTabsVue />
+      <!-- 中间内容 -->
+      <el-main>
+        <router-view />
+      </el-main>
+      <!-- 页脚 -->
+      <el-footer class="text-center"> hzy-admin-element-plus 管理系统 ©2022 created by hzy </el-footer>
     </el-container>
   </el-container>
 </template>
@@ -19,10 +25,6 @@
 <style lang="less" scoped>
 .hzy-layout {
   min-height: 100vh;
-  .el-aside {
-    background-color: #001529;
-  }
-
   //=======// 头部 暗色
   .hzy-layout-header-dark {
     background-color: #001529;

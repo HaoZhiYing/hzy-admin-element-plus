@@ -10,6 +10,7 @@ const jumpHome = () => {
 const state = reactive({
   userName: "admin",
   userPassword: "123456",
+  code: 12,
 });
 
 const isDark = useDark();
@@ -19,59 +20,70 @@ const windowWidth = ref(window.innerWidth);
 </script>
 
 <template>
-  <el-row :gutter="10">
-    <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8"> </el-col>
-    <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
-      <div class="login">
-        <el-card style="border: 0px" class="login-card">
-          <template #header>
-            <div class="text-center">hzy-admin-element-plus 管理系统</div>
-          </template>
-          <div>
-            <div class="mt-20">
-              <el-input v-model="state.userName" size="large" placeholder="请输入账号">
-                <template #prefix>
-                  <el-icon>
-                    <User />
-                  </el-icon>
-                </template>
-              </el-input>
-            </div>
+  <div>
+    <div class="login">
+      <div class="login-card">
+        <div class="flex-left">
+          <img src="../assets/images/info_service.png" alt="" />
+        </div>
+        <div class="flex-right p-20" :class="{ 'flex-right-black': isDark, 'flex-right-white': !isDark }">
+          <div class="title">xxx 管理系统</div>
 
-            <div class="mt-20">
-              <el-input v-model="state.userPassword" size="large" placeholder="请输入密码">
-                <template #prefix>
-                  <el-icon>
-                    <Key />
-                  </el-icon>
-                </template>
-              </el-input>
-            </div>
-
-            <!-- 暗色按钮样式处理 -->
-            <template v-if="isDark">
-              <div class="mt-30">
-                <el-button @click="jumpHome()" type="primary" text bg size="large" class="w100">登录 </el-button>
-              </div>
-              <div class="mt-20">
-                <el-button @click="toggleDark()" type="success" text bg size="large" class="w100">切换主题 </el-button>
-              </div>
-            </template>
-            <template v-else>
-              <div class="mt-20">
-                <el-button @click="jumpHome()" type="primary" size="large" class="w100">登录 </el-button>
-              </div>
-              <div class="mt-20">
-                <el-button @click="toggleDark()" type="success" size="large" class="w100">切换主题 </el-button>
-              </div>
-            </template>
+          <div class="mt-20">
+            <el-input v-model="state.userName" size="large" placeholder="请输入账号">
+              <template #prefix>
+                <el-icon>
+                  <User />
+                </el-icon>
+              </template>
+            </el-input>
           </div>
-        </el-card>
+
+          <div class="mt-20">
+            <el-input v-model="state.userPassword" size="large" placeholder="请输入密码">
+              <template #prefix>
+                <el-icon>
+                  <Key />
+                </el-icon>
+              </template>
+            </el-input>
+          </div>
+
+          <div class="mt-20">
+            <el-input v-model="state.code" placeholder="请输入验证码">
+              <template #prefix>
+                <el-icon>
+                  <Lock />
+                </el-icon>
+              </template>
+              <template #append>
+                <img
+                  src="http://demo.ruoyi.vip/captcha/captchaImage?type=math&s=0.9697355836417079
+"
+                  class="login-code"
+                  alt=""
+                />
+              </template>
+            </el-input>
+          </div>
+
+          <div class="mt-40">
+            <!-- 暗色按钮样式处理 -->
+            <el-button @click="jumpHome()" type="primary" text bg size="large" class="w100" v-if="isDark">登录 </el-button>
+            <el-button @click="jumpHome()" type="primary" size="large" class="w100" v-else>登录 </el-button>
+          </div>
+        </div>
       </div>
-    </el-col>
-    <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8"> </el-col>
-  </el-row>
+    </div>
+  </div>
 </template>
+
+<style>
+.el-input-group__append,
+.el-input-group__prepend {
+  padding: 0 !important;
+}
+</style>
 
 <style lang="less" scoped>
 body {
@@ -85,16 +97,79 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-}
+  background: url(../assets/images/login.jpg) no-repeat;
+  background-size: cover;
 
-@media (max-width: 576px) {
   .login-card {
-    width: 100% !important;
+    height: 500px;
+    width: 1000px;
+    box-shadow: var(--el-box-shadow-dark);
+    display: flex;
+    border-radius: 5px;
+    .flex-left {
+      flex: 1;
+      img {
+        height: 100%;
+      }
+    }
+
+    .flex-right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    .flex-right-white {
+      background-color: #ffffff;
+    }
+
+    .flex-right-black {
+      background-color: var(--el-bg-color);
+    }
+
+    .title {
+      text-align: center;
+      font-size: 30px;
+      padding: 20px;
+      font-weight: bold;
+    }
+
+    .el-input-group__append {
+      padding: 0 !important;
+      .login-code {
+        height: 38px;
+      }
+    }
   }
 }
 
-@media (min-width: 576px) and (max-width: 2000px) {
+//小于 1024 像素 选择采用此样式
+@media (max-width: 1024px) {
+  .flex-left {
+    display: none;
+    flex: 0 !important;
+    img {
+      height: auto !important;
+      width: 80% !important;
+    }
+  }
+  .flex-right {
+    border-radius: 5px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
   .login-card {
+    width: 70% !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .login-card {
+    // flex-direction: column;
     width: 100% !important;
   }
 }
