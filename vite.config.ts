@@ -8,6 +8,22 @@ export default defineConfig({
   base: process.env.NODE_ENV == "production" ? "/client/" : "/",
   server: {
     port: 5858
+    // proxy: {
+    //     '/admin': {
+    //         target: 'http://localhost:6789/admin',
+    //         ws: false,
+    //         changeOrigin: true
+    //     }
+    // }
+
+    // 设置 https 代理
+    // proxy: {
+    //   '/api': {
+    //     target: 'your https address',
+    //     changeOrigin: true,
+    //     rewrite: (path: string) => path.replace(/^\/api/, '')
+    //   }
+    // }
   },
   resolve: {
     extensions: ['.js', '.json', '.vue', '.scss', '.css', '.less'],

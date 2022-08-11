@@ -2,8 +2,8 @@
 </script>
 
 <template>
-  <div>
-    Home11111
+  <div v-for="item in 100">
+    Home11111-{{item}}
   </div>
 </template>
 

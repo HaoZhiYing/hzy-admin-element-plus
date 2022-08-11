@@ -1,34 +1,49 @@
 <script setup lang="ts">
-import { useDark, useToggle } from "@vueuse/core";
-import { ref } from "vue";
 import router from "@/router/Index";
+import { ElMessageBox } from "element-plus";
 
-const isDark = ref(useDark());
-
-useDark({
-  onChanged(dark: boolean) {
-    // update the dom, call the API or something
-    isDark.value = dark;
-  },
-});
-
-const toggleDark = useToggle(isDark);
-
-const logOut = () => router.push("/");
+import CoreStore from "@/store/layouts/CoreStore";
+import SettingsStore from "@/store/layouts/SettingsStore";
+import HeaderStore from "@/store/layouts/HeaderStore";
+import MenuStore from "@/store/layouts/MenuStore";
+//
+const coreStore = CoreStore();
+const settingsStore = SettingsStore();
+const headerStore = HeaderStore();
+const menuStore = MenuStore();
 
 //图标大小
 const iconSize: number = 20;
+
+const logOut = () => {
+  ElMessageBox.confirm("您确定要退出登录吗?", "警告", {
+    confirmButtonText: "继续退出",
+    cancelButtonText: "取消",
+    type: "warning",
+  })
+    .then(() => {
+      router.push("/");
+    })
+    .catch(() => {});
+};
 </script>
 
 <template>
   <el-header>
-     <!-- :class="{ '': isDark, 'hzy-layout-header-blue': !isDark }" -->
-    <div class="hzy-layout-header" :class="{ 'hzy-layout-header-dark': isDark, 'hzy-layout-header-light': !isDark }">
+    <div class="hzy-layout-header" :class="headerStore.state.class">
       <!-- 菜单收缩 -->
       <el-tooltip content="菜单收展" placement="bottom">
-        <div class="hzy-header-btn">
-          <el-icon :size="iconSize"><Fold /></el-icon>
-          <!-- <el-icon><Expand /></el-icon> -->
+        <div class="hzy-header-btn" @click="menuStore.onChangeCollapse(!menuStore.state.isCollapse)">
+          <el-icon :size="iconSize">
+            <template v-if="coreStore.state.isMobile">
+              <Expand v-if="!menuStore.state.isCollapse" />
+              <Fold v-else />
+            </template>
+            <template v-else>
+              <Expand v-if="menuStore.state.isCollapse" />
+              <Fold v-else />
+            </template>
+          </el-icon>
         </div>
       </el-tooltip>
       <div style="flex: 1 1 0%"></div>
@@ -40,20 +55,26 @@ const iconSize: number = 20;
       </el-tooltip>
       <!-- 系统配置 -->
       <el-tooltip content="系统配置" placement="bottom">
-        <div class="hzy-header-btn">
+        <div class="hzy-header-btn" @click="settingsStore.onOpen(!settingsStore.state.isOpen)">
           <el-icon :size="iconSize"><Setting /></el-icon>
         </div>
       </el-tooltip>
       <!-- 黑白主题切换 -->
       <el-tooltip content="黑白主题切换" placement="bottom">
-        <div class="hzy-header-btn" @click="toggleDark()">
-          <el-icon :size="iconSize"><TurnOff /></el-icon>
+        <div class="hzy-header-btn" @click="coreStore.toggleDark()">
+          <el-icon :size="iconSize">
+            <Sunny v-if="coreStore.state.isDark" />
+            <Sunrise v-else />
+          </el-icon>
         </div>
       </el-tooltip>
       <!-- 全屏 -->
-      <el-tooltip content="全屏" placement="bottom">
-        <div class="hzy-header-btn">
-          <el-icon :size="iconSize"><FullScreen /></el-icon>
+      <el-tooltip content="全屏" placement="bottom" v-if="!coreStore.state.isMobile">
+        <div class="hzy-header-btn" @click="coreStore.toggleFullscreen()">
+          <el-icon :size="iconSize">
+            <ZoomOut v-if="coreStore.state.isFullscreen" />
+            <ZoomIn v-else />
+          </el-icon>
         </div>
       </el-tooltip>
       <!-- 退出登录 -->
@@ -79,6 +100,7 @@ const iconSize: number = 20;
 .hzy-layout-header {
   display: flex;
   height: 100%;
+  border-bottom: 1px solid var(--el-border-color-light);
 
   .hzy-header-btn {
     padding: 0 12px;
@@ -90,14 +112,57 @@ const iconSize: number = 20;
   }
 
   .hzy-header-btn:hover {
-    background: rgba(243, 246, 248, 0.2);
+    background: rgba(243, 246, 248, 0.6);
   }
 }
-
-.hzy-layout-header-dark {
-  box-shadow: var(--el-box-shadow-dark);
+</style>
+<!-- 头部皮肤定义 -->
+<style lang="less">
+//=======// 头部 蓝色
+.hzy-layout-header-0 {
+  background-color: #096dd9;
+  color: #ffffff;
 }
-.hzy-layout-header-light {
-  box-shadow: var(--el-box-shadow-light);
+
+//=======// 头部 红色
+.hzy-layout-header-1 {
+  background-color: #997b71;
+  color: #ffffff;
+}
+
+//=======// 头部 绿色
+.hzy-layout-header-2 {
+  background-color: #237804;
+  color: #ffffff;
+}
+
+//=======// 头部 淡蓝色
+.hzy-layout-header-3 {
+  background-color: #667afa;
+  color: #ffffff;
+}
+
+//=======// 头部 粉色
+.hzy-layout-header-4 {
+  background-color: #f74584;
+  color: #ffffff;
+}
+
+//=======// 头部 紫色
+.hzy-layout-header-5 {
+  background-color: #9463f7;
+  color: #ffffff;
+}
+
+//=======// 头部 黄色
+.hzy-layout-header-6 {
+  background-color: #d48806;
+  color: #ffffff;
+}
+
+//=======// 头部 红色
+.hzy-layout-header-7 {
+  background-color: #ff4c52;
+  color: #ffffff;
 }
 </style>

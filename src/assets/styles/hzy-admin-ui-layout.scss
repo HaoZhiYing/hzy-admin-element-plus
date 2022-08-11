@@ -1,0 +1,22 @@
+@import 'element-plus/dist/index.css';
+//
+@import 'nprogress/nprogress.css';
+// main.ts
+@import 'element-plus/theme-chalk/dark/css-vars.css';
+@import './dark/css-vars.css';
+//
+@import 'element-plus/theme-chalk/display.css';
+
+:root {
+    --el-border-radius-base: 2px;
+    --el-border-color: #f0f2f5;
+    --el-border-color-light: #f0f2f5;
+    --el-border-color-lighter: #f0f2f5;
+    --el-border-color-extra-light: #f0f2f5;
+    --el-border-color-dark: #f0f2f5;
+    --el-border-color-darker: #f0f2f5;
+}
+
+.el-message-box {
+    --el-messagebox-border-radius: 2px;
+}

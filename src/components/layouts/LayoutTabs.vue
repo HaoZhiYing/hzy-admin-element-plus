@@ -1,53 +1,53 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { onMounted, watch, computed } from "vue";
+import AppIcon from "@/components/AppIcon.vue";
+import router from "@/router";
+import TabsStore from "@/store/layouts/TabsStore";
 
-let tabIndex = 2;
-const editableTabsValue = ref("2");
-const editableTabs = ref([
-  {
-    title: "Tab 1",
-    name: "1",
-    content: "Tab 1 content",
-  },
-  {
-    title: "Tab 2",
-    name: "2",
-    content: "Tab 2 content",
-  },
-]);
+//tabs
+const tabsStore = TabsStore();
+const active = computed(() => router.currentRoute.value.fullPath);
+const tabsState = computed(() => tabsStore.state);
 
-const addTab = (targetName: string) => {
-  const newTabName = `${++tabIndex}`;
-  editableTabs.value.push({
-    title: "New Tab",
-    name: newTabName,
-    content: "New Tab content",
-  });
-  editableTabsValue.value = newTabName;
+const methods: any = {
+  addTags() {
+    tabsStore.addTab(router.currentRoute.value);
+  },
+  onEdit(key: string, action: string) {
+    if (action === "remove") {
+      methods.removeTab(key);
+    }
+  },
+  removeTab(key: string) {
+    tabsStore.closeTabSelf(key);
+  },
+  closeTabOther() {
+    tabsStore.closeTabOther(active.value);
+  },
+  closeTabAll() {
+    tabsStore.closeTabAll();
+  },
+  tabOnChange(activeKey: string) {
+    tabsStore.tabClick(activeKey);
+  },
 };
-const removeTab = (targetName: string) => {
-  const tabs = editableTabs.value;
-  let activeName = editableTabsValue.value;
-  if (activeName === targetName) {
-    tabs.forEach((tab, index) => {
-      if (tab.name === targetName) {
-        const nextTab = tabs[index + 1] || tabs[index - 1];
-        if (nextTab) {
-          activeName = nextTab.name;
-        }
-      }
-    });
+
+onMounted(() => {
+  methods.addTags();
+});
+
+watch(
+  () => router.currentRoute.value.fullPath,
+  (value) => {
+    methods.addTags();
   }
-
-  editableTabsValue.value = activeName;
-  editableTabs.value = tabs.filter((tab) => tab.name !== targetName);
-};
+);
 </script>
 
 <template>
   <div class="hzy-layou-tabs">
-    <el-tabs v-model="editableTabsValue" type="card" class="demo-tabs" closable @tabRemove="removeTab">
-      <el-tab-pane v-for="item in editableTabs" :key="item.name" :label="item.title" :name="item.name">
+    <el-tabs v-model="active" type="card" closable @tabRemove="methods.removeTab">
+      <el-tab-pane v-for="item in tabsState.tabs" :key="item.fullPath" :name="item.fullPath" :label="item.meta.title" :closable="item.meta.close">
         <!-- {{ item.content }} -->
       </el-tab-pane>
     </el-tabs>
@@ -60,8 +60,12 @@ const removeTab = (targetName: string) => {
     margin: 0 !important;
   }
 
-  .el-tabs__content{
+  .el-tabs__content {
     display: none !important;
+  }
+
+  .el-tabs--card > .el-tabs__header .el-tabs__nav {
+    border-radius: 0px 0px 0 0 !important;
   }
 }
 </style>

@@ -101,8 +101,8 @@ body {
   background-size: cover;
 
   .login-card {
-    height: 500px;
-    width: 1000px;
+    height: 450px;
+    width: 900px;
     box-shadow: var(--el-box-shadow-dark);
     display: flex;
     border-radius: 5px;
