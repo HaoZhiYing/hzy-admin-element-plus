@@ -5,7 +5,7 @@ import TabsStore from "@/store/layouts/TabsStore";
 
 //tabs
 const tabsStore = TabsStore();
-const active = ref(router.currentRoute.value.fullPath);
+const active = computed(() => router.currentRoute.value.fullPath);
 const tabsState = computed(() => tabsStore.state);
 
 const methods: any = {
@@ -58,7 +58,7 @@ watch(
 <template>
   <div class="hzy-layout-tabs">
     <div class="hzy-layout-tabs-left">
-      <el-tabs type="card" v-model="active" closable @tabRemove="methods.removeTab" @tabChange="methods.tabOnChange">
+      <el-tabs type="card" :modelValue="active" closable @tabRemove="methods.removeTab" @tabChange="methods.tabOnChange">
         <el-tab-pane v-for="item in tabsState.tabs" :key="item.fullPath" :name="item.fullPath" :label="item.meta.title" :closable="item.meta.close"> </el-tab-pane>
       </el-tabs>
     </div>

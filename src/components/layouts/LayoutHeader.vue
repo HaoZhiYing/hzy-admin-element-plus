@@ -26,6 +26,10 @@ const onReload = () => {
   const name = router.currentRoute.value.name ? router.currentRoute.value.name : "";
   coreStore.refresh(router.currentRoute.value.fullPath, name as string);
 };
+
+const jumpDoc = () => {
+  window.open("https://www.yuque.com/u378909/yidf7v", "_black");
+};
 </script>
 
 <template>
@@ -50,6 +54,11 @@ const onReload = () => {
         <LayoutOneLevelMenuVue />
       </div>
       <div style="flex: 1 1 0%" v-else></div>
+
+      <!-- HzyAdmin 文档 -->
+      <el-tooltip content="HzyAdmin 文档" placement="bottom" @click="onReload">
+        <div class="hzy-header-btn" @click="jumpDoc">HzyAdmin 文档</div>
+      </el-tooltip>
       <!-- 刷新 -->
       <el-tooltip content="刷新" placement="bottom" @click="onReload">
         <div class="hzy-header-btn">

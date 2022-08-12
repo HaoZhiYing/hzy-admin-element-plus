@@ -8,14 +8,14 @@
  */
 
 import { ComponentInternalInstance } from "vue";
-import { useAllElementPlusIcons, getAllName as getAllNameAntd } from "./ElementPlusIcons";
-// import { useAllIonicons5Icons, getAllName as getAllNameIonicons5 } from "./IonIcons5Icons";
+import { useAllElementPlusIcons, getAllName as getAllNameElementPlus } from "./ElementPlusIcons";
+import { useAllAntdIcons, getAllName as getAllNameAntd } from "./AntdIcons";
 
 export function useAllIcons(app: any) {
-    // 注册所有的 antd 图标
+    // 注册所有的 element plus 图标
     app.use(useAllElementPlusIcons);
-    // 注册所有的 ionicons5 图标
-    // app.use(useAllIonicons5Icons);
+    // 注册所有的 antd 图标
+    app.use(useAllAntdIcons);
 
 }
 
@@ -23,14 +23,14 @@ export function useAllIcons(app: any) {
  * 获取所有的 antd 图标
  * @returns 
  */
-export function getAllNameByAntd(currentInstance: ComponentInternalInstance | null) {
-    return getAllNameAntd(currentInstance);
+export function getAllNameByElementPlus(currentInstance: ComponentInternalInstance | null) {
+    return getAllNameElementPlus(currentInstance);
 }
 
 /**
  * 获取所有的 ionicons5 图标
  * @returns
  */
-// export function getAllNameByIonicons5(currentInstance: ComponentInternalInstance | null) {
-//     return getAllNameIonicons5(currentInstance);
-// }
+export function getAllNameByAntd(currentInstance: ComponentInternalInstance | null) {
+    return getAllNameAntd(currentInstance);
+}

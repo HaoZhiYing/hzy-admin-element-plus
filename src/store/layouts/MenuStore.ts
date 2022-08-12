@@ -116,7 +116,7 @@ export default defineStore("MenuStore", () => {
             state.textColor = "#ffffff";
         } else {
             state.backgroundColor = undefined;
-            state.activeTextColor = undefined;
+            state.activeTextColor = "#ffd04b";
             state.textColor = undefined;
         }
     }
