@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory, Router, useRouter as appRouter, useRoute as appRoute } from 'vue-router'
 import defaultRouters from '@/router/DefaultRouters';
 import { genDynamicRouters } from '@/router/DynamicRouters';
-// import tools from '@/scripts/Tools';
+import Tools from '@/scripts/Tools';
 //菜单数据
 import menuTreeList from "@/mock/MenuData";
 
@@ -14,7 +14,7 @@ const router = createRouter({
 //监听路由
 router.beforeEach((to, from, next) => {
   console.log('路由拦截器=>', to, from);
-//   tools.loadingStart();
+  Tools.loadingStart();
 
   // if (to.fullPath === "/login") {
   //   return next();
@@ -33,7 +33,7 @@ router.beforeEach((to, from, next) => {
 });
 
 router.afterEach(() => {
-//   tools.loadingStop();
+  Tools.loadingStop();
 });
 
 export default router;

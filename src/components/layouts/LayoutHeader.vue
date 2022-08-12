@@ -1,30 +1,30 @@
 <script setup lang="ts">
-import router from "@/router/Index";
-import { ElMessageBox } from "element-plus";
+import router from "@/router";
+import LayoutOneLevelMenuVue from "./menus/LayoutOneLevelMenu.vue";
 
 import CoreStore from "@/store/layouts/CoreStore";
 import SettingsStore from "@/store/layouts/SettingsStore";
 import HeaderStore from "@/store/layouts/HeaderStore";
-import MenuStore from "@/store/layouts/MenuStore";
+import MenuStore, { EMenuMode } from "@/store/layouts/MenuStore";
+import Tools from "@/scripts/Tools";
 //
 const coreStore = CoreStore();
 const settingsStore = SettingsStore();
 const headerStore = HeaderStore();
 const menuStore = MenuStore();
 
-//图标大小
+// 图标大小
 const iconSize: number = 20;
 
+// 退出登录
 const logOut = () => {
-  ElMessageBox.confirm("您确定要退出登录吗?", "警告", {
-    confirmButtonText: "继续退出",
-    cancelButtonText: "取消",
-    type: "warning",
-  })
-    .then(() => {
-      router.push("/");
-    })
-    .catch(() => {});
+  Tools.confirm("您确定要退出登录吗?", () => router.push("/login"));
+};
+
+// 刷新
+const onReload = () => {
+  const name = router.currentRoute.value.name ? router.currentRoute.value.name : "";
+  coreStore.refresh(router.currentRoute.value.fullPath, name as string);
 };
 </script>
 
@@ -46,9 +46,12 @@ const logOut = () => {
           </el-icon>
         </div>
       </el-tooltip>
-      <div style="flex: 1 1 0%"></div>
+      <div style="flex: 1 1 0%; height: 100%; display: flex" v-if="menuStore.state.menuMode == EMenuMode.top">
+        <LayoutOneLevelMenuVue />
+      </div>
+      <div style="flex: 1 1 0%" v-else></div>
       <!-- 刷新 -->
-      <el-tooltip content="刷新" placement="bottom">
+      <el-tooltip content="刷新" placement="bottom" @click="onReload">
         <div class="hzy-header-btn">
           <el-icon :size="iconSize"><RefreshRight /></el-icon>
         </div>
@@ -112,7 +115,7 @@ const logOut = () => {
   }
 
   .hzy-header-btn:hover {
-    background: rgba(243, 246, 248, 0.6);
+    background: rgba(243, 246, 248, 0.5);
   }
 }
 </style>

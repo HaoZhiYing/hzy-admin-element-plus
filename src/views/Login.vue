@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import router from "@/router/Index";
+import router from "@/router";
 import { reactive, ref } from "vue";
 import { useDark, useToggle } from "@vueuse/core";
 

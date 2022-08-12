@@ -31,7 +31,7 @@ interface IState {
     textColor: string | undefined,
     // 是否自定义颜色
     isCustomColor: boolean,
-    //菜单模式
+    // 菜单模式 = 1：常规模式|2：顶部模式|3：左侧模式
     menuMode: EMenuMode
 }
 
@@ -45,10 +45,14 @@ export default defineStore("MenuStore", () => {
     let state = reactive<IState>({
         // 菜单收展状态
         isCollapse: false,
-        width: 250,//当前宽度
-        minWidth: 64,//pc端最小宽度
-        maxWidth: 250,//最大宽度
-        mobileWidth: 0,//移动端pc菜单宽度
+        // 当前宽度
+        width: 220,
+        // pc端最小宽度
+        minWidth: 64,
+        // 最大宽度
+        maxWidth: 220,
+        // 移动端pc菜单宽度
+        mobileWidth: 0,
         // 激活文本颜色
         activeTextColor: undefined,
         // 背景颜色
@@ -57,7 +61,7 @@ export default defineStore("MenuStore", () => {
         textColor: undefined,
         // 是否自定义颜色
         isCustomColor: false,
-        //菜单栏模式 = 1：常规模式|2：顶部模式|3：左侧模式
+        // 菜单栏模式 = 1：常规模式|2：顶部模式|3：左侧模式
         menuMode: window.innerWidth < coreStore.state.demarcation ? EMenuMode.default : MenuStoreUtil.getMenuMode()
     });
 
@@ -67,6 +71,10 @@ export default defineStore("MenuStore", () => {
         MenuStoreUtil.setMenuMode(window.innerWidth < coreStore.state.demarcation ?
             EMenuMode.default : MenuStoreUtil.getMenuMode());
         onChangeMenu(value);
+        //如果是移动模式，将菜单模式还原为默认行为
+        if (value) {
+            setMenuMode(EMenuMode.default);
+        }
     });
 
     /**
@@ -76,7 +84,6 @@ export default defineStore("MenuStore", () => {
     function onChangeMenu(isMobile: boolean) {
         if (isMobile) {
             state.width = state.maxWidth;
-            // state.isCollapse = false;
         } else {
             // pc 端表现
             if (state.isCollapse) {
@@ -113,29 +120,11 @@ export default defineStore("MenuStore", () => {
             state.textColor = undefined;
         }
     }
-    onMounted(() => { state.isCustomColor = getCustomColor(); })
+    onMounted(() => { state.isCustomColor = MenuStoreUtil.getIsCustomColor(); })
     watch(() => state.isCustomColor, value => {
         setCustomColor(value);
         onChangeCustomColor(value);
     });
-
-
-    /**
-     * 持久化保存自定义颜色状态
-     * @param isCustomColor 
-     */
-    function setCustomColor(isCustomColor: boolean) {
-        localStorage.setItem(`${domainName}_custom_color`, isCustomColor ? "1" : "0");
-    }
-
-    /**
-     * 获取持久化保存自定义颜色状态
-     * @returns 
-     */
-    function getCustomColor(): boolean {
-        return localStorage.getItem(`${domainName}_custom_color`) == "1";
-    }
-
 
     /**
      * 设置一级菜单 是否开启
@@ -145,6 +134,13 @@ export default defineStore("MenuStore", () => {
         state.menuMode = menumode;
     }
 
+    /**
+     * 持久化保存自定义颜色状态
+     * @param isCustomColor 
+     */
+    function setCustomColor(isCustomColor: boolean) {
+        MenuStoreUtil.setIsCustomColor(isCustomColor);
+    }
 
     return {
         state,
@@ -160,18 +156,31 @@ export default defineStore("MenuStore", () => {
 class MenuStoreUtil {
 
     /**
+     * 持久化保存自定义颜色状态
+     * @param isCustomColor 
+     */
+    static setIsCustomColor(isCustomColor: boolean) {
+        localStorage.setItem(`${domainName}_custom_color`, isCustomColor ? "1" : "0");
+    }
+    /**
+    * 获取 IsCustomColor
+    */
+    static getIsCustomColor(): boolean {
+        return localStorage.getItem(`${domainName}_custom_color`) == "1";
+    }
+
+    /**
      * 设置 menuMode
      * @param menuMode 
      */
     static setMenuMode(menuMode: EMenuMode) {
-        localStorage.setItem(AppConsts.appPrefix + "-OneLevelMenuMode", menuMode.toString());
+        localStorage.setItem(AppConsts.appPrefix + "_one_level_menu_mode", menuMode.toString());
     }
-
     /**
      * 获取 menuMode
      */
     static getMenuMode() {
-        let value = localStorage.getItem(AppConsts.appPrefix + "-OneLevelMenuMode");
+        let value = localStorage.getItem(AppConsts.appPrefix + "_one_level_menu_mode");
         return value ? value as EMenuMode : EMenuMode.top;
     }
 

@@ -18,7 +18,7 @@ const menuStore = MenuStore();
           <div class="hzy-skin-item" :class="'hzy-layout-header-' + index" @click="headerStore.setHeaderClass('hzy-layout-header-' + index)"></div>
         </template>
       </div>
-      <el-button type="success" text class="w100" @click="headerStore.setHeaderClass(null)">重置</el-button>
+      <el-button type="success" text class="w100" @click="headerStore.setHeaderClass('')">重置</el-button>
       <el-divider> 菜单颜色 </el-divider>
       <div class="hzy-skin-list mb-5 text-center">
         <el-radio-group v-model="menuStore.state.isCustomColor">

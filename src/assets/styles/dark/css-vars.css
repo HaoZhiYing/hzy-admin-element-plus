@@ -3,9 +3,3 @@
   --el-bg-color: #626aef; 
 } 
 */
-
-@media (max-width: 576px) {
-  .el-message-box {
-    --el-messagebox-width: 95%;
-  }
-}

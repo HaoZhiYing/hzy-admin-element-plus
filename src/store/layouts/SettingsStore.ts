@@ -13,7 +13,7 @@ export default defineStore("SettingsStore", () => {
     });
 
     /**
-     * 
+     * 打开设置窗口
      * @param isOpen 
      */
     function onOpen(isOpen: boolean) {

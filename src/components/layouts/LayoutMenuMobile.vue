@@ -2,7 +2,7 @@
 import LayoutMenuVue from "./menus/LayoutMenu.vue";
 import CoreStore from "@/store/layouts/CoreStore";
 import MenuStore from "@/store/layouts/MenuStore";
-import { computed } from "vue";
+// import { computed } from "vue";
 //
 const coreStore = CoreStore();
 const menuStore = MenuStore();

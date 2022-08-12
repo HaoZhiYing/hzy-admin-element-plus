@@ -26,7 +26,7 @@ export default defineStore("HeaderStore", () => {
         // 首先处理边框阴影 
         // var boxShadow = isDark ? 'hzy-layout-header-dark-box-shadow' : 'hzy-layout-header-light-box-shadow';
         // state.class.push(boxShadow);
-        var _class = getHeaderClass();
+        var _class = HeaderStoreUtil.getHeaderClass();
         if (_class) state.class.push(_class);
     }
     initHeaderClass(coreStore.state.isDark);
@@ -35,23 +35,11 @@ export default defineStore("HeaderStore", () => {
     })
 
     /**
-     * 保存头部样式
+     * 设置头部样式
      */
-    function setHeaderClass(_class: string | null) {
-        if (_class) {
-            localStorage.setItem(`${domainName}_header_class`, _class);
-        }
-        else {
-            localStorage.setItem(`${domainName}_header_class`, "");
-        }
+    function setHeaderClass(_class: string) {
+        HeaderStoreUtil.setHeaderClass(_class);
         initHeaderClass(coreStore.state.isDark);
-    }
-
-    /**
-     * 获取头部样式名称
-     */
-    function getHeaderClass(): string | null {
-        return localStorage.getItem(`${domainName}_header_class`);
     }
 
     return {
@@ -60,3 +48,26 @@ export default defineStore("HeaderStore", () => {
     }
 
 });
+
+
+/**
+ * 保存头部状态数据
+ */
+class HeaderStoreUtil {
+
+    /**
+     * 保存头部 class
+     * @param _class 
+     */
+    static setHeaderClass(_class: string) {
+        localStorage.setItem(`${domainName}_header_class`, _class ? _class : "");
+    }
+
+    /**
+     * 获取 menuMode
+     */
+    static getHeaderClass(): string {
+        return localStorage.getItem(`${domainName}_header_class`)!;
+    }
+
+}

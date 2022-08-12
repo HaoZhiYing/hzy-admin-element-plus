@@ -31,10 +31,12 @@ const title: string = "xxx 管理系统";
     border-right: 0 !important;
   }
   .hzy-layou-menu-title {
-    padding: 20px 15px;
-    text-align: center;
     font-weight: bold;
     font-size: 20px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 

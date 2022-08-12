@@ -15,3 +15,9 @@ const menuStore = MenuStore();
     <LayoutSettingsVue />
   </div>
 </template>
+
+<style>
+.hzy-layout {
+  display: flex;
+}
+</style>
