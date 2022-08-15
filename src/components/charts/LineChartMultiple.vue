@@ -1,3 +1,4 @@
+  <!-- 折线图-带多条线 -->
 <script lang="ts" setup>
 import { reactive, watch, computed, onMounted } from "vue";
 import { Chart } from "@antv/g2";
@@ -113,6 +114,5 @@ watch(state.data, (value) => {
 </script>
 
 <template>
-  <!-- 折线图-带多条线 -->
   <div :id="state.id"></div>
 </template>

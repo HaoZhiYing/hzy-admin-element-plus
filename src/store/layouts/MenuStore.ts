@@ -12,6 +12,20 @@ export enum EMenuMode {
     left = "3"
 }
 
+/**
+ * 菜单自定义主题
+ */
+interface MenuCustomTheme {
+    // 激活文本背景颜色
+    activeBgColor: string | undefined,
+    // 激活文本颜色
+    activeTextColor: string | undefined
+    // 背景颜色
+    backgroundColor: string | undefined
+    // 文本颜色
+    textColor: string | undefined,
+}
+
 interface IState {
     // 菜单收展状态
     isCollapse: boolean
@@ -23,14 +37,8 @@ interface IState {
     maxWidth: number
     // 移动端pc菜单宽度
     mobileWidth: number
-    // 激活文本颜色
-    activeTextColor: string | undefined
-    // 背景颜色
-    backgroundColor: string | undefined
-    // 文本颜色
-    textColor: string | undefined,
-    // 是否自定义颜色
-    isCustomColor: boolean,
+    // 菜单自定义颜色 索引值
+    menuCustomThemesIndex: number
     // 菜单模式 = 1：常规模式|2：顶部模式|3：左侧模式
     menuMode: EMenuMode
 }
@@ -41,6 +49,28 @@ const domainName = window.location.origin;
 export default defineStore("MenuStore", () => {
 
     const coreStore = useCoreStore();
+    //菜单主题集合
+    const menuCustomThemes: MenuCustomTheme[] = [{//原生风格
+        activeBgColor: undefined,
+        backgroundColor: undefined,
+        activeTextColor: undefined,
+        textColor: undefined,
+    }, {//antd 风格
+        activeBgColor: "#1890ff",// 激活文本背景颜色
+        backgroundColor: "#001529",// 菜单背景色
+        activeTextColor: "#fff",// 文本激活色
+        textColor: "#fff",// 默认文本色
+    }, {//element+ 官方自定义颜色风格
+        activeBgColor: "#ffd04b",
+        backgroundColor: "#545c64",
+        activeTextColor: "#303133",//黑色
+        textColor: "#fff",
+    }, {//iview 菜单风格
+        activeBgColor: "#1890ff",
+        backgroundColor: "#191a23",
+        activeTextColor: "#fff",
+        textColor: "#fff",
+    }];
 
     let state = reactive<IState>({
         // 菜单收展状态
@@ -53,14 +83,8 @@ export default defineStore("MenuStore", () => {
         maxWidth: 220,
         // 移动端pc菜单宽度
         mobileWidth: 0,
-        // 激活文本颜色
-        activeTextColor: undefined,
-        // 背景颜色
-        backgroundColor: undefined,
-        // 文本颜色
-        textColor: undefined,
-        // 是否自定义颜色
-        isCustomColor: false,
+        // 菜单自定义颜色 索引值
+        menuCustomThemesIndex: 0,
         // 菜单栏模式 = 1：常规模式|2：顶部模式|3：左侧模式
         menuMode: window.innerWidth < coreStore.state.demarcation ? EMenuMode.default : MenuStoreUtil.getMenuMode()
     });
@@ -107,23 +131,15 @@ export default defineStore("MenuStore", () => {
 
     /**
      * 改变自定义颜色
+     * @param index 索引
      */
-    function onChangeCustomColor(isCustomColor: boolean) {
-        state.isCustomColor = isCustomColor;
-        if (state.isCustomColor) {
-            state.backgroundColor = "#001529";
-            state.activeTextColor = "#ffd04b";
-            state.textColor = "#ffffff";
-        } else {
-            state.backgroundColor = undefined;
-            state.activeTextColor = "#ffd04b";
-            state.textColor = undefined;
-        }
+    function onChangeMenuCustomThemesIndex(index: number) {
+        state.menuCustomThemesIndex = index;
     }
-    onMounted(() => { state.isCustomColor = MenuStoreUtil.getIsCustomColor(); })
-    watch(() => state.isCustomColor, value => {
-        setCustomColor(value);
-        onChangeCustomColor(value);
+    onMounted(() => { state.menuCustomThemesIndex = MenuStoreUtil.getMenuCustomThemesIndex(); })
+    watch(() => state.menuCustomThemesIndex, value => {
+        setMenuCustomThemesIndex(value);
+        onChangeMenuCustomThemesIndex(value);
     });
 
     /**
@@ -136,16 +152,18 @@ export default defineStore("MenuStore", () => {
 
     /**
      * 持久化保存自定义颜色状态
-     * @param isCustomColor 
+     * @param index 菜单主题索引
      */
-    function setCustomColor(isCustomColor: boolean) {
-        MenuStoreUtil.setIsCustomColor(isCustomColor);
+    function setMenuCustomThemesIndex(index: number) {
+        MenuStoreUtil.setMenuCustomThemesIndex(index);
     }
 
     return {
         state,
+        menuCustomThemes,
+        onChangeMenuCustomThemesIndex,
         onChangeCollapse,
-        setMenuMode
+        setMenuMode,
     }
 
 });
@@ -157,16 +175,19 @@ class MenuStoreUtil {
 
     /**
      * 持久化保存自定义颜色状态
-     * @param isCustomColor 
+     * @param menuCustomThemesIndex 
      */
-    static setIsCustomColor(isCustomColor: boolean) {
-        localStorage.setItem(`${domainName}_custom_color`, isCustomColor ? "1" : "0");
+    static setMenuCustomThemesIndex(menuCustomThemesIndex: number) {
+        localStorage.setItem(`${domainName}_menu_custom_themes_index`, menuCustomThemesIndex.toString());
     }
     /**
-    * 获取 IsCustomColor
-    */
-    static getIsCustomColor(): boolean {
-        return localStorage.getItem(`${domainName}_custom_color`) == "1";
+     * 获取 MenuCustomThemesIndex
+     * @returns 
+     */
+    static getMenuCustomThemesIndex(): number {
+        var index = localStorage.getItem(`${domainName}_menu_custom_themes_index`);
+        if (index == null || index == undefined || index == "") return 0;
+        return parseInt(index);
     }
 
     /**

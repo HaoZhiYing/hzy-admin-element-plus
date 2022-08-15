@@ -1,12 +1,13 @@
 import { defineStore } from "pinia";
 import { reactive } from "vue";
 import router from "@/router";
+import { RouteMeta } from "vue-router";
 
 export interface ITabsItem {
     fullPath: string
     path: string
     name: string
-    meta: any
+    meta: RouteMeta
 }
 
 interface IState {
@@ -30,7 +31,7 @@ export default defineStore("TabsStore", () => {
             fullPath: "/home",
             path: "/home",
             name: "HomeIndexCom",
-            meta: { title: '首页', close: false, keepAlive: true }
+            meta: { title: '首页', close: false, keepAlive: true, icon: "HomeFilled" },
         } as ITabsItem],
         //缓存视图 视图缓存只能通过组件名称来
         cacheViews: ["HomeIndexCom"],

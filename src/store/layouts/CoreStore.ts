@@ -2,7 +2,6 @@ import router from '@/router';
 import { useFullscreen, useWindowSize, useDark, useToggle } from '@vueuse/core';
 import { defineStore } from 'pinia';
 import { nextTick, reactive, ref, watch } from 'vue';
-import MenuStore, { EMenuMode } from './MenuStore';
 import TabsStore from './TabsStore';
 
 interface IState {
@@ -63,6 +62,7 @@ export default defineStore("CoreStore", () => {
      * @param {*} componentName 
      */
     function refresh(fullPath: string, componentName: string) {
+        console.log(fullPath, componentName);
         tabsStore.delCacheView(componentName, () => {
             nextTick(() => {
                 router.push("/redirect" + fullPath);

@@ -11,9 +11,13 @@ const title: string = "xxx 管理系统";
 </script>
 
 <template>
-  <el-aside :width="menuStore.state.width + 'px'" :class="{ 'hzy-layout-menu-dark': isDark, 'hzy-layout-menu-light': !isDark }" :style="{ backgroundColor: menuStore.state.backgroundColor }">
+  <el-aside
+    :width="menuStore.state.width + 'px'"
+    :class="{ 'hzy-layout-menu-dark': isDark, 'hzy-layout-menu-light': !isDark }"
+    :style="{ backgroundColor: menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex].backgroundColor }"
+  >
     <div class="hzy-layou-menu">
-      <template v-if="menuStore.state.isCustomColor">
+      <template v-if="menuStore.state.menuCustomThemesIndex > 0">
         <div class="hzy-layou-menu-title" v-if="!menuStore.state.isCollapse" style="color: #ffffff">{{ title }}</div>
       </template>
       <template v-else>

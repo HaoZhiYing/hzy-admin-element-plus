@@ -38,27 +38,27 @@ defineExpose({
 
 <template>
   <div>
-    <a-card class="mb-15" v-show="tableData.search.state">
+    <el-card class="mb-15" v-show="tableData.search.state">
       <!-- 检索插槽 -->
       <slot name="search"></slot>
-    </a-card>
-    <a-card :bodyStyle="{ paddingBottom: 0 }">
-      <a-row :gutter="[15, 15]">
-        <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-          <a-space :size="15">
+    </el-card>
+    <el-card :bodyStyle="{ paddingBottom: 0 }">
+      <el-row>
+        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+          <el-space :size="15">
             <!-- 工具栏左侧插槽 -->
             <slot name="toolbar-left"></slot>
-          </a-space>
-        </a-col>
-        <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="text-right" style="display: inline-flex; justify-content: end">
-          <a-space :size="15">
+          </el-space>
+        </el-col>
+        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="text-right" style="display: inline-flex; justify-content: end">
+          <el-space :size="15">
             <!-- 工具栏右侧插槽 -->
             <slot name="toolbar-right"></slot>
-          </a-space>
-        </a-col>
-      </a-row>
+          </el-space>
+        </el-col>
+      </el-row>
       <!-- 表格 -->
-      <a-spin :spinning="tableData.loading">
+      <el-spin :spinning="tableData.loading">
         <!-- size="medium" -->
         <div style="overflow: hidden; height: calc(100vh - 250px); display: initial">
           <vxe-table
@@ -92,7 +92,7 @@ defineExpose({
           @page-change="onChange"
         >
         </vxe-pager>
-      </a-spin>
-    </a-card>
+      </el-spin>
+    </el-card>
   </div>
 </template>

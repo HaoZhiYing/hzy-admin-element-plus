@@ -31,9 +31,9 @@ function onSelectedMenuItem(index: string, indexPath: string[], item: MenuItemCl
     :default-active="currentRoutePath"
     :collapse-transition="false"
     :collapse="menuStore.state.isCollapse && !coreStore.state.isMobile"
-    :active-text-color="menuStore.state.activeTextColor"
-    :background-color="menuStore.state.backgroundColor"
-    :text-color="menuStore.state.textColor"
+    :active-text-color="menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex].activeTextColor"
+    :background-color="menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex].backgroundColor"
+    :text-color="menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex].textColor"
     @select="(index: string, indexPath: string[], item: MenuItemClicked)=>onSelectedMenuItem(index,indexPath,item)"
   >
     <!-- 动态生成 topnav-->
@@ -80,5 +80,12 @@ function onSelectedMenuItem(index: string, indexPath: string[], item: MenuItemCl
 }
 .hzy-layout-menu-light {
   box-shadow: var(--el-box-shadow-light);
+}
+</style>
+<style lang="less">
+.hzy-layou-menu {
+  .el-menu-item.is-active {
+    background: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex].activeBgColor");
+  }
 }
 </style>

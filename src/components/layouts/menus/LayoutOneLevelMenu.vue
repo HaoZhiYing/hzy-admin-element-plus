@@ -41,7 +41,7 @@ const methods: any = {
   onMenuSelected(urlOrId: string) {
     const routeInfo = appStore.getRouterByFullPath(urlOrId);
     if (routeInfo && router.hasRoute(routeInfo.name)) {
-      router.push({ path: urlOrId });
+      router.push(urlOrId);
     } else {
       state.selectedKey = urlOrId;
       appStore.setSubmenu(urlOrId);

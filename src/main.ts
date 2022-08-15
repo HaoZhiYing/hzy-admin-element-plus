@@ -11,10 +11,13 @@ import "./assets/styles/hzy-admin-ui-layout.scss";
 import "./assets/styles/hzy-admin-ui-layout.less";
 //图标注册
 import { useAllIcons } from "@/scripts/icons";
+//vxe-table
+import useVXETable from "@/scripts/VxeTableUtil";
 
 createApp(App)
     .use(createPinia())
     .use(router)
     .use(ElementPlus)
     .use(useAllIcons)
+    .use(useVXETable)
     .mount('#app');

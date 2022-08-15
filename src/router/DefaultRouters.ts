@@ -26,20 +26,20 @@ const routes: Array<RouteRecordRaw> = [
             component: () => import('@/components/Redirect.vue'),
         }]
     },
-    {
-        //默认首页
-        name: 'defaultLayout',
-        path: '/',
-        component: layout,
-        redirect: '/home',
-        children: [
-            {
-                path: '/home',
-                name: "HomeIndexCom",
-                component: () => import('@/views/home/Index.vue'),
-                meta: { title: '首页', close: false, keepAlive: true },
-            }]
-    }
+    // {
+    //     //默认首页
+    //     name: 'defaultLayout',
+    //     path: '/',
+    //     component: layout,
+    //     redirect: '/home',
+    //     children: [
+    //         {
+    //             path: '/home',
+    //             name: "HomeIndexCom",
+    //             component: () => import('@/views/home/Index.vue'),
+    //             meta: { title: '首页', close: false, keepAlive: true, icon: "" },
+    //         }]
+    // }
 ];
 
 export default routes;

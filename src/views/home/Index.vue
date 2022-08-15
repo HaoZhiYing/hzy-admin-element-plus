@@ -59,17 +59,17 @@ let visible = ref(false);
     <div class="mt-15">
       <el-row :gutter="20">
         <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-          <el-card :body-style="{ padding: '0px' }">
+          <el-card>
             <el-image :src="image1" fit="cover" />
           </el-card>
         </el-col>
         <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-          <el-card :body-style="{ padding: '0px' }">
+          <el-card>
             <el-image :src="image2" fit="cover" />
           </el-card>
         </el-col>
         <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-          <el-card :body-style="{ padding: '0px' }">
+          <el-card>
             <el-image :src="image3" fit="cover" />
           </el-card>
         </el-col>

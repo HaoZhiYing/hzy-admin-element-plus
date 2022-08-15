@@ -14,17 +14,16 @@ const menuStore = MenuStore();
     <div class="hzy-settings">
       <el-divider> 头部颜色 </el-divider>
       <div class="hzy-skin-list mb-5 text-center">
-        <template v-for="(item, index) in 8" :key="index">
+        <template v-for="(item, index) in 12" :key="index">
           <div class="hzy-skin-item" :class="'hzy-layout-header-' + index" @click="headerStore.setHeaderClass('hzy-layout-header-' + index)"></div>
         </template>
       </div>
       <el-button type="success" text class="w100" @click="headerStore.setHeaderClass('')">重置</el-button>
       <el-divider> 菜单颜色 </el-divider>
       <div class="hzy-skin-list mb-5 text-center">
-        <el-radio-group v-model="menuStore.state.isCustomColor">
-          <el-radio :label="true">深色</el-radio>
-          <el-radio :label="false">默认</el-radio>
-        </el-radio-group>
+        <template v-for="(item, index) in menuStore.menuCustomThemes" :key="index">
+          <div class="hzy-skin-item" style="border: 1px solid #67c23a;" :style="{ backgroundColor: item.backgroundColor }" @click="menuStore.onChangeMenuCustomThemesIndex(index)"></div>
+        </template>
       </div>
       <el-divider v-if="!coreStore.state.isMobile"> 菜单栏模式 </el-divider>
       <div class="hzy-skin-list mb-5 text-center" v-if="!coreStore.state.isMobile">
@@ -46,8 +45,8 @@ const menuStore = MenuStore();
     flex-wrap: wrap;
     justify-content: center;
     .hzy-skin-item {
-      width: 35px;
-      height: 35px;
+      width: 40px;
+      height: 40px;
       margin: 8px;
       cursor: pointer;
       border-radius: 5px;

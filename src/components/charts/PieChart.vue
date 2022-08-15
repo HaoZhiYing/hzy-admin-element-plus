@@ -1,3 +1,4 @@
+<!-- 条形图-横向 -->
 <script lang="ts" setup>
 import { onMounted, reactive, watch, computed } from "vue";
 import { Chart } from "@antv/g2";
@@ -91,6 +92,5 @@ watch(state.data, (value) => {
 </script>
 
 <template>
-  <!-- 条形图-横向 -->
   <div :id="state.id"></div>
 </template>

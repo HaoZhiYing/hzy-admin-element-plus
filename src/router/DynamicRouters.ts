@@ -1,5 +1,5 @@
 import AppStore from '@/store/AppStore';
-import { RouteRecordRaw } from 'vue-router';
+import { RouteMeta, RouteRecordRaw } from 'vue-router';
 import router from '@/router';
 
 //导出所有的 vue 模块
@@ -55,14 +55,15 @@ function createDynamicRouters(data: any[]) {
                 redirect: path && path === '/NotFoundComponent' ? '/NotFoundComponent' : undefined,
                 meta: {
                     title: item.name,
+                    keepAlive: item.keepAlive ?? true,
                     close: item.close,
                     show: item.show ?? true,
-                    keepAlive: item.keepAlive ?? true,
                     menuId: item.id,
                     parentId: item.parentId,
-                    jumpUrl: item.jumpUrl,
                     levelCode: item.levelCode,
-                },
+                    jumpUrl: item.jumpUrl,
+                    icon: item.icon
+                } as RouteMeta,
             } as RouteRecordRaw;
 
             if (path && path === '/NotFoundComponent') {

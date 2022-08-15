@@ -54,14 +54,13 @@ const jumpDoc = () => {
         <LayoutOneLevelMenuVue />
       </div>
       <div style="flex: 1 1 0%" v-else></div>
-
       <!-- HzyAdmin 文档 -->
-      <el-tooltip content="HzyAdmin 文档" placement="bottom" @click="onReload">
+      <el-tooltip content="HzyAdmin 文档" placement="bottom">
         <div class="hzy-header-btn" @click="jumpDoc">HzyAdmin 文档</div>
       </el-tooltip>
       <!-- 刷新 -->
-      <el-tooltip content="刷新" placement="bottom" @click="onReload">
-        <div class="hzy-header-btn">
+      <el-tooltip content="刷新" placement="bottom">
+        <div class="hzy-header-btn" @click="onReload">
           <el-icon :size="iconSize"><RefreshRight /></el-icon>
         </div>
       </el-tooltip>
@@ -113,6 +112,13 @@ const jumpDoc = () => {
   display: flex;
   height: 100%;
   border-bottom: 1px solid var(--el-border-color-light);
+  // 动画延迟
+  transition: background-color 0.6s;
+  -moz-transition: background-color 0.6s;
+  /* Firefox 4 */
+  -webkit-transition: background-color 0.6s;
+  /* Safari 和 Chrome */
+  -o-transition: background-color 0.6s;
 
   .hzy-header-btn {
     padding: 0 12px;
@@ -132,49 +138,66 @@ const jumpDoc = () => {
 <style lang="less">
 //=======// 头部 蓝色
 .hzy-layout-header-0 {
-  background-color: #096dd9;
+  // background-color: #096dd9;
+  // color: #ffffff;
+  background: #2173dc;
+  background: -webkit-gradient(linear, left top, right top, from(#1d42ab), color-stop(#2173dc), to(#1e93ff));
+  background: linear-gradient(90deg, #1d42ab, #2173dc, #1e93ff);
   color: #ffffff;
 }
 
-//=======// 头部 红色
 .hzy-layout-header-1 {
-  background-color: #997b71;
+  background-color: #8d6658;
   color: #ffffff;
 }
 
-//=======// 头部 绿色
 .hzy-layout-header-2 {
-  background-color: #237804;
+  background-color: #57c7d4;
   color: #ffffff;
 }
 
-//=======// 头部 淡蓝色
 .hzy-layout-header-3 {
-  background-color: #667afa;
+  background-color: #46be8a;
   color: #ffffff;
 }
 
-//=======// 头部 粉色
 .hzy-layout-header-4 {
-  background-color: #f74584;
+  background-color: #757575;
   color: #ffffff;
 }
 
-//=======// 头部 紫色
 .hzy-layout-header-5 {
-  background-color: #9463f7;
+  background-color: #677ae4;
   color: #ffffff;
 }
 
-//=======// 头部 黄色
 .hzy-layout-header-6 {
-  background-color: #d48806;
+  background-color: #f2a654;
   color: #ffffff;
 }
 
-//=======// 头部 红色
 .hzy-layout-header-7 {
-  background-color: #ff4c52;
+  background-color: #f96197;
+  color: #ffffff;
+}
+
+.hzy-layout-header-8 {
+  background-color: #926dde;
+  color: #ffffff;
+}
+
+.hzy-layout-header-9 {
+  background-color: #f96868;
+  color: #ffffff;
+}
+
+.hzy-layout-header-10 {
+  background-color: #3aa99e;
+  color: #ffffff;
+}
+
+.hzy-layout-header-11 {
+  background-color: #f9cd48;
   color: #ffffff;
 }
 </style>

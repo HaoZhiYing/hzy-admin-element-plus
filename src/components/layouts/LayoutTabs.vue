@@ -2,6 +2,7 @@
 import { onMounted, watch, computed, ref } from "vue";
 import router from "@/router";
 import TabsStore from "@/store/layouts/TabsStore";
+import AppIcon from "../AppIcon.vue";
 
 //tabs
 const tabsStore = TabsStore();
@@ -59,7 +60,14 @@ watch(
   <div class="hzy-layout-tabs">
     <div class="hzy-layout-tabs-left">
       <el-tabs type="card" :modelValue="active" closable @tabRemove="methods.removeTab" @tabChange="methods.tabOnChange">
-        <el-tab-pane v-for="item in tabsState.tabs" :key="item.fullPath" :name="item.fullPath" :label="item.meta.title" :closable="item.meta.close"> </el-tab-pane>
+        <el-tab-pane v-for="item in tabsState.tabs" :key="item.fullPath" :name="item.fullPath" :closable="item.meta.close">
+          <template #label>
+            <span>
+              <!-- <AppIcon :name="item.meta.icon" :size="16" v-if="item.meta.icon" /> -->
+              {{ item.meta.title }}
+            </span>
+          </template>
+        </el-tab-pane>
       </el-tabs>
     </div>
     <!-- 更多操作 -->
