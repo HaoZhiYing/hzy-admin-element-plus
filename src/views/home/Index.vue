@@ -19,26 +19,12 @@ let visible = ref(false);
 
 <template>
   <div>
-    <!-- 标题 -->
-    <h2>首页</h2>
-
     <!-- 基础统计数据 -->
-    <div class="mt-15"><WorkOrder /></div>
+    <div><WorkOrder /></div>
     <!-- 近一年设备销售量 -->
     <div class="mt-15">
       <WorkOrderStatistics />
     </div>
-
-    <!-- <div class="mt-15">
-      <el-row :gutter="20">
-        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-          <WorkOrder />
-        </el-col>
-        <el-col :xs="24" :sm="24" :md="12" :lg="16" :xl="16">
-          <WorkOrderStatistics />
-        </el-col>
-      </el-row>
-    </div> -->
 
     <!-- 更多图形报表 -->
     <div class="mt-15">
