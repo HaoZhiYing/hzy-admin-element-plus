@@ -139,5 +139,17 @@ watch(
       background: rgba(243, 246, 248, 0.5);
     }
   }
+
+  .el-tabs--card > .el-tabs__header .el-tabs__nav {
+    border: 0;
+  }
+
+  .el-tabs--card>.el-tabs__header .el-tabs__item{
+    border: 0;
+  }
+
+  .el-tabs__nav-wrap{
+        margin-bottom: 0px;
+  }
 }
 </style>

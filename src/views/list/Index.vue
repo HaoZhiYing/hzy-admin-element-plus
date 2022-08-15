@@ -139,8 +139,8 @@ onMounted(() => {
 
 <template>
   <div>
-    <el-card class="mb-15" v-show="state.fromSearch.state">
-      <el-row>
+    <el-card class="mb-20" v-show="state.fromSearch.state">
+      <el-row :gutter="20">
         <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
           <el-input v-model:value="state.fromSearch.vm.value" placeholder="用户名" />
         </el-col>
@@ -164,26 +164,26 @@ onMounted(() => {
         </el-col>
         <!--button-->
         <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" style="float: right">
-          <el-button type="primary" class="mr-15" @click="methods.findList()">查询</el-button>
-          <el-button class="mr-15" @click="methods.findList()">重置</el-button>
+          <el-button type="primary" class="mr-20" @click="methods.findList()">查询</el-button>
+          <el-button class="mr-20" @click="methods.findList()">重置</el-button>
         </el-col>
       </el-row>
     </el-card>
     <el-card>
       <el-row>
         <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-          <el-button class="mr-15" @click="state.fromSearch.state = !state.fromSearch.state">
-            <div v-if="state.fromSearch.state"><AppIcon name="UpOutlined" />&nbsp;&nbsp;收起</div>
-            <div v-else><AppIcon name="DownOutlined" />&nbsp;&nbsp;展开</div>
+          <el-button class="mr-20" :icon="state.fromSearch.state ? 'UpOutlined' : 'DownOutlined'" @click="state.fromSearch.state = !state.fromSearch.state">
+            <span v-if="state.fromSearch.state">收起</span>
+            <span v-else>展开</span>
           </el-button>
-          <el-button type="primary" class="mr-15" @click="methods.openForm('')">
+          <el-button type="primary" class="mr-20" @click="methods.openForm('')">
             <template #icon>
               <AppIcon name="PlusOutlined" />
             </template>
             新建
           </el-button>
           <el-popconfirm title="您确定要删除?" @confirm="methods.confirm" okText="确定" cancelText="取消">
-            <el-button type="primary" danger class="mr-15">
+            <el-button type="primary" danger class="mr-20">
               <template #icon>
                 <AppIcon name="DeleteOutlined" />
               </template>
@@ -210,7 +210,7 @@ onMounted(() => {
 
       <el-table
         size="middle"
-        class="mt-15"
+        class="mt-20"
         :columns="state.table.columns"
         :datel-source="state.table.data"
         :pagination="{ pageSize: 10 }"

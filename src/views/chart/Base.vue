@@ -10,21 +10,20 @@ import Char2 from "./components/Chart2.vue";
 
 <template>
   <div>
-    <el-alert message="图表" type="success">
-      <template #description>
-        <p>
-          <router-link :to="{ path: '/chart/more' }">查看 AntV G2 更多示例</router-link>
-        </p>
-      </template>
-    </el-alert>
-    <el-row class="pt-15">
+    <el-row :gutter="20" class="pt-15">
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-        <el-card hoverable>
+        <el-card shadow="hover">
+          <template #header>
+            <router-link :to="{ path: '/chart/more' }">查看 AntV G2 更多示例</router-link>
+          </template>
           <Char1 />
         </el-card>
       </el-col>
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-        <el-card hoverable>
+        <el-card shadow="hover">
+          <template #header>
+            <router-link :to="{ path: '/chart/more' }">查看 AntV G2 更多示例</router-link>
+          </template>
           <Char2 />
         </el-card>
       </el-col>

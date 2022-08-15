@@ -20,6 +20,13 @@ export function genDynamicRouters(menuTreeList: any[]): boolean {
     const isdynamicLayout = router.hasRoute(dynamicLayoutName);
     if (isdynamicLayout) router.removeRoute(dynamicLayoutName);
 
+    dynamicRouters.push({
+        path: '/home',
+        name: "HomeIndexCom",
+        component: () => import('@/views/home/Index.vue'),
+        meta: { title: '首页', close: false, keepAlive: true, icon: "HomeFilled" },
+    })
+
     //动态路由
     createDynamicRouters(menuTreeList);
 
@@ -27,6 +34,7 @@ export function genDynamicRouters(menuTreeList: any[]): boolean {
         name: dynamicLayoutName,
         path: '/',
         component: layout,
+        redirect: "/home",
         children: dynamicRouters
     });
 

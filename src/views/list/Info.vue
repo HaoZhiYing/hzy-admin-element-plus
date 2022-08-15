@@ -44,12 +44,12 @@ defineExpose({ ...methods });
 </script>
 
 <template>
-  <el-modal v-model:visible="state.visible" title="编辑" centered @ok="state.visible = false" :width="800">
+  <el-dialog v-model="state.visible" title="编辑" centered @ok="state.visible = false" :width="800">
     <template #footer>
-      <el-button type="primary" :loading="state.saveLoading" @click="methods.save"> 提交</el-button>
-      <el-button type="primary" danger ghost @click="state.visible = false">关闭</el-button>
+      <el-button type="primary" v-loading="state.saveLoading" @click="methods.save"> 提交</el-button>
+      <el-button type="danger" @click="state.visible = false">关闭</el-button>
     </template>
-    <el-row>
+    <el-row :gutter="20">
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
         <h4>用户名:</h4>
         <el-input v-model:value="state.vm.form.value" placeholder="请输入" />
@@ -91,5 +91,5 @@ defineExpose({ ...methods });
         <el-input v-model:value="state.vm.form.value" placeholder="请输入" />
       </el-col>
     </el-row>
-  </el-modal>
+  </el-dialog>
 </template>

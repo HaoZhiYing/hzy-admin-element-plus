@@ -17,9 +17,12 @@
     --el-messagebox-border-radius: 2px;
 }
 
+.el-card {
+    --el-card-border-radius: 2px;
+}
+
 @media (max-width: 576px) {
     .el-message-box {
         --el-messagebox-width: 95%;
     }
 }
-

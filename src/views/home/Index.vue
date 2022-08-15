@@ -22,12 +22,12 @@ let visible = ref(false);
     <!-- 基础统计数据 -->
     <div><WorkOrder /></div>
     <!-- 近一年设备销售量 -->
-    <div class="mt-15">
+    <div class="mt-20">
       <WorkOrderStatistics />
     </div>
 
     <!-- 更多图形报表 -->
-    <div class="mt-15">
+    <div class="mt-20">
       <el-row :gutter="20">
         <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
           <HomeChart1 />
@@ -42,7 +42,7 @@ let visible = ref(false);
     </div>
 
     <!-- 更多图形报表 -->
-    <div class="mt-15">
+    <div class="mt-20">
       <el-row :gutter="20">
         <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
           <el-card>

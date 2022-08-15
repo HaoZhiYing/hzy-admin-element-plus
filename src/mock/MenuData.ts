@@ -222,20 +222,6 @@ var menuTreeList: Array<any> = [
                 "levelCode": "100.101",
                 "type": 2,
                 "children": []
-            },
-            {
-                "id": 102,
-                "name": "X6",
-                "componentName": "X6Com",
-                "url": "views/x6/Index.vue",
-                "router": "/x6",
-                "jumpUrl": "/x6",
-                "icon": "Key",
-                "close": true,
-                "parentId": 100,
-                "levelCode": "100.102",
-                "type": 2,
-                "children": []
             }]
     },
 ];

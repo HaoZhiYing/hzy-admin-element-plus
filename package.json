@@ -11,6 +11,7 @@
     "@antv/g2": "^4.2.0",
     "@antv/g2plot": "^2.4.20",
     "@antv/x6": "^1.33.1",
+    "@antv/x6-vue-shape": "^1.4.2",
     "@highlightjs/vue-plugin": "^2.1.0",
     "@types/nprogress": "^0.2.0",
     "@vicons/antd": "^0.12.0",
