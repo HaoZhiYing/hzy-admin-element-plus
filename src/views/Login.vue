@@ -108,6 +108,7 @@ body {
     border-radius: 5px;
     .flex-left {
       flex: 1;
+      width:450px;
       img {
         height: 100%;
       }
