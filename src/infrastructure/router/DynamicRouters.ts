@@ -9,7 +9,7 @@ let allRouters: Array<any> = [];
 const modules = import.meta.glob(['../../views/**/**.vue', '../../infrastructure/components/**/**.vue']);
 const dynamicLayoutName = "dynamicLayout";
 const layout = () => import("@/infrastructure/components/layouts/Layout.vue");
-console.log(modules);
+
 /**
  * 生成动态路由
  * @param menuTreeList
