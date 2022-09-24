@@ -1,11 +1,14 @@
 <script lang="ts" setup>
-import { onMounted, watch, computed, ref } from "vue";
+import { onMounted, watch, computed } from "vue";
 import router from "@/router";
+import CoreStore from "@/store/layouts/CoreStore";
+import MenuStore from "@/store/layouts/MenuStore";
 import TabsStore from "@/store/layouts/TabsStore";
-import AppIcon from "../AppIcon.vue";
 
-//tabs
+const coreStore = CoreStore();
+const menuStore = MenuStore();
 const tabsStore = TabsStore();
+
 const active = computed(() => router.currentRoute.value.fullPath);
 const tabsState = computed(() => tabsStore.state);
 
@@ -58,14 +61,11 @@ watch(
 
 <template>
   <div class="hzy-layout-tabs">
-    <div class="hzy-layout-tabs-left">
-      <el-tabs type="card" :modelValue="active" closable @tabRemove="methods.removeTab" @tabChange="methods.tabOnChange">
+    <div class="hzy-layout-tabs-left" :style="{ width: 'calc(100vw - ' + ((coreStore.state.isMobile ? 0 : menuStore.state.width) + 40) + 'px)' }">
+      <el-tabs type="card" v-model="active" @tabRemove="methods.removeTab" @tabChange="methods.tabOnChange">
         <el-tab-pane v-for="item in tabsState.tabs" :key="item.fullPath" :name="item.fullPath" :closable="item.meta.close">
           <template #label>
-            <span>
-              <!-- <AppIcon :name="item.meta.icon" :size="16" v-if="item.meta.icon" /> -->
-              {{ item.meta.title }}
-            </span>
+            {{ item.meta.title }}
           </template>
         </el-tab-pane>
       </el-tabs>
@@ -90,8 +90,17 @@ watch(
 <style lang="less">
 .hzy-layout-tabs {
   display: flex;
+  border-bottom: 1px solid var(--el-border-color-light);
   .hzy-layout-tabs-left {
     flex: 1;
+    .el-tabs--border-card {
+      border: 0;
+      background: none;
+      .el-tabs__header {
+        border-bottom: 0;
+        background: none;
+      }
+    }
     .el-tabs__header {
       margin: 0 !important;
     }
@@ -100,16 +109,24 @@ watch(
       display: none !important;
     }
 
-    .el-tabs--card > .el-tabs__header {
-      border-bottom: 0;
-    }
+    // .el-tabs--border-card > .el-tabs__header .el-tabs__item {
+    //   margin-top: 1px !important;
+    // }
 
     .el-tabs--card > .el-tabs__header .el-tabs__nav {
       border-radius: 0px 0px 0 0 !important;
     }
 
+    .el-tabs--card > .el-tabs__header {
+      border: 0 !important;
+    }
+
     .el-tabs__item.is-active {
+      border-right-color: var(--el-fill-color-light);
+      border-left-color: var(--el-fill-color-light);
       background-color: var(--el-fill-color-light);
+      margin-top: 1px;
+      height: 39px;
     }
 
     .el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
@@ -119,6 +136,18 @@ watch(
     .el-tabs--card > .el-tabs__header .el-tabs__item {
       border-bottom: 0;
     }
+  }
+
+  .el-tabs--card > .el-tabs__header .el-tabs__nav {
+    border: 0;
+  }
+
+  .el-tabs--card > .el-tabs__header .el-tabs__item {
+    border: 0;
+  }
+
+  .el-tabs__nav-wrap {
+    margin-bottom: 0px;
   }
 
   .hzy-layout-tabs-right {
@@ -138,18 +167,6 @@ watch(
     .el-dropdown:hover {
       background: rgba(243, 246, 248, 0.5);
     }
-  }
-
-  .el-tabs--card > .el-tabs__header .el-tabs__nav {
-    border: 0;
-  }
-
-  .el-tabs--card>.el-tabs__header .el-tabs__item{
-    border: 0;
-  }
-
-  .el-tabs__nav-wrap{
-        margin-bottom: 0px;
   }
 }
 </style>

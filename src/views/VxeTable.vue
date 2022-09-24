@@ -65,36 +65,39 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    <el-card title="VxeTable 演示">
-      <template #extra><a href="https://xuliangzhan_admin.gitee.io/vxe-table/v4/table/start/install" target="_black">VxeTable 官网文档</a></template>
-      <vxe-table
-        border
-        stripe
-        height="400"
-        :loading="demo1.loading"
-        :column-config="{ resizable: true }"
-        :row-config="{ isHover: true }"
-        :checkbox-config="{ labelField: 'id', highlight: true, range: true }"
-        :data="demo1.tableData"
-      >
-        <vxe-column type="seq" width="60"></vxe-column>
-        <vxe-column type="checkbox" title="ID" width="140"></vxe-column>
-        <vxe-column field="name" title="Name" sortable></vxe-column>
-        <vxe-column field="sex" title="Sex" :filters="demo1.sexList" :filter-multiple="false" :formatter="formatterSex"></vxe-column>
-        <vxe-column
-          field="age"
-          title="Age"
-          sortable
-          :filters="[
-            { label: '大于16岁', value: 16 },
-            { label: '大于26岁', value: 26 },
-            { label: '大于30岁', value: 30 },
-          ]"
-          :filter-method="filterAgeMethod"
-        ></vxe-column>
-        <vxe-column field="address" title="Address" show-overflow></vxe-column>
-      </vxe-table>
-    </el-card>
+  <div class="p-20">
+    <el-alert title="VxeTable 官网文档" type="success" class="mb-20">
+      <template #default>
+        <a href="https://vxetable.cn/" target="_black">https://vxetable.cn/</a>
+      </template>
+    </el-alert>
+
+    <vxe-table
+      border
+      stripe
+      height="400"
+      :loading="demo1.loading"
+      :column-config="{ resizable: true }"
+      :row-config="{ isHover: true }"
+      :checkbox-config="{ labelField: 'id', highlight: true, range: true }"
+      :data="demo1.tableData"
+    >
+      <vxe-column type="seq" width="60"></vxe-column>
+      <vxe-column type="checkbox" title="ID" width="140"></vxe-column>
+      <vxe-column field="name" title="Name" sortable></vxe-column>
+      <vxe-column field="sex" title="Sex" :filters="demo1.sexList" :filter-multiple="false" :formatter="formatterSex"></vxe-column>
+      <vxe-column
+        field="age"
+        title="Age"
+        sortable
+        :filters="[
+          { label: '大于16岁', value: 16 },
+          { label: '大于26岁', value: 26 },
+          { label: '大于30岁', value: 30 },
+        ]"
+        :filter-method="filterAgeMethod"
+      ></vxe-column>
+      <vxe-column field="address" title="Address" show-overflow></vxe-column>
+    </vxe-table>
   </div>
 </template>

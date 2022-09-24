@@ -41,7 +41,7 @@ function onSelectedMenuItem(index: string, indexPath: string[], item: MenuItemCl
       <template v-for="item in appStore.state.subMenus">
         <el-menu-item v-if="item.children.length === 0" :index="item.jumpUrl ? item.jumpUrl : item.id + ''" :title="item.name">
           <AppIcon :name="item.icon" v-if="item.icon" />
-          <span>{{ item.name }}</span>
+          <span style="font-weight: 400">{{ item.name }}</span>
         </el-menu-item>
         <LayoutMenuSubVue v-else :menu-info="item" />
       </template>
@@ -50,7 +50,7 @@ function onSelectedMenuItem(index: string, indexPath: string[], item: MenuItemCl
       <template v-for="item in appStore.state.userInfo.menus">
         <el-menu-item v-if="item.children.length === 0" :index="item.jumpUrl ? item.jumpUrl : item.id + ''" :title="item.name">
           <AppIcon :name="item.icon" v-if="item.icon" />
-          <span>{{ item.name }}</span>
+          <span style="font-weight: 400">{{ item.name }}</span>
         </el-menu-item>
         <LayoutMenuSubVue v-else :menu-info="item" />
       </template>
@@ -86,6 +86,7 @@ function onSelectedMenuItem(index: string, indexPath: string[], item: MenuItemCl
 .hzy-layou-menu {
   .el-menu-item.is-active {
     background: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex].activeBgColor");
+    // color: #fff;
   }
 }
 </style>

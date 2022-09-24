@@ -55,8 +55,12 @@ const jumpDoc = () => {
       </div>
       <div style="flex: 1 1 0%" v-else></div>
       <!-- HzyAdmin 文档 -->
-      <el-tooltip content="HzyAdmin 文档" placement="bottom">
-        <div class="hzy-header-btn" @click="jumpDoc">HzyAdmin 文档</div>
+      <el-tooltip content="HzyAdmin 文档" placement="bottom" v-if="!coreStore.state.isMobile">
+        <div class="hzy-header-btn" @click="jumpDoc">
+          <el-badge is-dot type="success">
+            <el-icon :size="iconSize"><Document /></el-icon>
+          </el-badge>
+        </div>
       </el-tooltip>
       <!-- 刷新 -->
       <el-tooltip content="刷新" placement="bottom">
@@ -64,28 +68,28 @@ const jumpDoc = () => {
           <el-icon :size="iconSize"><RefreshRight /></el-icon>
         </div>
       </el-tooltip>
-      <!-- 系统配置 -->
-      <el-tooltip content="系统配置" placement="bottom">
-        <div class="hzy-header-btn" @click="settingsStore.onOpen(!settingsStore.state.isOpen)">
-          <el-icon :size="iconSize"><Setting /></el-icon>
-        </div>
-      </el-tooltip>
       <!-- 黑白主题切换 -->
-      <el-tooltip content="黑白主题切换" placement="bottom">
+      <el-tooltip :content="coreStore.state.isDark ? '白昼' : '夜晚'" placement="bottom">
         <div class="hzy-header-btn" @click="coreStore.toggleDark()">
           <el-icon :size="iconSize">
             <Sunny v-if="coreStore.state.isDark" />
-            <Sunrise v-else />
+            <Moon v-else />
           </el-icon>
         </div>
       </el-tooltip>
       <!-- 全屏 -->
-      <el-tooltip content="全屏" placement="bottom" v-if="!coreStore.state.isMobile">
+      <el-tooltip :content="coreStore.state.isFullscreen ? '退出全屏' : '全屏'" placement="bottom" v-if="!coreStore.state.isMobile">
         <div class="hzy-header-btn" @click="coreStore.toggleFullscreen()">
           <el-icon :size="iconSize">
-            <ZoomOut v-if="coreStore.state.isFullscreen" />
-            <ZoomIn v-else />
+            <Minus v-if="coreStore.state.isFullscreen" />
+            <FullScreen v-else />
           </el-icon>
+        </div>
+      </el-tooltip>
+      <!-- 系统配置 -->
+      <el-tooltip content="系统配置" placement="bottom">
+        <div class="hzy-header-btn" @click="settingsStore.onOpen(!settingsStore.state.isOpen)">
+          <el-icon :size="iconSize"><Setting /></el-icon>
         </div>
       </el-tooltip>
       <!-- 退出登录 -->

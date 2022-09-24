@@ -9,7 +9,7 @@ import Char2 from "./components/Chart2.vue";
 </script>
 
 <template>
-  <div>
+  <div class="p-20">
     <el-row :gutter="20" class="pt-15">
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
         <el-card shadow="hover">

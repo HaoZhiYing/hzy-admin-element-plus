@@ -29,7 +29,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-loading="loading" style="min-height: 200px;">
+  <div class="p-20" v-loading="loading" style="min-height: 300px">
     <iframe src="https://element-plus.gitee.io/zh-CN/component/button.html" frameborder="0" id="iframe_app_components" v-show="!loading"></iframe>
   </div>
 </template>

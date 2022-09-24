@@ -3,11 +3,11 @@ import { useDark } from "@vueuse/core";
 import { ref } from "vue";
 import LayoutMenuVue from "./menus/LayoutMenu.vue";
 import MenuStore from "@/store/layouts/MenuStore";
+import AppConsts from "@/scripts/AppConsts";
 //
 const menuStore = MenuStore();
 
 const isDark = ref(useDark());
-const title: string = "xxx 管理系统";
 </script>
 
 <template>
@@ -18,10 +18,10 @@ const title: string = "xxx 管理系统";
   >
     <div class="hzy-layou-menu">
       <template v-if="menuStore.state.menuCustomThemesIndex > 0">
-        <div class="hzy-layou-menu-title" v-if="!menuStore.state.isCollapse" style="color: #ffffff">{{ title }}</div>
+        <div class="hzy-layou-menu-title" v-if="!menuStore.state.isCollapse" style="color: #ffffff">{{ AppConsts.appTitle }}</div>
       </template>
       <template v-else>
-        <div class="hzy-layou-menu-title" v-if="!menuStore.state.isCollapse">{{ title }}</div>
+        <div class="hzy-layou-menu-title" v-if="!menuStore.state.isCollapse">{{ AppConsts.appTitle }}</div>
       </template>
 
       <LayoutMenuVue />
@@ -46,6 +46,7 @@ const title: string = "xxx 管理系统";
 
 .el-aside {
   overflow-x: hidden;
+  z-index: 7;
 }
 
 .hzy-layout-menu-dark {

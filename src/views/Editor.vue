@@ -17,7 +17,7 @@ text.value = `
 </script>
 
 <template>
-  <div>
+  <div class="p-20">
     <el-alert title="富文本编辑器 WangEditor" type="success" effect="dark" class="mb-20">
       <a target="_blank" href="https://www.wangeditor.com/">查看示例</a>
     </el-alert>
@@ -32,7 +32,6 @@ text.value = `
         </el-card>
       </el-col>
     </el-row>
-
   </div>
 </template>
 

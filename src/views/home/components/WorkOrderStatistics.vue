@@ -108,10 +108,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <el-card title="近一年设备销售量">
-    <template #extra>
-      <a href="https://g2plot.antv.vision/zh/docs/manual/getting-started" target="_black">组件地址</a>
-    </template>
+  <el-card shadow="never">
     <div id="WorkOrderStatisticsContainer"></div>
   </el-card>
 </template>

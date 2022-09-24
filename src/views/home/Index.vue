@@ -18,44 +18,44 @@ let visible = ref(false);
 </script>
 
 <template>
-  <div>
+  <div class="p-20" style="background-color: var(--el-fill-color-light)">
     <!-- 基础统计数据 -->
     <div><WorkOrder /></div>
     <!-- 近一年设备销售量 -->
-    <div class="mt-20">
+    <div>
       <WorkOrderStatistics />
     </div>
 
     <!-- 更多图形报表 -->
     <div class="mt-20">
       <el-row :gutter="20">
-        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
+        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-20">
           <HomeChart1 />
         </el-col>
-        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
+        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-20">
           <HomeChart2 />
         </el-col>
-        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
+        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-20">
           <HomeChart3 />
         </el-col>
       </el-row>
     </div>
 
     <!-- 更多图形报表 -->
-    <div class="mt-20">
+    <div>
       <el-row :gutter="20">
-        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-          <el-card>
+        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-20">
+          <el-card shadow="never">
             <el-image :src="image1" fit="cover" />
           </el-card>
         </el-col>
-        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-          <el-card>
+        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-20">
+          <el-card shadow="never">
             <el-image :src="image2" fit="cover" />
           </el-card>
         </el-col>
-        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-          <el-card>
+        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-20">
+          <el-card shadow="never">
             <el-image :src="image3" fit="cover" />
           </el-card>
         </el-col>

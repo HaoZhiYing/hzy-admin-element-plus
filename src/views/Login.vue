@@ -2,6 +2,7 @@
 import router from "@/router";
 import { reactive, ref } from "vue";
 import { useDark, useToggle } from "@vueuse/core";
+import AppConsts from "@/scripts/AppConsts";
 
 const jumpHome = () => {
   router.push("/home");
@@ -27,7 +28,7 @@ const windowWidth = ref(window.innerWidth);
           <img src="../assets/images/info_service.png" alt="" />
         </div>
         <div class="flex-right p-20" :class="{ 'flex-right-black': isDark, 'flex-right-white': !isDark }">
-          <div class="title">xxx 管理系统</div>
+          <div class="title">{{ AppConsts.appTitle }}</div>
 
           <div class="mt-20">
             <el-input v-model="state.userName" size="large" placeholder="请输入账号">
@@ -78,10 +79,12 @@ const windowWidth = ref(window.innerWidth);
   </div>
 </template>
 
-<style>
-.el-input-group__append,
-.el-input-group__prepend {
-  padding: 0 !important;
+<style lang="less">
+.login {
+  .el-input-group__append,
+  .el-input-group__prepend {
+    padding: 0 !important;
+  }
 }
 </style>
 
@@ -108,7 +111,7 @@ body {
     border-radius: 5px;
     .flex-left {
       flex: 1;
-      width:450px;
+      width: 450px;
       img {
         height: 100%;
       }

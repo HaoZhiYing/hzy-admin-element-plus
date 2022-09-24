@@ -15,6 +15,6 @@ a {
 
 <template>
   <div class="p-15 text-center">
-    <a target="_black" :href="path">{{ path }}</a>
+    <span style="font-size: 23px; color: #67c23a">即将跳转到 > </span> <a target="_black" :href="path">{{ path }}</a>
   </div>
 </template>

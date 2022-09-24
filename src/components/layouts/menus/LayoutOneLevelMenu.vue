@@ -2,6 +2,7 @@
 import { onMounted, reactive, computed, watch } from "vue";
 import AppIcon from "@/components/AppIcon.vue";
 import router from "@/router";
+import AppConsts from "@/scripts/AppConsts";
 
 import MenuStore, { EMenuMode } from "@/store/layouts/MenuStore";
 import AppStore from "@/store/AppStore";
@@ -41,7 +42,10 @@ const methods: any = {
   onMenuSelected(urlOrId: string) {
     const routeInfo = appStore.getRouterByFullPath(urlOrId);
     if (routeInfo && router.hasRoute(routeInfo.name)) {
-      router.push(urlOrId);
+      //如果跳转的地址就算当前已经打开得地址则不跳转
+      if (router.currentRoute.value.fullPath.indexOf(urlOrId) < 0) {
+        router.push(urlOrId);
+      }
     } else {
       state.selectedKey = urlOrId;
       appStore.setSubmenu(urlOrId);
@@ -61,9 +65,11 @@ onMounted(() => {
 
 <template>
   <!-- 左侧模式 -->
-  <div class="hzy-left-nav" v-if="menuStore.state.menuMode == EMenuMode.left">
+  <div class="hzy-left-nav" v-if="menuStore.state.menuMode == EMenuMode.left" :style="{ width: menuStore.state.minWidth + 'px' }">
     <div class="hzy-logo-img">
-      <AppIcon name="ElementPlus" :size="48" style="color: #67c23a" />
+      <div>
+        <img :src="AppConsts.logo" width="45" />
+      </div>
     </div>
     <ul>
       <template v-for="item in appStore.state.oneLevels">
@@ -97,7 +103,6 @@ onMounted(() => {
   background-color: #000000;
   z-index: 7;
   box-shadow: 5px 0px 2px 0 rgba(0, 0, 0, 0.1);
-  width: 64px;
 
   ul {
     margin: 0;
@@ -133,6 +138,7 @@ onMounted(() => {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
   }
 }
 
