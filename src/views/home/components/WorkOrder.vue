@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, onBeforeUnmount } from "vue";
-import AppIcon from "@/components/AppIcon.vue";
+import AppIcon from "@/infrastructure/components/AppIcon.vue";
 
 let value1 = ref(12);
 let value2 = ref(26);

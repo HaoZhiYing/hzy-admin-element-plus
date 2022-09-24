@@ -9,6 +9,7 @@
         "src/*"
       ]
     },
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "vite.config.ts",
@@ -16,5 +17,5 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue"
-  ]
+  ],
 }
