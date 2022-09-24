@@ -13,12 +13,12 @@ const menuStore = MenuStore();
     <LayoutMode1Vue v-else />
     <!-- 设置界面 -->
     <LayoutSettingsVue />
-    <el-backtop :right="100" :bottom="100" />
   </div>
 </template>
 
 <style>
 .hzy-layout {
   display: flex;
+  width: 100%;
 }
 </style>

@@ -1,6 +1,8 @@
+import AppConsts from '@/scripts/AppConsts';
 import { RouteRecordRaw } from 'vue-router';
 
 const layout = () => import("@/components/layouts/Layout.vue");
+const vues = import.meta.glob(['../views/**/**.vue']);
 
 //路由配置
 const routes: Array<RouteRecordRaw> = [
@@ -26,20 +28,20 @@ const routes: Array<RouteRecordRaw> = [
             component: () => import('@/components/Redirect.vue'),
         }]
     },
-    // {
-    //     //默认首页
-    //     name: 'defaultLayout',
-    //     path: '/',
-    //     component: layout,
-    //     redirect: '/home',
-    //     children: [
-    //         {
-    //             path: '/home',
-    //             name: "HomeIndexCom",
-    //             component: () => import('@/views/home/Index.vue'),
-    //             meta: { title: '首页', close: false, keepAlive: true, icon: "" },
-    //         }]
-    // }
+    {
+        //默认工作台
+        name: 'defaultLayout',
+        path: '/',
+        component: layout,
+        redirect: AppConsts.defaultHomePageInfo.jumpUrl,
+        children: [
+            {
+                path: AppConsts.defaultHomePageInfo.jumpUrl,
+                name: AppConsts.defaultHomePageInfo.componentName,
+                component: vues['../' + AppConsts.defaultHomePageInfo.url],
+                meta: { title: AppConsts.defaultHomePageInfo.name, close: AppConsts.defaultHomePageInfo.close, keepAlive: true, icon: AppConsts.defaultHomePageInfo.icon },
+            }]
+    }
 ];
 
 export default routes;

@@ -1,11 +1,12 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
+import AppConsts from "./src/scripts/AppConsts"
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
-  base: process.env.NODE_ENV == "production" ? "/client/" : "/",
+  base: AppConsts.packDirectoryPrefix,
   server: {
     port: 5858
     // proxy: {

@@ -26,6 +26,23 @@ interface MenuCustomTheme {
     textColor: string | undefined,
 }
 
+/**
+ * 菜单项模型
+ */
+export interface MenuItemModel {
+    id: number
+    name: string
+    componentName: string
+    url: string
+    router: string
+    jumpUrl: string
+    icon: string
+    close: boolean
+    parentId: number | null
+    type: number
+    children: MenuItemModel[]
+}
+
 interface IState {
     // 菜单收展状态
     isCollapse: boolean

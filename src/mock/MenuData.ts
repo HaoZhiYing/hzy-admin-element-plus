@@ -1,18 +1,5 @@
 var menuTreeList: Array<any> = [
     {
-        "id": 0,
-        "name": "首页",
-        "componentName": "HomeIndexCom",
-        "url": "views/home/Index.vue",
-        "router": "/home",
-        "jumpUrl": "/home",
-        "icon": "HomeFilled",
-        "close": false,
-        "parentId": null,
-        "type": 2,
-        "children": [],
-    },
-    {
         "id": 1,
         "name": "基础",
         // name: "基础",

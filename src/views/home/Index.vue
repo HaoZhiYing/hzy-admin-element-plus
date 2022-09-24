@@ -13,7 +13,9 @@ import HomeChart3 from "./components/HomeChart3.vue";
 import image1 from "@/assets/images/下楼做核酸.png";
 import image2 from "@/assets/images/核酸检测.png";
 import image3 from "@/assets/images/抗疫必胜.png";
+import AppConsts from "@/scripts/AppConsts";
 
+var now = new Date();
 let visible = ref(false);
 </script>
 
@@ -61,10 +63,8 @@ let visible = ref(false);
         </el-col>
       </el-row>
     </div>
-    <!-- 抽屉 -->
-    <!-- <el-drawer v-model:visible="visible" style="color: red" title="更多" placement="right" width="90%" :bodyStyle="{ 'background-color': '#f0f2f5' }">
-      <Home1 />
-    </el-drawer> -->
+    <!-- 页脚 -->
+    <el-footer class="text-center p-20"> {{ AppConsts.appTitle }} ©{{ now.getFullYear() }} author by hzy </el-footer>
   </div>
 </template>
 

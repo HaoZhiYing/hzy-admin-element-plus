@@ -66,11 +66,11 @@ onMounted(() => {
 <template>
   <!-- 左侧模式 -->
   <div class="hzy-left-nav" v-if="menuStore.state.menuMode == EMenuMode.left" :style="{ width: menuStore.state.minWidth + 'px' }">
-    <div class="hzy-logo-img">
+    <!-- <div class="hzy-logo-img">
       <div>
-        <img :src="AppConsts.logo" width="45" />
+        <img src="" width="45" />
       </div>
-    </div>
+    </div> -->
     <ul>
       <template v-for="item in appStore.state.oneLevels">
         <el-tooltip :content="item.name" placement="right">

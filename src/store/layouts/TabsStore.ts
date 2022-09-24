@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { reactive } from "vue";
 import router from "@/router";
 import { RouteMeta } from "vue-router";
+import AppConsts from "@/scripts/AppConsts";
 
 export interface ITabsItem {
     fullPath: string
@@ -28,10 +29,10 @@ export default defineStore("TabsStore", () => {
         activeBgColor: '#f0f2f5',
         activeTextColor: '#409eff',
         tabs: [{
-            fullPath: "/home",
-            path: "/home",
-            name: "HomeIndexCom",
-            meta: { title: '首页', close: false, keepAlive: true, icon: "HomeFilled" },
+            fullPath: AppConsts.defaultHomePageInfo.jumpUrl,
+            path: AppConsts.defaultHomePageInfo.jumpUrl,
+            name: AppConsts.defaultHomePageInfo.componentName,
+            meta: { title: AppConsts.defaultHomePageInfo.name, close: AppConsts.defaultHomePageInfo.close, keepAlive: true, icon: AppConsts.defaultHomePageInfo.icon },
         } as ITabsItem],
         //缓存视图 视图缓存只能通过组件名称来
         cacheViews: ["HomeIndexCom"],

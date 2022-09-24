@@ -1,4 +1,4 @@
-import logoImage from "@/assets/logo.png";
+import { MenuItemModel } from "@/store/layouts/MenuStore";
 
 /**
  * 程序常量
@@ -31,12 +31,33 @@ export default class AppConsts {
     static authorizationKeyName: string = "Authorization"
 
     /**
-     * logo 地址
+     * 打包给目录的前缀
+     * 生产环境默认：client 文件夹包起来
+     * 开发环境默认：/
      */
-    static logo: string = logoImage;
+    static packDirectoryPrefix: string = process.env.NODE_ENV == "production" ? "/client/" : "/";
 
     /**
      * 系统标题
      */
     static appTitle: string = "HzyAdmin 管理系统";
+
+    /**
+     * 默认首页标签页信息配置
+     */
+    static defaultHomePageInfo: MenuItemModel = {
+        id: 0,
+        name: "工作台",
+        componentName: "HomeIndexCom",
+        url: "views/home/Index.vue",
+        router: "/home",
+        jumpUrl: "/home",
+        icon: "HomeFilled",
+        close: false,
+        parentId: null,
+        type: 2,
+        children: [],
+    };
+
+
 }
