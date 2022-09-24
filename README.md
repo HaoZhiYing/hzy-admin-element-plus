@@ -1,11 +1,10 @@
 # hzy-admin-element-plus
 
 #### 介绍
-![输入图片说明](gitee/list3.png)
-![输入图片说明](gitee/home1.png)
-![输入图片说明](gitee/home2.png)
-![输入图片说明](gitee/list.png)
+![输入图片说明](gitee/list1.png)
 ![输入图片说明](gitee/list2.png)
+![输入图片说明](gitee/home.png)
+![输入图片说明](gitee/home1.png)
 #### 软件架构
 软件架构说明
 
