@@ -6,7 +6,7 @@ import router from "@/infrastructure/router";
 /**
  * 网络请求客户端
  */
-class HttpClient {
+class Http {
 
     private static isLoading: boolean = true;
 
@@ -22,7 +22,7 @@ class HttpClient {
         //http request 拦截器
         axios.interceptors.request.use(
             (config) => {
-                if (HttpClient.isLoading) {
+                if (Http.isLoading) {
                     Tools.loadingStart();
                 }
 
@@ -48,7 +48,7 @@ class HttpClient {
         //http response 拦截器
         axios.interceptors.response.use(
             (response: any) => {
-                if (HttpClient.isLoading) {
+                if (Http.isLoading) {
                     Tools.loadingStop();
                 }
 
@@ -78,7 +78,7 @@ class HttpClient {
                 return response;
             },
             (error) => {
-                if (HttpClient.isLoading) {
+                if (Http.isLoading) {
                     Tools.loadingStop();
                 }
 
@@ -115,7 +115,7 @@ class HttpClient {
      * @returns Promise 对象
      */
     static get(url: string, data = {}, loading: boolean = true, config = {}): Promise<unknown> {
-        HttpClient.isLoading = loading;
+        Http.isLoading = loading;
         config["params"] = data;
         return new Promise((resolve, reject) => {
             axios
@@ -138,7 +138,7 @@ class HttpClient {
      * @returns {Promise}
      */
     static post(url: string, data = {}, loading: boolean = true, config = {}): Promise<unknown> {
-        HttpClient.isLoading = loading;
+        Http.isLoading = loading;
         return new Promise((resolve, reject) => {
             axios.post(url, data, config).then(
                 (response) => {
@@ -160,7 +160,7 @@ class HttpClient {
      * @returns {Promise}
      */
     static upload(url: string, data: any = {}, loading: boolean = true, config = {}): Promise<unknown> {
-        HttpClient.isLoading = loading;
+        Http.isLoading = loading;
         if (!data) data = {};
         data.isUpload = true;
         return new Promise((resolve, reject) => {
@@ -184,7 +184,7 @@ class HttpClient {
      * @returns {Promise}
      */
     static patch(url: string, data = {}, loading: boolean = true, config = {}): Promise<unknown> {
-        HttpClient.isLoading = loading;
+        Http.isLoading = loading;
         return new Promise((resolve, reject) => {
             axios.patch(url, data, config).then(
                 (response) => {
@@ -206,7 +206,7 @@ class HttpClient {
      * @returns {Promise}
      */
     static put(url: string, data = {}, loading: boolean = true, config = {}): Promise<unknown> {
-        HttpClient.isLoading = loading;
+        Http.isLoading = loading;
         return new Promise((resolve, reject) => {
             axios.put(url, data, config).then(
                 (response) => {
@@ -228,7 +228,7 @@ class HttpClient {
      * @returns 
      */
     static download(url: string, data = {}, loading: boolean = true, fileName: string = null): Promise<unknown> {
-        HttpClient.isLoading = loading;
+        Http.isLoading = loading;
         return new Promise((resolve, reject) => {
             axios.post(url, data, { responseType: "blob" }).then(
                 (response) => {
@@ -274,7 +274,7 @@ class HttpClient {
      */
     static getFileStream(url: string, data = {}, loading: boolean = true): Promise<unknown> {
         return new Promise((resolve, reject) => {
-            HttpClient.get(url, data, loading, { responseType: "blob" }).then(
+            Http.get(url, data, loading, { responseType: "blob" }).then(
                 (res) => {
                     resolve(res);
                 },
@@ -289,6 +289,6 @@ class HttpClient {
 }
 
 //初始化 请求对象
-HttpClient.init();
+Http.init();
 
-export default HttpClient;
+export default Http;
