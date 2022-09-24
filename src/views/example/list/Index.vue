@@ -30,9 +30,9 @@ const refInfo = ref<InstanceType<typeof Info>>();
 
 onMounted(() => {
   methods.findList();
-  HttpClient.get("/app/AppTest").then(res => { 
-    console.log(res);
-  });
+  // HttpClient.get("/app/AppTest").then(res => { 
+  //   console.log(res);
+  // });
 });
 
 const methods = {
