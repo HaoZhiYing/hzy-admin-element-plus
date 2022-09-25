@@ -40,7 +40,9 @@ function onSelectedMenuItem(index: string, indexPath: string[], item: MenuItemCl
     <template v-if="menuStore.state.menuMode != EMenuMode.default">
       <template v-for="item in appStore.state.subMenus">
         <el-menu-item v-if="item.children.filter((w) => w.show).length == 0 && item.type == 2" :index="item.jumpUrl ? item.jumpUrl : item.id + ''" :title="item.name">
-          <AppIcon :name="item.icon" v-if="item.icon" class="el-icon" />
+          <i class="el-icon">
+            <AppIcon :name="item.icon" v-if="item.icon" class="el-icon" />
+          </i>
           <span style="font-weight: 400" class="el-menu-title">{{ item.name }}</span>
         </el-menu-item>
         <LayoutMenuSubVue v-else :menu-info="item" />
@@ -49,7 +51,7 @@ function onSelectedMenuItem(index: string, indexPath: string[], item: MenuItemCl
     <template v-else>
       <template v-for="item in appStore.state.userInfo.menus">
         <el-menu-item v-if="item.children.filter((w) => w.show).length == 0 && item.type == 2" :index="item.jumpUrl ? item.jumpUrl : item.id + ''" :title="item.name">
-          <AppIcon :name="item.icon" v-if="item.icon" class="el-icon" />
+          <i class="el-icon"> <AppIcon :name="item.icon" v-if="item.icon" class="el-icon" /></i>
           <span style="font-weight: 400" class="el-menu-title">{{ item.name }}</span>
         </el-menu-item>
         <LayoutMenuSubVue v-else :menu-info="item" />
