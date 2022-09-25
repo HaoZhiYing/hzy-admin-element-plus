@@ -64,4 +64,9 @@ export default class AppConsts {
      */
     static loginPath: string = "/login";
 
+    /**
+     * 页面白名单地址 不受登录限制
+     */
+    static pageWhiteList: string[] = [AppConsts.loginPath];
+
 }

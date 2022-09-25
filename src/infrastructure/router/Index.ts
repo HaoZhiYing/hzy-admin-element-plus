@@ -16,9 +16,9 @@ router.beforeEach((to, from, next) => {
   console.log('路由拦截器=>', to, from);
   Tools.loadingStart();
 
-  // if (to.fullPath === "/login") {
-  //   return next();
-  // }
+  if (Tools.checkPageWhiteList(to.fullPath)) {
+    return next();
+  }
 
   //动态路由
   var hasRoute = genDynamicRouters(menuTreeList);

@@ -273,6 +273,15 @@ class Tools {
         return true;
     }
 
+    /**
+     * 检查页面地址白名单
+     * @param fullPath 
+     * @returns 
+     */
+    checkPageWhiteList(fullPath: string): boolean {
+        return AppConsts.pageWhiteList.indexOf(fullPath) > -1;
+    }
+
 }
 
 export default new Tools();
