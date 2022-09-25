@@ -14,7 +14,7 @@ const routes: Array<RouteRecordRaw> = [
     },
     {
         //找不到地址
-        path: '/:pathMatch(.*)*',
+        path: '/:pathMatch(.*)',
         name: '404',
         component: () => import('@/infrastructure/components/404.vue')
     },
