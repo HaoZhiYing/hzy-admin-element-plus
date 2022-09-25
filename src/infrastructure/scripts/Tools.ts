@@ -17,6 +17,11 @@ export enum EMessageType {
  */
 class Tools {
 
+    /**
+    * Guid Empty String
+    */
+    guidEmpty: string = '00000000-0000-0000-0000-000000000000'
+
     nprogressState: boolean;
 
     constructor() {
