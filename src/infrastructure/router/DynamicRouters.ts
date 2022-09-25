@@ -85,9 +85,9 @@ function createDynamicRouters(data: any[]) {
             dynamicRouters.push(route);
             allRouters.push(route);
 
-        } else {
-            //只要有 children 则需要往下递归
-            createDynamicRouters(item.children);
         }
+
+        //只要有 children 则需要往下递归
+        createDynamicRouters(item.children);
     }
 }
