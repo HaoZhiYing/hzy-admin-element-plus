@@ -15,9 +15,6 @@ const state = reactive({
 });
 
 const isDark = useDark();
-const toggleDark = useToggle(isDark);
-
-const windowWidth = ref(window.innerWidth);
 </script>
 
 <template>
