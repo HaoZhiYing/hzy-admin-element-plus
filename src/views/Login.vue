@@ -38,7 +38,7 @@ const isDark = useDark();
           </div>
 
           <div class="mt-20">
-            <el-input v-model="state.userPassword" size="large" placeholder="请输入密码">
+            <el-input v-model="state.userPassword" size="large" placeholder="请输入密码" type="password" show-password>
               <template #prefix>
                 <el-icon>
                   <Key />
