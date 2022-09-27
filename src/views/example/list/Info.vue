@@ -46,7 +46,7 @@ defineExpose({ openForm });
 <template>
   <el-dialog v-model="state.visible" title="编辑" centered @ok="state.visible = false" :width="800">
     <template #footer>
-      <el-button plain type="primary" v-loading="state.saveLoading" @click="methods.save"> 提交</el-button>
+      <el-button plain type="primary" v-loading="state.saveLoading" @click="save()"> 提交</el-button>
       <el-button plain type="danger" @click="state.visible = false">关闭</el-button>
     </template>
     <el-row :gutter="20">
