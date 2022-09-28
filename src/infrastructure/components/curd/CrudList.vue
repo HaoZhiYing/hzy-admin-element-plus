@@ -87,5 +87,6 @@ defineExpose({
   backdrop-filter: saturate(50%) blur(20px);
   -webkit-backdrop-filter: saturate(50%) blur(20px);
   background-color: initial;
+  width: 100%;
 }
 </style>
