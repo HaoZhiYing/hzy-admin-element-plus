@@ -1,0 +1,1 @@
+import t from"./LayoutMenuPc-68e216fc.js";import{_ as a}from"./LayoutMenuMobile.vue_vue_type_style_index_0_lang-a47f9949.js";import{d as n,C as s,u as c,o as e,a as o}from"./index-a53af25f.js";const k=n({__name:"LayoutMenuMain",setup(_){const r=s();return(m,u)=>c(r).state.isMobile?(e(),o(a,{key:0})):(e(),o(t,{key:1}))}});export{k as _};

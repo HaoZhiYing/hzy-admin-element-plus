@@ -1,0 +1,1 @@
+import{d as s,v as e,L as c,c as n,M as i,o as l}from"./index-a53af25f.js";const p={class:"p-15"},v=s({__name:"Redirect",setup(_){const{params:t,query:r}=e.currentRoute.value,{path:a}=t;return e.replace({path:"/"+a,query:r}),(u,d)=>{const o=i("loading");return c((l(),n("div",p,null,512)),[[o,!0]])}}});export{v as default};

@@ -1,0 +1,1 @@
+import o from"./LayoutOneLevelMenu-206b979a.js";import t from"./LayoutMode1-8760789d.js";import{d as a,o as r,c as n,b as e,f as s,F as c}from"./index-a53af25f.js";const m={style:{flex:"1 1 0%"}},i=a({__name:"LayoutMode2",setup(_){return(u,p)=>(r(),n(c,null,[e(o),s("div",m,[e(t)])],64))}});export{i as _};
