@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-//封装组件来自：https://www.xicons.org/#/
 import { getCurrentInstance, ref, watch } from "vue";
 // icons
 import { getAllNameByElementPlus } from "@/infrastructure/scripts/icons";
@@ -19,7 +18,7 @@ watch(
   () => props.name,
   () => {
     isDefaultIcon.value = allNames.findIndex((w: any) => w == props.name) > -1;
-    console.log(isDefaultIcon);
+    // console.log(isDefaultIcon);
   }
 );
 </script>
