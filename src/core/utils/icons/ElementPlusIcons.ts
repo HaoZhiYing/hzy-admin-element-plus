@@ -1,5 +1,5 @@
 import { ComponentInternalInstance, getCurrentInstance } from "vue";
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import * as _Icons from '@element-plus/icons-vue'
 
 const iconsKeyName = "$ElementPlusIcons";
 const iconNameKeyName = "$ElementPlusIconNames";
@@ -9,17 +9,17 @@ const allIconsKeyName = "$AllIcons";
  * 使用所有的 图标
  * @param {*} app 
  */
-export function useAllElementPlusIcons(app: any) {
+export function useAllIcons(app: any) {
     var names: string[] = [];
     let allIcons = app.config.globalProperties[allIconsKeyName];
     allIcons = allIcons ? allIcons : [];
     // 注册组件
-    var icons = ElementPlusIconsVue as any;
+    var icons = _Icons as any;
     Object.keys(icons).forEach(key => {
         var com = icons[key];
 
         //验证能否注册
-        if (allIcons.findIndex((w: any) => w == key) < 0) {
+        if (allIcons.findIndex((w: any) => w.toLocaleLowerCase() == key.toLocaleLowerCase()) < 0) {
             app.component(key, com);
             names.push(key);
             allIcons.push(key);

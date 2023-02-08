@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { reactive } from "vue";
-import Tools, { EMessageType } from "@/core/scripts/Tools";
+import Tools, { EMessageType } from "@/core/utils/Tools";
 
 //定义组件事件
 const emits = defineEmits<{

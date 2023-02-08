@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { onMounted, reactive, watch } from "vue";
 import useCoreStore from "@/core/store/layouts/CoreStore";
-import AppConsts from "@/core/scripts/AppConsts";
+import AppConsts from "@/utils/AppConsts";
 
 export enum EMenuMode {
     // 1：常规模式
@@ -98,11 +98,11 @@ export default defineStore("MenuStore", () => {
         // 菜单收展状态
         isCollapse: false,
         // 当前宽度
-        width: 230,
+        width: 200,
         // pc端最小宽度
         minWidth: 64,
         // 最大宽度
-        maxWidth: 230,
+        maxWidth: 200,
         // 移动端pc菜单宽度
         mobileWidth: 0,
         // 菜单自定义颜色 索引值

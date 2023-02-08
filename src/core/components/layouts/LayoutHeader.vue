@@ -6,8 +6,7 @@ import CoreStore from "@/core/store/layouts/CoreStore";
 import SettingsStore from "@/core/store/layouts/SettingsStore";
 import HeaderStore from "@/core/store/layouts/HeaderStore";
 import MenuStore, { EMenuMode } from "@/core/store/layouts/MenuStore";
-import Tools from "@/core/scripts/Tools";
-import ThemeSwitch from "@/core/components/ThemeSwitch.vue";
+import Tools from "@/core/utils/Tools";
 //
 const coreStore = CoreStore();
 const settingsStore = SettingsStore();
@@ -87,9 +86,9 @@ const jumpDoc = () => {
       <!-- 黑白主题切换 -->
       <div class="hzy-header-btn" @click="coreStore.toggleDark()">
         <!-- <ThemeSwitch :state="coreStore.state.isDark" :iconSize="iconSize" /> -->
-        <el-icon :size="iconSize" class="is-loading">
-          <Moon v-if="coreStore.state.isDark" />
-          <Sunny v-else />
+        <el-icon :size="iconSize">
+          <Sunny v-if="coreStore.isDark" />
+          <MoonNight v-else />
         </el-icon>
       </div>
 

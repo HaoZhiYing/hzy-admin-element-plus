@@ -1,7 +1,7 @@
 import router from '@/core/router';
 import { useFullscreen, useWindowSize, useDark, useToggle } from '@vueuse/core';
 import { defineStore } from 'pinia';
-import { nextTick, reactive, ref, watch } from 'vue';
+import { computed, nextTick, reactive, ref, watch, WritableComputedRef } from 'vue';
 import TabsStore from './TabsStore';
 
 interface IState {
@@ -9,8 +9,6 @@ interface IState {
     isMobile: boolean
     // 全屏
     isFullscreen: boolean
-    // 暗黑
-    isDark: boolean
     // 鉴定是否移动设备分界值
     demarcation: number
     // 全局加载
@@ -26,8 +24,6 @@ export default defineStore("CoreStore", () => {
         isMobile: false,
         //全屏
         isFullscreen: false,
-        //暗黑
-        isDark: false,
         // 鉴定是否移动设备分界值
         demarcation: 768,
         // 全局加载
@@ -48,12 +44,11 @@ export default defineStore("CoreStore", () => {
     });
     const toggleFullscreen = () => toggle();
 
-    //暗黑主题
-    let isDark = ref(useDark());
+    const isDark = useDark();
+    /**
+     * 黑白主题切换
+     */
     const toggleDark = useToggle(isDark);
-    watch(() => isDark.value, value => {
-        state.isDark = value;
-    });
 
     /**
      * 刷新
@@ -72,7 +67,10 @@ export default defineStore("CoreStore", () => {
 
     return {
         state,
+        //是否暗黑
+        isDark,
         toggleFullscreen,
+        //暗黑切换
         toggleDark,
         refresh
     }

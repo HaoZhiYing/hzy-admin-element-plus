@@ -1,7 +1,7 @@
 import { RouteMeta, RouteRecordRaw } from 'vue-router';
 import AppStore from '@/core/store/AppStore';
 import router from '@/core/router';
-import AppConsts from '../scripts/AppConsts';
+import AppConsts from '../../utils/AppConsts';
 
 //导出所有的 vue 模块
 let dynamicRouters: Array<RouteRecordRaw> = [];

@@ -8,14 +8,7 @@ const menuStore = MenuStore();
 </script>
 
 <template>
-  <el-drawer
-    v-model="menuStore.state.isCollapse"
-    :with-header="false"
-    v-if="coreStore.state.isMobile"
-    direction="ltr"
-    :size="menuStore.state.maxWidth"
-    custom-class="layout-menu-mobile hzy-layou-menu"
-  >
+  <el-drawer v-model="menuStore.state.isCollapse" :with-header="false" v-if="coreStore.state.isMobile" direction="ltr" :size="menuStore.state.maxWidth" class="layout-menu-mobile hzy-layou-menu">
     <div style="min-height: 100vh" :style="{ backgroundColor: menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex].backgroundColor }">
       <LayoutMenuVue />
     </div>

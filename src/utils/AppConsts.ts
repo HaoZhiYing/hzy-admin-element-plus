@@ -13,7 +13,7 @@ export default class AppConsts {
     /**
     * 后台服务api域名
     */
-    static domainApi: string = process.env.NODE_ENV == "production" ? "" : "http://localhost:5600"
+    static domainServerApi: string = process.env.NODE_ENV == "production" ? "" : "http://localhost:5600"
 
     /**
     * Guid Empty String

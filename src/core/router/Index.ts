@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory, Router, useRouter as appRouter, useRoute as appRoute } from 'vue-router'
 import defaultRouters from '@/core/router/DefaultRouters';
 import { genDynamicRouters } from '@/core/router/DynamicRouters';
-import Tools from '@/core/scripts/Tools';
+import Tools from '@/core/utils/Tools';
 //菜单数据
 import menuTreeList from "@/core/mock/MenuData";
 

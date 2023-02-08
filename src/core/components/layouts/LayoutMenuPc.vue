@@ -3,7 +3,7 @@ import { useDark } from "@vueuse/core";
 import { ref } from "vue";
 import LayoutMenuVue from "./menus/LayoutMenu.vue";
 import MenuStore from "@/core/store/layouts/MenuStore";
-import AppConsts from "@/core/scripts/AppConsts";
+import AppConsts from "@/utils/AppConsts";
 //
 const menuStore = MenuStore();
 

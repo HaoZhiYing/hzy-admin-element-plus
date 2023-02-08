@@ -1,4 +1,4 @@
-import AppConsts from '@/core/scripts/AppConsts';
+import AppConsts from '@/utils/AppConsts';
 import { RouteRecordRaw } from 'vue-router';
 
 const layout = () => import("@/core/components/layouts/Layout.vue");

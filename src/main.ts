@@ -10,9 +10,9 @@ import "./assets/styles/hzy-admin-ui-layout.scss";
 //自定义 less 样式
 import "./assets/styles/hzy-admin-ui-layout.less";
 //图标注册
-import { useAllIcons } from "@/core/scripts/icons";
+import { useAllIcons } from "@/core/utils/icons";
 //vxe-table
-import useVXETable from "@/core/scripts/VxeTableUtil";
+import useVXETable from "@/core/utils/VxeTableUtil";
 
 createApp(App)
     .use(createPinia())

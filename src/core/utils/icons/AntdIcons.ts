@@ -1,24 +1,25 @@
 import { ComponentInternalInstance, getCurrentInstance } from "vue";
-import * as iconsVue from "@ant-design/icons-vue";
+import * as _Icons from "@ant-design/icons-vue";
 
 const iconsKeyName = "$AntdIcons";
-const iconNameKeyName = "$AntdIconsNames";
+const iconNameKeyName = "$AntdIconNames";
 const allIconsKeyName = "$AllIcons";
+
 /**
- * 使用所有的图标
+ * 使用所有的 图标
  * @param {*} app 
  */
-export function useAllAntdIcons(app: any) {
+export function useAllIcons(app: any) {
     var names: string[] = [];
     let allIcons = app.config.globalProperties[allIconsKeyName];
     allIcons = allIcons ? allIcons : [];
     // 注册组件
-    var icons = iconsVue as any;
+    var icons = _Icons as any;
     Object.keys(icons).forEach(key => {
         var com = icons[key];
 
         //验证能否注册
-        if (allIcons.findIndex((w: any) => w == key) < 0 && key != "Icon" && com && com.displayName && com.displayName != "Icon") {
+        if (allIcons.findIndex((w: any) => w.toLocaleLowerCase() == key.toLocaleLowerCase()) < 0 && key != "Icon" && com && com.displayName && com.displayName != "Icon") {
             app.component(key, com);
             names.push(key);
             allIcons.push(key);

@@ -12,7 +12,7 @@ const props = defineProps<{
       <template #icon>
         <el-icon :size="props.iconSize" :class="{ 'icon-right': props.state }">
           <slot name="icon">
-            <Moon v-if="props.state" />
+            <MoonNight v-if="props.state" />
             <Sunny v-else />
           </slot>
         </el-icon>

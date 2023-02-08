@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { getCurrentInstance, onMounted, reactive } from "vue";
-import { getAllNameByElementPlus, getAllNameByAntd } from "@/core/scripts/icons";
+import { getAllNameByAntd, getAllNameByElementPlus } from "@/core/utils/icons";
 import AppIcon from "./AppIcon.vue";
 //定义属性
 const props = defineProps<{
@@ -14,10 +14,10 @@ const emits = defineEmits<{
 }>();
 
 const state = reactive({
-  active: 1,
+  active: 2,
   names: [],
-  antdCount: 0,
-  elementPlusCount: 0,
+  count1: 0,
+  count2: 0,
 });
 
 const currentInstance = getCurrentInstance();
@@ -30,12 +30,12 @@ const onClickIcon = (currentName: string) => {
 const onClickTab = (active: number) => {
   state.active = active;
   if (active === 1) {
-    state.names = getAllNameByElementPlus(currentInstance);
-    state.elementPlusCount = state.names.length;
+    state.names = getAllNameByAntd(currentInstance);
+    state.count1 = state.names.length;
   }
   if (active === 2) {
-    state.names = getAllNameByAntd(currentInstance);
-    state.antdCount = state.names.length;
+    state.names = getAllNameByElementPlus(currentInstance);
+    state.count2 = state.names.length;
   }
 };
 
@@ -45,9 +45,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="app-icon-list">
+  <div class="hzy-icon-list">
     <div style="display: flex; align-items: center; justify-content: center">
-      <div class="app-icon-show">
+      <div class="hzy-icon-show">
         <AppIcon :name="props.name" :size="40" color="#fff" />
       </div>
       <h4 class="ml-10">
@@ -55,21 +55,21 @@ onMounted(() => {
       </h4>
     </div>
 
-    <h4>更多图表请自行扩展：<a href="https://www.xicons.org/#/" target="_blank">https://www.xicons.org/#/</a></h4>
+    <h4 class="mt-24">更多图表请自行扩展：<a href="https://www.xicons.org/#/" target="_blank">https://www.xicons.org/#/</a></h4>
 
     <ul>
       <li :class="{ active: state.active === 1 }" @click="onClickTab(1)">
-        ElementPlus
-        <template v-if="state.elementPlusCount > 0"> （数量:{{ state.elementPlusCount }}个） </template>
+        Antd
+        <template v-if="state.count1 > 0"> （数量:{{ state.count1 }}个） </template>
       </li>
       <li :class="{ active: state.active === 2 }" @click="onClickTab(2)">
-        Antd
-        <template v-if="state.antdCount > 0"> （数量:{{ state.antdCount }}个） </template>
+        Element Plus
+        <template v-if="state.count2 > 0"> （数量:{{ state.count2 }}个） </template>
       </li>
     </ul>
     <!-- list -->
     <template v-if="props.height && props.height > 0">
-      <div class="icon-list pt-15" :style="{ height: props.height + 'px' }">
+      <div class="icon-list pt-16" :style="{ height: props.height + 'px' }">
         <div class="icon-list-item" v-for="item in state.names" :class="{ active: name == item }" @click="onClickIcon(item)">
           <AppIcon :name="item" :size="20" />
           <div class="ml-10">{{ item }}</div>
@@ -77,7 +77,7 @@ onMounted(() => {
       </div>
     </template>
     <template v-else>
-      <div class="icon-list pt-15">
+      <div class="icon-list pt-16">
         <div class="icon-list-item" v-for="item in state.names" :class="{ active: name == item }" @click="onClickIcon(item)">
           <AppIcon :name="item" :size="20" />
           <div class="ml-10">{{ item }}</div>
@@ -88,10 +88,10 @@ onMounted(() => {
 </template>
 
 <style scoped lang="less">
-.app-icon-list {
+.hzy-icon-list {
   text-align: center;
 
-  .app-icon-show {
+  .hzy-icon-show {
     width: 50px;
     height: 50px;
     line-height: 50px;

@@ -1,7 +1,7 @@
 <script lang="ts">
 // 组件命名
 import { defineComponent } from "vue";
-import AppConsts from "../scripts/AppConsts";
+import AppConsts from "../../utils/AppConstssts";
 export default defineComponent({
   name: "404",
 });

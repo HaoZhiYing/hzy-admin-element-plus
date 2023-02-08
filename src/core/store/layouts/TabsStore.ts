@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { reactive } from "vue";
 import router from "@/core/router";
 import { RouteMeta } from "vue-router";
-import AppConsts from "@/core/scripts/AppConsts";
+import AppConsts from "@/utils/AppConsts";
 
 export interface ITabsItem {
     fullPath: string
