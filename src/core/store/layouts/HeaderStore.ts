@@ -29,8 +29,8 @@ export default defineStore("HeaderStore", () => {
         var _class = HeaderStoreUtil.getHeaderClass();
         if (_class) state.class.push(_class);
     }
-    initHeaderClass(coreStore.state.isDark);
-    watch(() => coreStore.state.isDark, value => {
+    initHeaderClass(coreStore.isDark);
+    watch(() => coreStore.isDark, value => {
         initHeaderClass(value);
     })
 
@@ -39,7 +39,7 @@ export default defineStore("HeaderStore", () => {
      */
     function setHeaderClass(_class: string) {
         HeaderStoreUtil.setHeaderClass(_class);
-        initHeaderClass(coreStore.state.isDark);
+        initHeaderClass(coreStore.isDark);
     }
 
     return {

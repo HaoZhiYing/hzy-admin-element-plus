@@ -18,17 +18,17 @@ var now = new Date();
 </script>
 
 <template>
-  <div class="p-20 bg-color">
+  <div class="p-16 bg-color">
     <!-- 基础统计数据 -->
     <div><WorkOrder /></div>
     <!-- 近一年设备销售量 -->
     <div>
       <el-row :gutter="20">
-        <el-col :xs="24" :sm="24" :md="12" :lg="16" :xl="16" class="mb-20">
+        <el-col :xs="24" :sm="24" :md="12" :lg="16" :xl="16" class="mb-16">
           <WorkOrderStatistics />
         </el-col>
-        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-20">
-          <div class="mb-15">
+        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-16">
+          <div class="mb-16">
             <a href="https://gitee.com/hzy6/HzyAdmin/stargazers"><img src="https://gitee.com/hzy6/HzyAdmin/badge/star.svg?theme=dark" alt="star" /></a>
           </div>
           <img src="https://gitee.com/hzy6/HzyAdmin/widgets/widget_card.svg?colors=eae9d7,2e2f29,272822,484a45,eae9d7,747571" style="width: 100%; height: 320px" />
@@ -39,13 +39,13 @@ var now = new Date();
     <!-- 更多图形报表 -->
     <div>
       <el-row :gutter="20">
-        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-20">
+        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-16">
           <HomeChart1 />
         </el-col>
-        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-20">
+        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-16">
           <HomeChart2 />
         </el-col>
-        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-20">
+        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-16">
           <HomeChart3 />
         </el-col>
       </el-row>
@@ -54,17 +54,17 @@ var now = new Date();
     <!-- 更多图形报表 -->
     <div>
       <el-row :gutter="20">
-        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-20">
+        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-16">
           <el-card shadow="never">
             <el-image :src="image1" fit="cover" />
           </el-card>
         </el-col>
-        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-20">
+        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-16">
           <el-card shadow="never">
             <el-image :src="image2" fit="cover" />
           </el-card>
         </el-col>
-        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-20">
+        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-16">
           <el-card shadow="never">
             <el-image :src="image3" fit="cover" />
           </el-card>
@@ -72,7 +72,7 @@ var now = new Date();
       </el-row>
     </div>
     <!-- 页脚 -->
-    <el-footer class="text-center p-20"> {{ AppConsts.appTitle }} ©{{ now.getFullYear() }} author by hzy </el-footer>
+    <el-footer class="text-center p-16"> {{ AppConsts.appTitle }} ©{{ now.getFullYear() }} author by hzy </el-footer>
   </div>
 </template>
 

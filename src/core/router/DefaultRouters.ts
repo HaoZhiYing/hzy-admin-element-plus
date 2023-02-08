@@ -1,8 +1,6 @@
-import AppConsts from '@/utils/AppConsts';
 import { RouteRecordRaw } from 'vue-router';
 
 const layout = () => import("@/core/components/layouts/Layout.vue");
-const vues = import.meta.glob(['../views/**/**.vue']);
 
 //路由配置
 const routes: Array<RouteRecordRaw> = [
@@ -14,7 +12,7 @@ const routes: Array<RouteRecordRaw> = [
     },
     {
         //找不到地址
-        path: '/:pathMatch(.*)',
+        path: '/:pathMatch(.*)*',
         name: '404',
         component: () => import('@/core/components/404.vue')
     },
@@ -22,11 +20,20 @@ const routes: Array<RouteRecordRaw> = [
         //用户刷新组件
         path: '/redirect',
         component: layout,
-        children: [{
-            path: '/redirect/:path(.*)',
-            name: "RedirectCom",
-            component: () => import('@/core/components/Redirect.vue'),
-        }]
+        children: [
+            {
+                path: '/redirect/:path(.*)',
+                name: "RedirectCom",
+                component: () => import('@/core/components/Redirect.vue'),
+                meta: { mode: 1 }
+            },
+            {
+                //找不到地址
+                path: '/:pathMatch(.*)*',
+                name: '404',
+                component: () => import('@/core/components/404.vue')
+            }
+        ]
     }
 ];
 

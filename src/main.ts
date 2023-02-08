@@ -1,11 +1,12 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.js';
 //pinia
 import { createPinia } from 'pinia';
 // 路由
-import router from '@/core/router';
+import { registerRouter } from '@/core/router';
 //element plus
 import ElementPlus from 'element-plus';
+//自定义 scss 样式
 import "./assets/styles/hzy-admin-ui-layout.scss";
 //自定义 less 样式
 import "./assets/styles/hzy-admin-ui-layout.less";
@@ -16,7 +17,7 @@ import useVXETable from "@/core/utils/VxeTableUtil";
 
 createApp(App)
     .use(createPinia())
-    .use(router)
+    .use(registerRouter())
     .use(ElementPlus)
     .use(useAllIcons)
     .use(useVXETable)

@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { reactive } from "vue";
 import router from "@/core/router";
 import TabsStore, { ITabsItem } from "./layouts/TabsStore";
+import AppConsts from "@/utils/AppConsts";
 
 interface IDefaultUserInfo {
     name: string
@@ -48,7 +49,7 @@ export default defineStore("AppStore", () => {
         //全局加载状态
         loading: false,
         //系统标题
-        title: 'hzy-admin-element-plus',
+        title: AppConsts.appTitle,
     });
 
     /**
@@ -146,7 +147,7 @@ export default defineStore("AppStore", () => {
      * @param {*} menuId 
      * @returns 
      */
-    function getPowerByMenuId(menuId: string) {
+    function getAuthorityByMenuId(menuId: number) {
         const data = state.userInfo.menuPowers.find((w) => w.menuId == menuId);
         return data ? data : {};
     }
@@ -160,6 +161,14 @@ export default defineStore("AppStore", () => {
         tabsStore.delCacheViewAll();
     }
 
+    /**
+     * 设置全局加载
+     * @param loading 
+     */
+    function setLoading(loading: boolean) {
+        state.loading = loading;
+    }
+
     return {
         state,
         createOneLevelMenu,
@@ -169,8 +178,9 @@ export default defineStore("AppStore", () => {
         setUserInfo,
         getUserInfo,
         refreshUserInfo,
-        getPowerByMenuId,
-        resetInfo
+        getAuthorityByMenuId,
+        resetInfo,
+        setLoading
     }
 
 });

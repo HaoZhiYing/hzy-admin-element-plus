@@ -4,21 +4,46 @@ import { genDynamicRouters } from '@/core/router/DynamicRouters';
 import Tools from '@/core/utils/Tools';
 //菜单数据
 import menuTreeList from "@/core/mock/MenuData";
+import AppStore from '../store/AppStore';
+import { getAuthorityByRouteMeta } from '@/utils/Authority';
+import AppConsts from '@/utils/AppConsts';
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes: defaultRouters,
-  scrollBehavior: () => ({ top: 0 }),//to, from, savedPosition
+  scrollBehavior(to, from, savedPosition) {
+    // return 期望滚动到哪个的位置
+    return { top: 0 };
+  }
 });
 
 //监听路由
 router.beforeEach((to, from, next) => {
-  console.log('路由拦截器=>', to, from);
-  Tools.loadingStart();
+  // console.log('路由拦截器=>', to, from);
+  var appStore = AppStore();
+  appStore.setLoading(true);
 
   if (Tools.checkPageWhiteList(to.fullPath)) {
     return next();
   }
+
+  // //动态路由
+  // appStore.getUserInfo().then((data: any) => {
+  //   //创建动态路由
+  //   let hasRoute = genDynamicRouters(data.menus);
+  //   appStore.state.userInfo.menus = data.menus;
+  //   if (hasRoute) {
+  //     if (getAuthorityByRouteMeta(data, to.meta)) {
+  //       next()
+  //     } else {
+  //       Tools.notice.error(AppConsts.noPowerMessage);
+  //       next(from.fullPath);
+  //     }
+  //   } else {
+  //     next(to.fullPath)
+  //   }
+  // });
+
 
   //动态路由
   var hasRoute = genDynamicRouters(menuTreeList);
@@ -30,10 +55,12 @@ router.beforeEach((to, from, next) => {
   }
 
   next();
+
 });
 
 router.afterEach(() => {
-  Tools.loadingStop();
+  var appStore = AppStore();
+  appStore.setLoading(false);
 });
 
 export default router;

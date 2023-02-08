@@ -22,55 +22,55 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <el-row class="work-order" :gutter="20">
-    <el-col :xs="12" :sm="12" :md="12" :lg="6" :xl="6" class="mb-20">
+  <el-row class="work-order" :gutter="16">
+    <el-col :xs="12" :sm="12" :md="12" :lg="6" :xl="6" class="mb-16">
       <el-card :bordered="false" hoverable :bodyStyle="{ background: '#5b8ff9', padding: 0 }">
-        <el-row :gutter="20" class="text-center">
+        <el-row :gutter="16" class="text-center">
           <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" style="display: flex; justify-content: center; align-items: center">
             <AppIcon name="DashboardOutlined" :size="50" style="color: #fff" />
           </el-col>
           <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-            <h3 style="color: #fff">CPU占用率(%)</h3>
-            <h2 style="color: #fff">{{ value1 }}</h2>
+            <h4 style="color: #fff">CPU占用率(%)</h4>
+            <h3 style="color: #fff">{{ value1 }}</h3>
           </el-col>
         </el-row>
       </el-card>
     </el-col>
-    <el-col :xs="12" :sm="12" :md="12" :lg="6" :xl="6" class="mb-20">
+    <el-col :xs="12" :sm="12" :md="12" :lg="6" :xl="6" class="mb-16">
       <el-card :bordered="false" hoverable :bodyStyle="{ background: '#61ddaa', padding: 0 }">
-        <el-row :gutter="20" class="text-center">
+        <el-row :gutter="16" class="text-center">
           <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" style="display: flex; justify-content: center; align-items: center">
             <AppIcon name="CloudServerOutlined" :size="50" style="color: #fff" />
           </el-col>
           <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-            <h3 style="color: #fff">内存占用率(%)</h3>
-            <h2 style="color: #fff">{{ value2 }}</h2>
+            <h4 style="color: #fff">内存占用率(%)</h4>
+            <h3 style="color: #fff">{{ value2 }}</h3>
           </el-col>
         </el-row>
       </el-card>
     </el-col>
-    <el-col :xs="12" :sm="12" :md="12" :lg="6" :xl="6" class="mb-20">
+    <el-col :xs="12" :sm="12" :md="12" :lg="6" :xl="6" class="mb-16">
       <el-card :bordered="false" hoverable :bodyStyle="{ background: '#85ce61', padding: 0 }">
-        <el-row :gutter="20" class="text-center">
+        <el-row :gutter="16" class="text-center">
           <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" style="display: flex; justify-content: center; align-items: center">
             <AppIcon name="LinkOutlined" :size="50" style="color: #fff" />
           </el-col>
           <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-            <h3 style="color: #fff">当前在线设备(台)</h3>
-            <h2 style="color: #fff">{{ value3 }}</h2>
+            <h4 style="color: #fff">当前在线设备(台)</h4>
+            <h3 style="color: #fff">{{ value3 }}</h3>
           </el-col>
         </el-row>
       </el-card>
     </el-col>
-    <el-col :xs="12" :sm="12" :md="12" :lg="6" :xl="6" class="mb-20">
+    <el-col :xs="12" :sm="12" :md="12" :lg="6" :xl="6" class="mb-16">
       <el-card :bordered="false" hoverable :bodyStyle="{ background: '#ff7875', padding: 0 }">
-        <el-row :gutter="20" class="text-center">
+        <el-row :gutter="16" class="text-center">
           <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" style="display: flex; justify-content: center; align-items: center">
             <AppIcon name="DisconnectOutlined" :size="50" style="color: #fff" />
           </el-col>
           <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-            <h3 style="color: #fff">当前离线设备(台)</h3>
-            <h2 style="color: #fff">{{ value4 }}</h2>
+            <h4 style="color: #fff">当前离线设备(台)</h4>
+            <h3 style="color: #fff">{{ value4 }}</h3>
           </el-col>
         </el-row>
       </el-card>

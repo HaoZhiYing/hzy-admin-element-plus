@@ -11,8 +11,6 @@ interface IState {
     isFullscreen: boolean
     // 鉴定是否移动设备分界值
     demarcation: number
-    // 全局加载
-    loading: boolean
 }
 
 export default defineStore("CoreStore", () => {
@@ -25,9 +23,7 @@ export default defineStore("CoreStore", () => {
         //全屏
         isFullscreen: false,
         // 鉴定是否移动设备分界值
-        demarcation: 768,
-        // 全局加载
-        loading: false
+        demarcation: 768
     });
 
     //窗口宽高变化
