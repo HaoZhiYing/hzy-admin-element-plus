@@ -27,12 +27,12 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/core/components/Redirect.vue'),
                 meta: { mode: 1 }
             },
-            {
-                //找不到地址
-                path: '/:pathMatch(.*)*',
-                name: '404',
-                component: () => import('@/core/components/404.vue')
-            }
+            // {
+            //     //找不到地址
+            //     path: '/:pathMatch(.*)*',
+            //     name: '404',
+            //     component: () => import('@/core/components/404.vue')
+            // }
         ]
     }
 ];

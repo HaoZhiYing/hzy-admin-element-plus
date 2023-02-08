@@ -1,7 +1,7 @@
 import router from '@/core/router';
 import { useFullscreen, useWindowSize, useDark, useToggle } from '@vueuse/core';
 import { defineStore } from 'pinia';
-import { computed, nextTick, reactive, ref, watch, WritableComputedRef } from 'vue';
+import { nextTick, reactive, watch } from 'vue';
 import TabsStore from './TabsStore';
 
 interface IState {

@@ -1,7 +1,7 @@
 <script lang="ts">
 // 组件命名
 import { defineComponent } from "vue";
-import AppConsts from "../../utils/AppConstssts";
+import AppConsts from "../../utils/AppConsts";
 export default defineComponent({
   name: "404",
 });
@@ -11,7 +11,7 @@ export default defineComponent({
 import router from "@/core/router";
 
 const backHome = () => {
-  router.push(AppConsts.defaultHomePageInfo.jumpUrl);
+  router.push(AppConsts.defaultHomePageInfo.jumpUrl!);
 };
 </script>
 

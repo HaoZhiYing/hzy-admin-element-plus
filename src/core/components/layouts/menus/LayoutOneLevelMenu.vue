@@ -40,7 +40,7 @@ const methods: any = {
   //菜单选中
   onMenuSelected(urlOrId: string) {
     const routeInfo = appStore.getRouterByFullPath(urlOrId);
-    if (routeInfo && router.hasRoute(routeInfo.name)) {
+    if (routeInfo && router.hasRoute(routeInfo.name!)) {
       //如果跳转的地址就算当前已经打开得地址则不跳转
       if (router.currentRoute.value.fullPath.indexOf(urlOrId) < 0) {
         router.push(urlOrId);

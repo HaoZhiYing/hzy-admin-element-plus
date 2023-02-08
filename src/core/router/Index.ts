@@ -44,14 +44,13 @@ router.beforeEach((to, from, next) => {
   //   }
   // });
 
-
   //动态路由
   var hasRoute = genDynamicRouters(menuTreeList);
   if (!hasRoute) {
     //
     console.log('router-cmd', router.getRoutes(), router.options.routes, to.fullPath);
     //如果初次add路由需要一下代码重新加载
-    return next(to.fullPath);
+    return next({ ...to, replace: true });
   }
 
   next();

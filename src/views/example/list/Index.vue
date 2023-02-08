@@ -6,7 +6,7 @@ export default { name: "ListIndexCom" };
 <script lang="ts" setup>
 import { reactive, ref, onMounted } from "vue";
 import CrudList from "@/core/components/curd/CrudList.vue";
-import tools, { EMessageType } from "@/core/utils/tools";
+import Tools from "@/core/utils/Tools";
 import HttpClient from "@/core/utils/Http";
 import Info from "./Info.vue";
 
@@ -66,14 +66,14 @@ function findList() {
  * 导出数据
  */
 function exportExcel() {
-  tools.notice("导出Excel成功!", EMessageType.警告, "提醒");
+  Tools.notice.warning("导出Excel成功!", "提醒");
 }
 
 /**
  * 是否删除
  */
 function confirm() {
-  tools.message("删除成功!", EMessageType.成功);
+  Tools.message.success("删除成功!");
   findList();
 }
 

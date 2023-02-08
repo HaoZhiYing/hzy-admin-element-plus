@@ -15,6 +15,9 @@ const layout = () => import("@/core/components/layouts/Layout.vue");
  * @param menuTreeList
  */
 export function genDynamicRouters(menuTreeList: any[]): boolean {
+    allRouters = [];
+    dynamicRouters = [];
+
     const isdynamicLayout = router.hasRoute(dynamicLayoutName);
 
     if (isdynamicLayout)
@@ -49,7 +52,7 @@ export function genDynamicRouters(menuTreeList: any[]): boolean {
         path: '/',
         component: layout,
         redirect: AppConsts.defaultHomePageInfo.jumpUrl!,
-        children: dynamicRouters
+        children: [...dynamicRouters]
     });
 
     //将所有的路由信息记录到 全局状态 中
@@ -67,6 +70,8 @@ export function genDynamicRouters(menuTreeList: any[]): boolean {
 function createDynamicRouters(data: any) {
     for (let i = 0; i < data?.length; i++) {
         let item = data[i];
+
+        const com = AppConsts.modules['../../' + item.url] ?? AppConsts.modules['../' + item.url] ?? AppConsts.modules[item.url];
 
         let path = item.router ? item.router : (item.url ?? '/404');
 
@@ -86,11 +91,20 @@ function createDynamicRouters(data: any) {
             if (path && path === '/404') {
                 route.redirect = '/404';
             } else {
-                route.component = AppConsts.modules['../../' + item.url] ?? AppConsts.modules['../' + item.url] ?? AppConsts.modules[item.url];
+                console.log('com - ', com, item.url);
+                if (item.componentName) {
+                    route.component = com;
+                    // updateComponentName(item.componentName, (route.component as any)())
+                } else {
+                    route.component = com;
+                }
             }
 
-            dynamicRouters.push(route);
-            allRouters.push(route);
+            if (!!com) {
+                dynamicRouters.push(route);
+                allRouters.push(route);
+            }
+
         }
 
         //只要有 children 则需要往下递归

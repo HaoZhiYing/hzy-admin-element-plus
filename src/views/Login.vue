@@ -2,10 +2,10 @@
 import router from "@/core/router";
 import { reactive, ref } from "vue";
 import { useDark, useToggle } from "@vueuse/core";
-import AppConsts from "@/utils/AppConsts
+import AppConsts from "@/utils/AppConsts";
 
 const jumpHome = () => {
-  router.push(AppConsts.defaultHomePageInfo.jumpUrl);
+  router.push(AppConsts.defaultHomePageInfo.jumpUrl ?? "");
 };
 
 const state = reactive({

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { reactive } from "vue";
-import Tools, { EMessageType } from "@/core/utils/Tools";
+import Tools from "@/core/utils/Tools";
 
 //定义组件事件
 const emits = defineEmits<{
@@ -34,7 +34,7 @@ function save() {
   setTimeout(() => {
     state.saveLoading = false;
     emits("onSuccess", 1);
-    Tools.message("提交成功!", EMessageType.成功);
+    Tools.message.success("提交成功!");
     state.visible = false;
   }, 1000);
 }

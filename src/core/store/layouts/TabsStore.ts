@@ -1,14 +1,12 @@
 import { defineStore } from "pinia";
 import { reactive } from "vue";
 import router from "@/core/router";
-import { RouteMeta } from "vue-router";
+import { RouteLocationNormalizedLoaded, RouteMeta } from "vue-router";
 import AppConsts from "@/utils/AppConsts";
+import AppStore from "../AppStore";
 
-export interface ITabsItem {
-    fullPath: string
-    path: string
-    name: string
-    meta: RouteMeta
+export interface ITabsItem extends RouteLocationNormalizedLoaded {
+
 }
 
 interface IState {
@@ -22,6 +20,8 @@ interface IState {
 
 export default defineStore("TabsStore", () => {
 
+    const appStore = AppStore();
+
     //定义状态
     let state = reactive<IState>({
         height: 41,
@@ -32,10 +32,16 @@ export default defineStore("TabsStore", () => {
             fullPath: AppConsts.defaultHomePageInfo.jumpUrl,
             path: AppConsts.defaultHomePageInfo.jumpUrl,
             name: AppConsts.defaultHomePageInfo.componentName,
-            meta: { title: AppConsts.defaultHomePageInfo.name, close: AppConsts.defaultHomePageInfo.close, keepAlive: true, icon: AppConsts.defaultHomePageInfo.icon },
+            meta: {
+                title: AppConsts.defaultHomePageInfo.name,
+                close: AppConsts.defaultHomePageInfo.close,
+                keepAlive: true,
+                icon: AppConsts.defaultHomePageInfo.icon,
+                mode: 1
+            },
         } as ITabsItem],
         //缓存视图 视图缓存只能通过组件名称来
-        cacheViews: ["HomeIndexCom"],
+        cacheViews: [AppConsts.defaultHomePageInfo.componentName!],
     });
 
     /**
@@ -50,9 +56,9 @@ export default defineStore("TabsStore", () => {
         addCacheView(routeInfo: ITabsItem) {
             const { name, meta } = routeInfo;
             if (!meta.keepAlive) return;
-            let any = state.cacheViews.includes(name);
+            let any = state.cacheViews.includes(name as string);
             if (any) return;
-            state.cacheViews.push(name);
+            state.cacheViews.push(name as string);
         },
 
         /**
@@ -89,33 +95,29 @@ export default defineStore("TabsStore", () => {
         },
     };
 
-
     /**
      * 添加标签页
      * @param {*} routeInfo 
      * @returns 
      */
-    function addTab(routeInfo: any) {
-        if (Object.prototype.hasOwnProperty.call(routeInfo, 'hidden')) return;
-
-        const { hidden, meta, fullPath } = routeInfo;
-
-        if (hidden) return;
+    function addTab(routeInfo: RouteLocationNormalizedLoaded) {
+        const { meta, fullPath } = routeInfo;
 
         if (!Object.prototype.hasOwnProperty.call(meta, 'close')) return;
+        const { keepAlive } = meta;
+        if (keepAlive == null) return;
 
         //检查是否存在
         let tab = state.tabs.find(w => w.fullPath == fullPath);
+        const menuItem = appStore.state.userInfo.menus.find(w => w.id == routeInfo.meta.menuId);
+        const tabsItem = routeInfo as ITabsItem;
+        tabsItem.meta.mode = menuItem?.mode ?? 1;
+
         if (!tab) {
-            state.tabs.push({
-                fullPath: routeInfo.fullPath,
-                path: routeInfo.path,
-                name: routeInfo.name,
-                meta: routeInfo.meta,
-            });
+            state.tabs.push(tabsItem);
         }
 
-        cacheViewMethods.addCacheView(routeInfo);
+        cacheViewMethods.addCacheView(tabsItem);
     }
 
     /**
@@ -128,7 +130,7 @@ export default defineStore("TabsStore", () => {
         let oldTab = state.tabs[index];
         if (oldTab.meta.close) {
             state.tabs.splice(index, 1);
-            cacheViewMethods.delCacheView(oldTab.name, null);
+            cacheViewMethods.delCacheView(oldTab.name as string, null);
         }
         let tab = state.tabs[index - 1];
         if (!tab) return;
