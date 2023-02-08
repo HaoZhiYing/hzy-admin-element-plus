@@ -11,6 +11,8 @@
 
 :root {
     --el-border-radius-base: 2px;
+    --el-color-primary: #2f54eb;
+    --el-border-color-light: 1px solid #f0f2f5;
 }
 
 .el-message-box {
@@ -26,6 +28,7 @@
         --el-messagebox-width: 95%;
     }
 }
+
 .bg-color {
     background-color: var(--el-fill-color-light)
 }
