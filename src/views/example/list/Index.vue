@@ -5,9 +5,9 @@ export default { name: "ListIndexCom" };
 <!-- 逻辑代码 -->
 <script lang="ts" setup>
 import { reactive, ref, onMounted } from "vue";
-import CrudList from "@/infrastructure/components/curd/CrudList.vue";
-import tools, { EMessageType } from "@/infrastructure/scripts/tools";
-import HttpClient from "@/infrastructure/scripts/Http";
+import CrudList from "@/core/components/curd/CrudList.vue";
+import tools, { EMessageType } from "@/core/scripts/tools";
+import HttpClient from "@/core/scripts/Http";
 import Info from "./Info.vue";
 
 const state = reactive<any>({

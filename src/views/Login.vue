@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import router from "@/infrastructure/router";
+import router from "@/core/router";
 import { reactive, ref } from "vue";
 import { useDark, useToggle } from "@vueuse/core";
-import AppConsts from "@/infrastructure/scripts/AppConsts";
+import AppConsts from "@/core/scripts/AppConsts";
 
 const jumpHome = () => {
   router.push(AppConsts.defaultHomePageInfo.jumpUrl);

@@ -3,16 +3,16 @@ import App from './App.vue'
 //pinia
 import { createPinia } from 'pinia';
 // 路由
-import router from '@/infrastructure/router';
+import router from '@/core/router';
 //element plus
 import ElementPlus from 'element-plus';
 import "./assets/styles/hzy-admin-ui-layout.scss";
 //自定义 less 样式
 import "./assets/styles/hzy-admin-ui-layout.less";
 //图标注册
-import { useAllIcons } from "@/infrastructure/scripts/icons";
+import { useAllIcons } from "@/core/scripts/icons";
 //vxe-table
-import useVXETable from "@/infrastructure/scripts/VxeTableUtil";
+import useVXETable from "@/core/scripts/VxeTableUtil";
 
 createApp(App)
     .use(createPinia())

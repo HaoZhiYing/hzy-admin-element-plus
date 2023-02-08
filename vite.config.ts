@@ -1,7 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
-// import AppConsts from "./src/infrastructure/scripts/AppConsts";
+// import AppConsts from "./src/core/scripts/AppConsts";
 import { createHtmlPlugin } from "vite-plugin-html";//https://github.com/vbenjs/vite-plugin-html
 // 让工程支持 template 和 jsx 和 tsx 开发模式
 import vueJsx from '@vitejs/plugin-vue-jsx';

@@ -5,7 +5,7 @@ export default { name: "EditorCom" };
 <!-- 逻辑代码 -->
 <script lang="ts" setup>
 import { ref } from "vue";
-import WangEditor from "@/infrastructure/components/WangEditor.vue";
+import WangEditor from "@/core/components/WangEditor.vue";
 
 const text = ref("");
 text.value = `

@@ -5,7 +5,7 @@ export default { name: "IconsVue" };
 <!-- 逻辑代码 -->
 <script lang="ts" setup>
 import { reactive } from "vue";
-import AppIconList from "@/infrastructure/components/AppIconList.vue";
+import AppIconList from "@/core/components/AppIconList.vue";
 
 const state = reactive({
   iconName: "AlipaySquareFilled",

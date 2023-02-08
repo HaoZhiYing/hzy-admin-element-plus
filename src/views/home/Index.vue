@@ -12,7 +12,7 @@ import HomeChart3 from "./components/HomeChart3.vue";
 import image1 from "@/assets/images/下楼做核酸.png";
 import image2 from "@/assets/images/核酸检测.png";
 import image3 from "@/assets/images/抗疫必胜.png";
-import AppConsts from "@/infrastructure/scripts/AppConsts";
+import AppConsts from "@/core/scripts/AppConsts";
 
 var now = new Date();
 </script>
