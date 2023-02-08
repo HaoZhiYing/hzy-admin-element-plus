@@ -21,4 +21,5 @@ createApp(App)
     .use(ElementPlus)
     .use(useAllIcons)
     .use(useVXETable)
-    .mount('#app');
+    .mount('#app')
+    ;
