@@ -7,12 +7,18 @@ import { MenuItemClicked } from "element-plus";
 import router from "@/core/router";
 import AppIcon from "@/core/components/AppIcon.vue";
 import { computed } from "vue";
+import Tools from "@/core/utils/Tools";
 //
 const coreStore = CoreStore();
 const menuStore = MenuStore();
 const appStore = AppStore();
 // 当前路由地址
 const currentRoutePath = computed(() => router.currentRoute.value.fullPath);
+
+const menuTree = computed(() => {
+  return Tools.genTreeData(appStore.state.userInfo.menus, null);
+});
+
 /**
  * 菜单选中
  */
@@ -39,7 +45,12 @@ function onSelectedMenuItem(index: string, indexPath: string[], item: MenuItemCl
     <!-- 动态生成 topnav-->
     <template v-if="menuStore.state.menuMode != EMenuMode.default">
       <template v-for="item in appStore.state.subMenus">
-        <el-menu-item v-if="item.children.filter((w:any) => w.show).length == 0 && item.type == 2" :index="item.jumpUrl ? item.jumpUrl : item.id + ''" :title="item.name">
+        <el-menu-item
+          v-if="!item.children || (item.children?.filter((w:any) => w.show).length == 0 && item.type == 2)"
+          :index="item.jumpUrl ? item.jumpUrl : item.id + ''"
+          :title="item.name"
+          :key="item.id"
+        >
           <i class="el-icon">
             <AppIcon :name="item.icon" v-if="item.icon" class="el-icon" />
           </i>
@@ -49,9 +60,16 @@ function onSelectedMenuItem(index: string, indexPath: string[], item: MenuItemCl
       </template>
     </template>
     <template v-else>
-      <template v-for="item in appStore.state.userInfo.menus">
-        <el-menu-item v-if="item.children.filter((w:any) => w.show).length == 0 && item.type == 2" :index="item.jumpUrl ? item.jumpUrl : item.id + ''" :title="item.name">
-          <i class="el-icon"> <AppIcon :name="item.icon" v-if="item.icon" class="el-icon" /></i>
+      <template v-for="item in menuTree">
+        <el-menu-item
+          v-if="!item.children || (item.children?.filter((w:any) => w.show).length == 0 && item.type == 2)"
+          :index="item.jumpUrl ? item.jumpUrl : item.id + ''"
+          :title="item.name"
+          :key="item.id"
+        >
+          <i class="el-icon">
+            <AppIcon :name="item.icon" v-if="item.icon" class="el-icon" />
+          </i>
           <span style="font-weight: 400" class="el-menu-title">{{ item.name }}</span>
         </el-menu-item>
         <LayoutMenuSubVue v-else :menu-info="item" />

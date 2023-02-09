@@ -1,7 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
-// import AppConsts from "./src/core/utils/AppConsts";
+// import AppConsts from "@/core/utils/AppConsts";
 import { createHtmlPlugin } from "vite-plugin-html";//https://github.com/vbenjs/vite-plugin-html
 // 让工程支持 template 和 jsx 和 tsx 开发模式
 import vueJsx from '@vitejs/plugin-vue-jsx';
@@ -29,7 +29,7 @@ export default defineConfig({
       inject: {
         data: {
           //将环境变量 VITE_APP_TITLE 赋值给 title 方便 html页面使用 title 获取系统标题
-          title: ""//AppConsts.appTitle // getViteEnv(mode, "VITE_APP_TITLE"),
+          title: "HzyAdmin"//AppConsts.appTitle // getViteEnv(mode, "VITE_APP_TITLE"),
         },
       },
     })

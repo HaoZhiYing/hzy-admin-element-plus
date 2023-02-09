@@ -7,7 +7,7 @@ export default { name: "ListIndexCom" };
 import { reactive, ref, onMounted } from "vue";
 import CrudList from "@/core/components/curd/CrudList.vue";
 import Tools from "@/core/utils/Tools";
-import HttpClient from "@/core/utils/Http";
+import Http from "@/core/utils/Http";
 import Info from "./Info.vue";
 
 const state = reactive<any>({
@@ -57,7 +57,7 @@ function findList() {
     state.data = data;
     state.loading = false;
   }, 1 * 1000);
-  // HttpClient.get("/app/AppTest").then(res => {
+  // Http.get("/app/AppTest").then(res => {
   //   console.log(res);
   // });
 }

@@ -11,10 +11,11 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "lib": [
-      "esnext",
-      "dom"
+      "ESNext",
+      "DOM"
     ],
     "skipLibCheck": true,
+    "noEmit": true,
     //
     "baseUrl": ".",
     "paths": {

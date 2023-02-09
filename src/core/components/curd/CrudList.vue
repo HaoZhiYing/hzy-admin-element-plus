@@ -53,7 +53,7 @@ defineExpose({
     </div>
     <!-- 表格 -->
     <slot>
-      <el-table ref="table" :data="tableData.data" border stripe height="calc(100vh - 250px)" class="mb-20" table-layout="fixed" highlight-current-row>
+      <el-table ref="table" :data="tableData.data" size="default" stripe height="calc(100vh - 250px)" class="mb-20" table-layout="fixed" highlight-current-row>
         <slot name="table-col-default">
           <el-table-column type="index" width="50" />
           <el-table-column type="selection" width="50" />

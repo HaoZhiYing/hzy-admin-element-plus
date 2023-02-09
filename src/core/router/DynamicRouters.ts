@@ -71,8 +71,6 @@ function createDynamicRouters(data: any) {
     for (let i = 0; i < data?.length; i++) {
         let item = data[i];
 
-        const com = AppConsts.modules['../../' + item.url] ?? AppConsts.modules['../' + item.url] ?? AppConsts.modules[item.url];
-
         let path = item.router ? item.router : (item.url ?? '/404');
 
         //如果是菜单类型
@@ -91,20 +89,11 @@ function createDynamicRouters(data: any) {
             if (path && path === '/404') {
                 route.redirect = '/404';
             } else {
-                console.log('com - ', com, item.url);
-                if (item.componentName) {
-                    route.component = com;
-                    // updateComponentName(item.componentName, (route.component as any)())
-                } else {
-                    route.component = com;
-                }
+                route.component = AppConsts.modules['../../' + item.url] ?? AppConsts.modules['../' + item.url] ?? AppConsts.modules[item.url];
             }
 
-            if (!!com) {
-                dynamicRouters.push(route);
-                allRouters.push(route);
-            }
-
+            dynamicRouters.push(route);
+            allRouters.push(route);
         }
 
         //只要有 children 则需要往下递归

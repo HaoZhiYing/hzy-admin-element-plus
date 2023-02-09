@@ -15,10 +15,10 @@ const menuStore = MenuStore();
       <el-divider> 头部颜色 </el-divider>
       <div class="hzy-skin-list mb-5 text-center">
         <template v-for="(item, index) in 12" :key="index">
-          <div class="hzy-skin-item" :class="'hzy-layout-header-' + index" @click="headerStore.setHeaderClass('hzy-layout-header-' + index)"></div>
+          <div class="hzy-skin-item" :class="'hzy-layout-header-' + index" @click="headerStore.setHeaderClass('hzy-layout-header-' + index, index)"></div>
         </template>
       </div>
-      <el-button type="success" text class="w100" @click="headerStore.setHeaderClass('')">重置</el-button>
+      <el-button type="success" text class="w100" @click="headerStore.setHeaderClass('', 0)">重置</el-button>
       <el-divider> 菜单颜色 </el-divider>
       <div class="hzy-skin-list mb-5 text-center">
         <template v-for="(item, index) in menuStore.menuCustomThemes" :key="index">

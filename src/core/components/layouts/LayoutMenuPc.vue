@@ -15,6 +15,7 @@ const isDark = ref(useDark());
     :width="menuStore.state.width + 'px'"
     :class="{ 'hzy-layout-menu-dark': isDark, 'hzy-layout-menu-light': !isDark }"
     :style="{ backgroundColor: menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex].backgroundColor }"
+    style="backdrop-filter: saturate(50%) blur(5px); -webkit-backdrop-filter: saturate(50%) blur(5px)"
   >
     <div class="hzy-layou-menu">
       <template v-if="menuStore.state.menuCustomThemesIndex > 0">

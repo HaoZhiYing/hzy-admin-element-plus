@@ -86,7 +86,7 @@ class AppConsts {
         /**
          * pc 模式 菜单最小宽度
          */
-        minWidth: 50,
+        minWidth: 64,
         /**
          * 菜单最大宽度
          */
@@ -94,7 +94,7 @@ class AppConsts {
         /**
          * 左侧模式一级菜单宽度
          */
-        leftModeWidth: 50,
+        leftModeWidth: 64,
     }
 
 }

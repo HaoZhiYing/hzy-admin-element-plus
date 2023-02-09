@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import App from './App.js';
+import App from './App.vue';
 //pinia
 import { createPinia } from 'pinia';
 // 路由

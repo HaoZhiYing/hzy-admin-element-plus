@@ -48,9 +48,9 @@ router.beforeEach((to, from, next) => {
   var hasRoute = genDynamicRouters(menuTreeList);
   if (!hasRoute) {
     //
-    console.log('router-cmd', router.getRoutes(), router.options.routes, to.fullPath);
+    console.log('router-cmd', router.getRoutes(), router.options.routes, from.fullPath, to.fullPath);
     //如果初次add路由需要一下代码重新加载
-    return next({ ...to, replace: true });
+    return next({ ...from });
   }
 
   next();

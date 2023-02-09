@@ -27,7 +27,7 @@ export function getAllNameByAntd(currentInstance: ComponentInternalInstance | nu
 }
 
 /**
- * 获取所有的 ionicons5 图标
+ * 获取所有的 ElementPlus 图标
  * @returns
  */
 export function getAllNameByElementPlus(currentInstance: ComponentInternalInstance | null) {

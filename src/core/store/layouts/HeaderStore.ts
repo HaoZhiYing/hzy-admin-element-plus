@@ -36,8 +36,10 @@ export default defineStore("HeaderStore", () => {
 
     /**
      * 设置头部样式
+     * @param _class 样式
+     * @param index 索引
      */
-    function setHeaderClass(_class: string) {
+    function setHeaderClass(_class: string, index: number) {
         HeaderStoreUtil.setHeaderClass(_class);
         initHeaderClass(coreStore.isDark);
     }

@@ -18,12 +18,12 @@ const props = defineProps<{
 
 const currentInstance = getCurrentInstance();
 const allNames = getAllNameByElementPlus(currentInstance);
-const isDefaultIcon = ref(allNames.findIndex((w: any) => w == props.name) > -1);
+const isDefaultElementPlusIcon = ref(allNames.findIndex((w: any) => w.toLocaleLowerCase() == props.name.toLocaleLowerCase()) > -1);
 
 watch(
   () => props.name,
   (value) => {
-    isDefaultIcon.value = allNames.findIndex((w: any) => w == value) > -1;
+    isDefaultElementPlusIcon.value = allNames.findIndex((w: any) => w.toLocaleLowerCase() == value.toLocaleLowerCase()) > -1;
   }
 );
 </script>
@@ -33,7 +33,7 @@ watch(
     :style="{ width: (props.size ? props.size : 14) + 'px', height: (props.size ? props.size : 14) + 'px', color: props.color, ...(props.style as Object) }"
     :color="$props.color"
     :class="props.class"
-    v-if="isDefaultIcon"
+    v-if="isDefaultElementPlusIcon"
   >
     <component :is="props.name" />
   </i>
