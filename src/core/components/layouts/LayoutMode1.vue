@@ -56,7 +56,9 @@ let left = computed(() => {
   position: absolute;
   z-index: 9;
   right: 0;
-  backdrop-filter: saturate(50%) blur(5px);
-  -webkit-backdrop-filter: saturate(50%) blur(5px);
+  // backdrop-filter: saturate(50%) blur(5px);
+  // -webkit-backdrop-filter: saturate(50%) blur(5px);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
 </style>

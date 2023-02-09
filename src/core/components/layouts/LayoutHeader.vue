@@ -119,7 +119,7 @@ const jumpDoc = () => {
 .hzy-layout-header {
   display: flex;
   height: 100%;
-  border-bottom: 1px solid var(--el-border-color-light);
+  // border-bottom: 1px solid var(--el-border-color-light);
   // 动画延迟
   transition: background-color 0.6s;
   -moz-transition: background-color 0.6s;
@@ -140,6 +140,10 @@ const jumpDoc = () => {
   .hzy-header-btn:hover {
     background: rgba(243, 246, 248, 0.5);
   }
+}
+
+.el-dropdown {
+  color: inherit !important;
 }
 </style>
 <!-- 头部皮肤定义 -->

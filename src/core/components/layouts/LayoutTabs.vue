@@ -89,8 +89,11 @@ watch(
 
 <style lang="less">
 .hzy-layout-tabs {
+  .el-dropdown {
+    color: inherit !important;
+  }
   display: flex;
-  border-bottom: 1px solid var(--el-border-color-light);
+  // border-bottom: 1px solid var(--el-border-color-light);
   .hzy-layout-tabs-left {
     flex: 1;
     .el-tabs--border-card {

@@ -81,6 +81,10 @@ function onSelectedMenuItem(index: string, indexPath: string[], item: MenuItemCl
 <style lang="less" scoped>
 .el-menu {
   border-right: 0 !important;
+
+  // * {
+  //   color: var(--color) !important;
+  // }
 }
 .hzy-layou-menu {
   .hzy-layou-menu-title {

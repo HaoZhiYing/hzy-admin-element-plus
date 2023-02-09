@@ -97,15 +97,15 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: url(../assets/images/login.jpg) no-repeat;
-  background-size: cover;
+  // background: url(../assets/images/login.jpg) no-repeat;
+  // background-size: cover;
 
   .login-card {
     height: 450px;
     width: 900px;
     box-shadow: var(--el-box-shadow-dark);
     display: flex;
-    border-radius: 5px;
+    border-radius: 10px;
     .flex-left {
       flex: 1;
       width: 450px;
@@ -119,8 +119,10 @@ body {
       display: flex;
       justify-content: center;
       flex-direction: column;
-      border-top-right-radius: 5px;
-      border-bottom-right-radius: 5px;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
     }
 
     .flex-right-white {

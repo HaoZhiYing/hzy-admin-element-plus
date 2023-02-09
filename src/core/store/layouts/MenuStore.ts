@@ -180,17 +180,19 @@ const menuCustomThemes: MenuCustomTheme[] = [{//原生风格
     backgroundColor: "rgb(48, 65, 86)",// 菜单背景色
     activeTextColor: "#fff",// 文本激活色
     textColor: "#fff",// 默认文本色
-}, {//带有背景图片 - 亮色风格
-    activeBgColor: undefined,
-    backgroundColor: "transparent",
-    activeTextColor: undefined,
-    textColor: undefined,
-}, {//带有背景图片 - 暗色风格
-    activeBgColor: undefined,
-    backgroundColor: "transparent",
-    activeTextColor: undefined,
-    textColor: "#fff",
-},];
+    },
+//     {//带有背景图片 - 亮色风格
+//     activeBgColor: undefined,
+//     backgroundColor: "transparent",
+//     activeTextColor: undefined,
+//     textColor: undefined,
+// }, {//带有背景图片 - 暗色风格
+//     activeBgColor: undefined,
+//     backgroundColor: "transparent",
+//     activeTextColor: undefined,
+//     textColor: "#fff",
+//     }
+];
 
 export default defineStore("MenuStore", () => {
 
