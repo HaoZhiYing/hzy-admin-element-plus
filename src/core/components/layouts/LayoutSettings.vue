@@ -10,17 +10,8 @@ const menuStore = MenuStore();
 const themeStore = ThemeStore();
 </script>
 <template>
-  <el-drawer v-model="settingsStore.state.isOpen" :with-header="false" direction="rtl" size="300px">
+  <el-drawer v-model="settingsStore.state.isOpen" :with-header="false" direction="rtl" size="350px">
     <div class="hzy-settings">
-      <el-divider v-if="!coreStore.state.isMobile"> 菜单模式 </el-divider>
-      <div class="hzy-skin-list mb-5 text-center" v-if="!coreStore.state.isMobile">
-        <el-radio-group v-model="menuStore.state.menuMode">
-          <el-radio label="1">常规</el-radio>
-          <el-radio label="2">顶部</el-radio>
-          <el-radio label="3">左侧</el-radio>
-        </el-radio-group>
-      </div>
-
       <el-divider> 头部颜色 </el-divider>
       <div class="hzy-skin-list mb-5 text-center">
         <template v-for="(item, index) in 12" :key="index">
@@ -52,10 +43,21 @@ const themeStore = ThemeStore();
         </el-radio-group>
       </div>
 
+      <el-divider v-if="!coreStore.state.isMobile"> 菜单模式 </el-divider>
+      <div class="hzy-skin-list mb-5 text-center" v-if="!coreStore.state.isMobile">
+        <el-radio-group v-model="menuStore.state.menuMode">
+          <el-radio label="1">常规</el-radio>
+          <el-radio label="2">顶部</el-radio>
+          <el-radio label="3">左侧</el-radio>
+        </el-radio-group>
+      </div>
+
       <el-divider> 背景 </el-divider>
       <el-button type="primary" class="w100 mb-5" @click="themeStore.setBgImageIndex(-1)">重置</el-button>
-      <div v-for="(item, index) in themeStore.bgImages">
-        <img :src="item" class="hzy-bg-image-item" @click="themeStore.setBgImageIndex(index)" />
+      <div class="hzy-skin-list text-center">
+        <div v-for="(item, index) in themeStore.bgImages" style="width: 50%">
+          <img :src="item" class="hzy-bg-image-item" @click="themeStore.setBgImageIndex(index)" />
+        </div>
       </div>
     </div>
   </el-drawer>
@@ -78,8 +80,9 @@ const themeStore = ThemeStore();
   }
 
   .hzy-bg-image-item {
-    width: 100%;
+    width: 150px;
     cursor: pointer;
+    height: 100px;
   }
 }
 </style>

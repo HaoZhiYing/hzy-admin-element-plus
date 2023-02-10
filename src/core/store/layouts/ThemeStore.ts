@@ -2,16 +2,19 @@ import AppConsts from '@/utils/AppConsts';
 import { defineStore } from 'pinia';
 import { onMounted, reactive } from 'vue';
 import { useDark, useToggle } from '@vueuse/core';
-import Img0 from "@/assets/images/login.jpg";
+import Img0 from "@/assets/images/login-1.jpg";
 import Img1 from "@/assets/images/bg-1.jpg";
 import Img2 from "@/assets/images/bg-2.jpg";
-import Img3 from "@/assets/images/bg-3.png";
+import Img3 from "@/assets/images/bg-3.jpg";
 import Img4 from "@/assets/images/bg-4.jpg";
 import Img5 from "@/assets/images/bg-5.jpg";
 import Img6 from "@/assets/images/bg-6.jpg";
 import Img7 from "@/assets/images/bg-7.jpg";
-import Img8 from "@/assets/images/bg-8.jpg";
-import Img9 from "@/assets/images/bg-9.jpg";
+// import Img8 from "@/assets/images/bg-8.jpg";
+// import Img9 from "@/assets/images/bg-9.jpg";
+// import Img10 from "@/assets/images/bg-10.jpg";
+// import Img11 from "@/assets/images/bg-11.jpg";
+// import Img12 from "@/assets/images/bg-12.jpg";
 
 interface IState {
     // 头部主题 索引
@@ -23,7 +26,7 @@ interface IState {
     // 文本颜色
     textColor: string | undefined
     // 背景颜色
-    backgroundColor: "inherit" | "rgba(0,0,0,.2)" | "rgba(255,255,255,.2)"
+    backgroundColor: "inherit" | "rgba(0,0,0,.1)" | "rgba(255,255,255,.1)"
 }
 
 /**
@@ -101,8 +104,11 @@ const bgImages: string[] = [
     Img5,
     Img6,
     Img7,
-    Img8,
-    Img9
+    // Img8,
+    // Img9,
+    // Img10,
+    // Img11,
+    // Img12,
 ];
 
 /* background: url("https://gw.alipayobjects.com/mdn/rms_08e378/afts/img/A*MtVDSKukKj8AAAAAAAAAAAAAARQnAQ") no-repeat; */
@@ -186,7 +192,7 @@ export default defineStore("CoreStore", () => {
         ThemeStoreUtil.setBgImageIndex(index);
         state.backgroundImageIndex = index;
 
-        state.backgroundColor = index > -1 ? "rgba(255,255,255,.2)" : "inherit";
+        state.backgroundColor = index > -1 ? "rgba(0,0,0,.1)" : "inherit";
     }
 
     /**

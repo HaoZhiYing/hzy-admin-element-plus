@@ -90,7 +90,7 @@ class AppConsts {
         /**
          * 菜单最大宽度
          */
-        maxWidth: 200,
+        maxWidth: 250,
         /**
          * 左侧模式一级菜单宽度
          */

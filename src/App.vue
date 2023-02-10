@@ -42,16 +42,15 @@ body {
   font-weight: 400;
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
 
-  .app {
-    backdrop-filter: saturate(50%) blur(1px);
-    -webkit-backdrop-filter: saturate(50%) blur(1px);
-    // 左侧侧边栏区域背景色
-    background-color: v-bind("themeStore.state.backgroundColor") !important;
+  .bg {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
 
-    .bg {
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
+    .app {
+      backdrop-filter: saturate(100%) blur(1px);
+      -webkit-backdrop-filter: saturate(100%) blur(1px);
+      background-color: v-bind("themeStore.state.backgroundColor") !important;
     }
   }
 }
