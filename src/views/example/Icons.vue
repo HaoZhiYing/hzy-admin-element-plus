@@ -1,11 +1,12 @@
-<script lang="ts">
-// 组件命名
-export default { name: "IconsVue" };
-</script>
 <!-- 逻辑代码 -->
 <script lang="ts" setup>
 import { reactive } from "vue";
 import AppIconList from "@/core/components/AppIconList.vue";
+import PageContainer from "@/core/components/PageContainer.vue";
+
+defineOptions({
+  name: "IconsVue",
+});
 
 const state = reactive({
   iconName: "AlipaySquareFilled",
@@ -13,12 +14,12 @@ const state = reactive({
 </script>
 
 <template>
-  <div class="p-20">
+  <PageContainer>
     <a-card title="Icons 图标集合" :bordered="false" :headStyle="{ 'border-bottom': 0 }">
       <template #extra>
         <a href="https://next.antdv.com/components/icon-cn" target="_black"> 官方图标</a>
       </template>
       <AppIconList v-model:name="state.iconName" />
     </a-card>
-  </div>
+  </PageContainer>
 </template>

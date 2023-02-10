@@ -13,17 +13,18 @@ import image1 from "@/assets/images/下楼做核酸.png";
 import image2 from "@/assets/images/核酸检测.png";
 import image3 from "@/assets/images/抗疫必胜.png";
 import AppConsts from "@/utils/AppConsts";
+import PageContainer from "@/core/components/PageContainer.vue";
 
 var now = new Date();
 </script>
 
 <template>
-  <div class="p-16 bg-color">
+  <PageContainer :show="false">
     <!-- 基础统计数据 -->
     <div><WorkOrder /></div>
     <!-- 近一年设备销售量 -->
     <div>
-      <el-row :gutter="20">
+      <el-row :gutter="16">
         <el-col :xs="24" :sm="24" :md="12" :lg="16" :xl="16" class="mb-16">
           <WorkOrderStatistics />
         </el-col>
@@ -38,7 +39,7 @@ var now = new Date();
 
     <!-- 更多图形报表 -->
     <div>
-      <el-row :gutter="20">
+      <el-row :gutter="16">
         <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-16">
           <HomeChart1 />
         </el-col>
@@ -53,7 +54,7 @@ var now = new Date();
 
     <!-- 更多图形报表 -->
     <div>
-      <el-row :gutter="20">
+      <el-row :gutter="16">
         <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-16">
           <el-card shadow="never">
             <el-image :src="image1" fit="cover" />
@@ -73,7 +74,7 @@ var now = new Date();
     </div>
     <!-- 页脚 -->
     <el-footer class="text-center p-16"> {{ AppConsts.appTitle }} ©{{ now.getFullYear() }} author by hzy </el-footer>
-  </div>
+  </PageContainer>
 </template>
 
 <style lang="less"></style>

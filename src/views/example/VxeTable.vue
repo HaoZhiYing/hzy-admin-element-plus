@@ -1,10 +1,11 @@
-<script lang="ts">
-// 组件命名
-export default { name: "VxeTableCom" };
-</script>
 <!-- 逻辑代码 -->
 <script lang="ts" setup>
 import { reactive, onMounted } from "vue";
+import PageContainer from "@/core/components/PageContainer.vue";
+
+defineOptions({
+  name: "VxeTableCom",
+});
 
 const demo1 = reactive<{
   loading: boolean;
@@ -65,8 +66,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="p-20">
-    <el-alert title="VxeTable 官网文档" type="success" class="mb-20">
+  <PageContainer>
+    <el-alert title="VxeTable 官网文档" type="success" class="mb-16">
       <template #default>
         <a href="https://vxetable.cn/" target="_black">https://vxetable.cn/</a>
       </template>
@@ -99,5 +100,5 @@ onMounted(() => {
       ></vxe-column>
       <vxe-column field="address" title="Address" show-overflow></vxe-column>
     </vxe-table>
-  </div>
+  </PageContainer>
 </template>

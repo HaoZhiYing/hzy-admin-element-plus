@@ -8,12 +8,23 @@ import router from "@/core/router";
 import AppIcon from "@/core/components/AppIcon.vue";
 import { computed } from "vue";
 import Tools from "@/core/utils/Tools";
+import ThemeStore from "@/core/store/layouts/ThemeStore";
 //
 const coreStore = CoreStore();
 const menuStore = MenuStore();
 const appStore = AppStore();
+const themeStore = ThemeStore();
 // 当前路由地址
 const currentRoutePath = computed(() => router.currentRoute.value.fullPath);
+
+const textColor = computed(() => {
+  if (themeStore.state.menuThemeIndex > 0) {
+    return themeStore.menuThemes[themeStore.state.menuThemeIndex]?.textColor;
+  }
+  return themeStore.state.textColor ?? themeStore.menuThemes[themeStore.state.menuThemeIndex]?.textColor;
+});
+const activeTextColor = computed(() => themeStore.menuThemes[themeStore.state.menuThemeIndex]?.activeTextColor);
+const backgroundColor = computed(() => themeStore.menuThemes[themeStore.state.menuThemeIndex]?.backgroundColor);
 
 const menuTree = computed(() => {
   return Tools.genTreeData(appStore.state.userInfo.menus, null);
@@ -37,9 +48,9 @@ function onSelectedMenuItem(index: string, indexPath: string[], item: MenuItemCl
     :default-active="currentRoutePath"
     :collapse-transition="false"
     :collapse="menuStore.state.isCollapse && !coreStore.state.isMobile"
-    :active-text-color="menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex].activeTextColor"
-    :background-color="menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex].backgroundColor"
-    :text-color="menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex].textColor"
+    :active-text-color="activeTextColor"
+    :background-color="backgroundColor"
+    :text-color="textColor"
     @select="(index: string, indexPath: string[], item: MenuItemClicked)=>onSelectedMenuItem(index,indexPath,item)"
   >
     <!-- 动态生成 topnav-->
@@ -81,10 +92,6 @@ function onSelectedMenuItem(index: string, indexPath: string[], item: MenuItemCl
 <style lang="less" scoped>
 .el-menu {
   border-right: 0 !important;
-
-  // * {
-  //   color: var(--color) !important;
-  // }
 }
 .hzy-layou-menu {
   .hzy-layou-menu-title {
@@ -110,7 +117,7 @@ function onSelectedMenuItem(index: string, indexPath: string[], item: MenuItemCl
 <style lang="less">
 .hzy-layou-menu {
   .el-menu-item.is-active {
-    background: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex].activeBgColor");
+    background: v-bind("themeStore.menuThemes[themeStore.state.menuThemeIndex]?.activeBgColor");
     // color: #fff;
   }
 

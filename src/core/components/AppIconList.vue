@@ -58,13 +58,13 @@ onMounted(() => {
     <h4 class="mt-24">更多图表请自行扩展：<a href="https://www.xicons.org/#/" target="_blank">https://www.xicons.org/#/</a></h4>
 
     <ul>
-      <li :class="{ active: state.active === 1 }" @click="onClickTab(1)">
-        Antd
-        <template v-if="state.count1 > 0"> （数量:{{ state.count1 }}个） </template>
-      </li>
       <li :class="{ active: state.active === 2 }" @click="onClickTab(2)">
         Element Plus
         <template v-if="state.count2 > 0"> （数量:{{ state.count2 }}个） </template>
+      </li>
+      <li :class="{ active: state.active === 1 }" @click="onClickTab(1)">
+        Antd
+        <template v-if="state.count1 > 0"> （数量:{{ state.count1 }}个） </template>
       </li>
     </ul>
     <!-- list -->

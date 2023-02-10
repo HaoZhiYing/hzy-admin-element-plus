@@ -10,18 +10,18 @@
 @import "nprogress/nprogress.css";
 
 :root {
-    --el-border-radius-base: 2px;
+    // --el-border-radius-base: 2px;
     --el-color-primary: #2f54eb;
     --el-border-color-light: 1px solid #f0f2f5;
 }
 
-.el-message-box {
-    --el-messagebox-border-radius: 2px;
-}
+// .el-message-box {
+//     --el-messagebox-border-radius: 2px;
+// }
 
-.el-card {
-    --el-card-border-radius: 2px;
-}
+// .el-card {
+//     --el-card-border-radius: 2px;
+// }
 
 @media (max-width: 576px) {
     .el-message-box {

@@ -5,6 +5,7 @@ export default { name: "AppComponentsCom" };
 <!-- 逻辑代码 -->
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
+import PageContainer from "@/core/components/PageContainer.vue";
 
 const loading = ref(true);
 
@@ -29,9 +30,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="p-20" v-loading="loading" style="min-height: 300px">
-    <iframe src="https://element-plus.gitee.io/zh-CN/component/button.html" frameborder="0" id="iframe_app_components" v-show="!loading"></iframe>
-  </div>
+  <PageContainer>
+    <div v-loading="loading" style="min-height: 300px">
+      <iframe src="https://element-plus.gitee.io/zh-CN/component/button.html" frameborder="0" id="iframe_app_components" v-show="!loading"></iframe>
+    </div>
+  </PageContainer>
 </template>
 
 <style lang="less" scoped>

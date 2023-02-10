@@ -9,6 +9,7 @@ import CrudList from "@/core/components/curd/CrudList.vue";
 import Tools from "@/core/utils/Tools";
 import Http from "@/core/utils/Http";
 import Info from "./Info.vue";
+import PageContainer from "@/core/components/PageContainer.vue";
 
 const state = reactive<any>({
   search: {
@@ -86,7 +87,7 @@ function openForm(id: string) {
 </script>
 
 <template>
-  <div class="p-20">
+  <PageContainer>
     <CrudList ref="" :tableData="state" @on-current-change="">
       <!-- 高级检索 -->
       <template #search>
@@ -107,7 +108,7 @@ function openForm(id: string) {
 
       <!-- 工具栏插槽 -->
       <template #toolbar>
-        <el-space wrap :size="[20, 20]">
+        <el-space wrap :size="[16, 16]">
           <!-- 检索 -->
           <el-input v-model="state.search.vm.value" placeholder="请输入姓名">
             <template #append>
@@ -157,5 +158,5 @@ function openForm(id: string) {
     </CrudList>
 
     <Info ref="refInfo" @onSuccess="() => findList()" />
-  </div>
+  </PageContainer>
 </template>

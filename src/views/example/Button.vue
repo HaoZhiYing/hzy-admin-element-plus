@@ -1,25 +1,26 @@
-<script lang="ts">
-// 组件命名
-export default { name: "ButtonCom" };
-</script>
 <!-- 逻辑代码 -->
 <script lang="ts" setup>
 import { ref } from "vue";
-import { ElMessage } from "element-plus";
+import PageContainer from "@/core/components/PageContainer.vue";
+import Tools from "@/core/utils/Tools";
+
+defineOptions({
+  name: "ButtonCom",
+});
 
 const messageText = ref("hello");
 
 const methods = {
   onHello() {
-    ElMessage(messageText.value);
+    Tools.message.success(messageText.value);
   },
 };
 </script>
 
 <template>
-  <div class="p-20" @click="methods.onHello">
-    <div class="text-center btns">
-      <el-row class="mb-20">
+  <PageContainer>
+    <div class="text-center btns" @click="methods.onHello">
+      <el-row class="mb-16">
         <el-button>Default</el-button>
         <el-button type="primary">Primary</el-button>
         <el-button type="success">Success</el-button>
@@ -29,7 +30,7 @@ const methods = {
         <el-button>中文</el-button>
       </el-row>
 
-      <el-row class="mb-20">
+      <el-row class="mb-16">
         <el-button plain>Plain</el-button>
         <el-button type="primary" plain>Primary</el-button>
         <el-button type="success" plain>Success</el-button>
@@ -38,7 +39,7 @@ const methods = {
         <el-button type="danger" plain>Danger</el-button>
       </el-row>
 
-      <el-row class="mb-20">
+      <el-row class="mb-16">
         <el-button round>Round</el-button>
         <el-button type="primary" round>Primary</el-button>
         <el-button type="success" round>Success</el-button>
@@ -56,7 +57,7 @@ const methods = {
         <el-button type="danger" icon="Delete" circle />
       </el-row>
     </div>
-  </div>
+  </PageContainer>
 </template>
 
 <style lang="less" scope>

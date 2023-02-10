@@ -16,7 +16,7 @@ const emits = defineEmits<{
 
 const tableData = computed(() => props.tableData);
 const table = ref<InstanceType<typeof ElTable>>();
-const pageSizeOptions = ref([15, 20, 500, 1000]);
+const pageSizeOptions = ref([10, 20, 1000]);
 
 const onCurrentChange = (currentPage: number) => {
   emits("onCurrentChange", currentPage);
@@ -35,11 +35,11 @@ defineExpose({
 <template>
   <div v-loading="tableData.loading">
     <!-- 高级检索 -->
-    <div style="position: relative">
+    <div class="mb-16">
       <el-collapse-transition>
         <el-card class="search-card" v-show="tableData.search.state">
           <el-form label-position="left" label-width="auto">
-            <el-row :gutter="20">
+            <el-row :gutter="16">
               <!-- 检索插槽 -->
               <slot name="search"></slot>
             </el-row>
@@ -48,12 +48,12 @@ defineExpose({
       </el-collapse-transition>
     </div>
     <!-- 工具栏插槽 -->
-    <div class="mb-20">
+    <div class="mb-16">
       <slot name="toolbar"></slot>
     </div>
     <!-- 表格 -->
     <slot>
-      <el-table ref="table" :data="tableData.data" size="default" stripe height="calc(100vh - 250px)" class="mb-20" table-layout="fixed" highlight-current-row>
+      <el-table ref="table" :data="tableData.data" size="default" stripe class="mb-16" table-layout="fixed" highlight-current-row>
         <slot name="table-col-default">
           <el-table-column type="index" width="50" />
           <el-table-column type="selection" width="50" />
@@ -82,11 +82,11 @@ defineExpose({
 
 <style lang="less" scoped>
 .search-card {
-  position: absolute;
+  // position: absolute;
   z-index: 9;
-  backdrop-filter: saturate(50%) blur(20px);
-  -webkit-backdrop-filter: saturate(50%) blur(20px);
-  background-color: initial;
+  // backdrop-filter: saturate(50%) blur(50px);
+  // -webkit-backdrop-filter: saturate(50%) blur(50px);
+  // background-color: transparent;
   width: 100%;
 }
 </style>

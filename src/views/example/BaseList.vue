@@ -1,9 +1,11 @@
-<script lang="ts">
-// 组件命名
-export default { name: "BaseListCom" };
-</script>
 <!-- 逻辑代码 -->
 <script lang="ts" setup>
+import PageContainer from "@/core/components/PageContainer.vue";
+
+defineOptions({
+  name: "BaseListCom",
+});
+
 const tableData = [
   {
     date: "2016-05-03",
@@ -29,11 +31,11 @@ const tableData = [
 </script>
 
 <template>
-  <div class="p-20">
+  <PageContainer>
     <el-table :data="tableData" border style="width: 100%">
       <el-table-column prop="date" label="Date" width="180" />
       <el-table-column prop="name" label="Name" width="180" />
       <el-table-column prop="address" label="Address" />
     </el-table>
-  </div>
+  </PageContainer>
 </template>

@@ -4,10 +4,12 @@ import router from "@/core/router";
 import CoreStore from "@/core/store/layouts/CoreStore";
 import MenuStore from "@/core/store/layouts/MenuStore";
 import TabsStore from "@/core/store/layouts/TabsStore";
+import ThemeStore from "@/core/store/layouts/ThemeStore";
 
 const coreStore = CoreStore();
 const menuStore = MenuStore();
 const tabsStore = TabsStore();
+const themeStore = ThemeStore();
 
 const active = computed(() => router.currentRoute.value.fullPath);
 const tabsState = computed(() => tabsStore.state);
@@ -89,6 +91,9 @@ watch(
 
 <style lang="less">
 .hzy-layout-tabs {
+  * {
+    color: v-bind("themeStore.state.textColor");
+  }
   .el-dropdown {
     color: inherit !important;
   }

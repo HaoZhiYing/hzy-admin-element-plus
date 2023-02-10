@@ -1,40 +1,55 @@
 <script setup lang="ts">
 import router from "@/core/router";
 import LayoutOneLevelMenuVue from "./menus/LayoutOneLevelMenu.vue";
-
 import CoreStore from "@/core/store/layouts/CoreStore";
 import SettingsStore from "@/core/store/layouts/SettingsStore";
-import HeaderStore from "@/core/store/layouts/HeaderStore";
 import MenuStore, { EMenuMode } from "@/core/store/layouts/MenuStore";
 import Tools from "@/core/utils/Tools";
+import ThemeStore from "@/core/store/layouts/ThemeStore";
+import AppIcon from "@/core/components/AppIcon.vue";
+import { useFullscreen } from "@vueuse/core";
+import { watch } from "vue";
 //
 const coreStore = CoreStore();
 const settingsStore = SettingsStore();
-const headerStore = HeaderStore();
 const menuStore = MenuStore();
+const themeStore = ThemeStore();
 
 // 图标大小
-const iconSize: number = 20;
+const iconSize: number = 18;
+
+//全屏
+const { isFullscreen, enter, exit, toggle } = useFullscreen();
 
 // 退出登录
-const logOut = () => {
+function logOut() {
   Tools.confirm("您确定要退出登录吗?", () => router.push("/login"));
-};
+}
 
 // 刷新
-const onReload = () => {
-  const name = router.currentRoute.value.name ? router.currentRoute.value.name : "";
-  coreStore.refresh(router.currentRoute.value.fullPath, name as string);
-};
+function onReload() {
+  coreStore.refresh(router.currentRoute.value.fullPath);
+}
 
-const jumpDoc = () => {
+//文档地址
+function jumpDoc() {
   window.open("https://www.yuque.com/u378909/yidf7v", "_black");
-};
+}
+
+//pro
+function jumpPro() {
+  window.open("http://124.221.128.7:6600/", "_black");
+}
+
+//mvc
+function jumpMvc() {
+  window.open("http://124.221.128.7:7600/", "_black");
+}
 </script>
 
 <template>
   <el-header>
-    <div class="hzy-layout-header" :class="headerStore.state.class">
+    <div class="hzy-layout-header" :class="themeStore.headerClasss[themeStore.state.headerThemeClassIndex]">
       <!-- 菜单收缩 -->
       <el-tooltip content="菜单收展" placement="bottom">
         <div class="hzy-header-btn" @click="menuStore.onChangeCollapse(!menuStore.state.isCollapse)">
@@ -62,35 +77,41 @@ const jumpDoc = () => {
           </el-badge>
         </div>
       </el-tooltip>
+
+      <!-- 全屏 -->
+      <el-tooltip :content="isFullscreen ? '退出全屏' : '全屏'" placement="bottom" v-if="!coreStore.state.isMobile">
+        <div class="hzy-header-btn" @click="toggle()">
+          <AppIcon name="fullscreen-exit-outlined" :size="iconSize" v-if="isFullscreen" />
+          <AppIcon name="fullscreen-outlined" :size="iconSize" v-else />
+          <!-- <el-icon :size="iconSize">
+            <Minus v-if="coreStore.state.isFullscreen" />
+            <FullScreen v-else />
+          </el-icon> -->
+        </div>
+      </el-tooltip>
+
       <!-- 刷新 -->
       <el-tooltip content="刷新" placement="bottom">
         <div class="hzy-header-btn" @click="onReload">
           <el-icon :size="iconSize"><RefreshRight /></el-icon>
         </div>
       </el-tooltip>
-      <!-- 全屏 -->
-      <el-tooltip :content="coreStore.state.isFullscreen ? '退出全屏' : '全屏'" placement="bottom" v-if="!coreStore.state.isMobile">
-        <div class="hzy-header-btn" @click="coreStore.toggleFullscreen()">
-          <el-icon :size="iconSize">
-            <Minus v-if="coreStore.state.isFullscreen" />
-            <FullScreen v-else />
-          </el-icon>
-        </div>
-      </el-tooltip>
+
+      <!-- 黑白主题切换 -->
+      <div class="hzy-header-btn" @click="themeStore.toggleDark()">
+        <!-- <ThemeSwitch :state="coreStore.state.isDark" :iconSize="iconSize" /> -->
+        <el-icon :size="iconSize">
+          <Sunny v-if="themeStore.isDark" />
+          <MoonNight v-else />
+        </el-icon>
+      </div>
+
       <!-- 系统配置 -->
       <el-tooltip content="系统配置" placement="bottom">
         <div class="hzy-header-btn" @click="settingsStore.onOpen(!settingsStore.state.isOpen)">
           <el-icon :size="iconSize"><Setting /></el-icon>
         </div>
       </el-tooltip>
-      <!-- 黑白主题切换 -->
-      <div class="hzy-header-btn" @click="coreStore.toggleDark()">
-        <!-- <ThemeSwitch :state="coreStore.state.isDark" :iconSize="iconSize" /> -->
-        <el-icon :size="iconSize">
-          <Sunny v-if="coreStore.isDark" />
-          <MoonNight v-else />
-        </el-icon>
-      </div>
 
       <!-- 当前登陆人 -->
       <el-dropdown>
@@ -138,7 +159,12 @@ const jumpDoc = () => {
   }
 
   .hzy-header-btn:hover {
-    background: rgba(243, 246, 248, 0.5);
+    background: rgba(243, 246, 248, 0.3);
+  }
+
+  * {
+    // 头部文本颜色
+    color: v-bind("themeStore.state.textColor");
   }
 }
 
@@ -153,85 +179,49 @@ const jumpDoc = () => {
   background: #2173dc;
   background: -webkit-gradient(linear, left top, right top, from(#1d42ab), color-stop(#2173dc), to(#1e93ff));
   background: linear-gradient(90deg, #1d42ab, #2173dc, #1e93ff);
-  * {
-    color: #ffffff;
-  }
 }
 
 .hzy-layout-header-1 {
   background-color: #8d6658;
-  * {
-    color: #ffffff;
-  }
 }
 
 .hzy-layout-header-2 {
   background-color: #57c7d4;
-  * {
-    color: #ffffff;
-  }
 }
 
 .hzy-layout-header-3 {
   background-color: #46be8a;
-  * {
-    color: #ffffff;
-  }
 }
 
 .hzy-layout-header-4 {
   background-color: #757575;
-  * {
-    color: #ffffff;
-  }
 }
 
 .hzy-layout-header-5 {
   background-color: #677ae4;
-  * {
-    color: #ffffff;
-  }
 }
 
 .hzy-layout-header-6 {
   background-color: #f2a654;
-  * {
-    color: #ffffff;
-  }
 }
 
 .hzy-layout-header-7 {
   background-color: #f96197;
-  * {
-    color: #ffffff;
-  }
 }
 
 .hzy-layout-header-8 {
   background-color: #926dde;
-  * {
-    color: #ffffff;
-  }
 }
 
 .hzy-layout-header-9 {
   background-color: #f96868;
-  * {
-    color: #ffffff;
-  }
 }
 
 .hzy-layout-header-10 {
   background-color: #3aa99e;
-  * {
-    color: #ffffff;
-  }
 }
 
 .hzy-layout-header-11 {
   background-color: #f9cd48;
-  * {
-    color: #ffffff;
-  }
 }
 </style>

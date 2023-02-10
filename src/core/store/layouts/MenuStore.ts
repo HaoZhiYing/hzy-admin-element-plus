@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { onMounted, reactive, watch } from "vue";
+import { reactive, watch } from "vue";
 import useCoreStore from "@/core/store/layouts/CoreStore";
 import AppConsts from "@/utils/AppConsts";
 
@@ -10,20 +10,6 @@ export enum EMenuMode {
     top = "2",
     //3：侧边栏
     left = "3"
-}
-
-/**
- * 菜单自定义主题
- */
-interface MenuCustomTheme {
-    // 激活文本背景颜色
-    activeBgColor: string | undefined,
-    // 激活文本颜色
-    activeTextColor: string | undefined
-    // 背景颜色
-    backgroundColor: string | undefined
-    // 文本颜色
-    textColor: string | undefined,
 }
 
 interface IState {
@@ -47,7 +33,9 @@ interface IState {
      * 左侧模式一级菜单宽度
      */
     leftModeWidth: number,
-    menuCustomThemesIndex: number
+    /**
+     * 菜单收展
+     */
     isCollapse: boolean
     /**
      * 菜单模式
@@ -154,46 +142,6 @@ export interface MenuItemModel {
     creationTime?: string | null
 }
 
-//菜单主题集合
-const menuCustomThemes: MenuCustomTheme[] = [{//原生风格
-    activeBgColor: undefined,
-    backgroundColor: "transparent",
-    activeTextColor: undefined,
-    textColor: undefined,
-}, {//antd 风格
-    activeBgColor: "#1890ff",// 激活文本背景颜色
-    backgroundColor: "#001529",// 菜单背景色
-    activeTextColor: "#fff",// 文本激活色
-    textColor: "#fff",// 默认文本色
-}, {//element+ 官方自定义颜色风格
-    activeBgColor: "#ffd04b",
-    backgroundColor: "#545c64",
-    activeTextColor: "#303133",//黑色
-    textColor: "#fff",
-}, {//iview 菜单风格
-    activeBgColor: "#1890ff",
-    backgroundColor: "#191a23",
-    activeTextColor: "#fff",
-    textColor: "#fff",
-}, {//vue-element-admin 菜单风格
-    activeBgColor: "#1890ff",// 激活文本背景颜色
-    backgroundColor: "rgb(48, 65, 86)",// 菜单背景色
-    activeTextColor: "#fff",// 文本激活色
-    textColor: "#fff",// 默认文本色
-    },
-//     {//带有背景图片 - 亮色风格
-//     activeBgColor: undefined,
-//     backgroundColor: "transparent",
-//     activeTextColor: undefined,
-//     textColor: undefined,
-// }, {//带有背景图片 - 暗色风格
-//     activeBgColor: undefined,
-//     backgroundColor: "transparent",
-//     activeTextColor: undefined,
-//     textColor: "#fff",
-//     }
-];
-
 export default defineStore("MenuStore", () => {
 
     const coreStore = useCoreStore();
@@ -221,10 +169,6 @@ export default defineStore("MenuStore", () => {
          * 左侧模式一级菜单宽度
          */
         leftModeWidth: AppConsts.menu.leftModeWidth,
-        /**
-         * 菜单自定义颜色 索引值
-         */
-        menuCustomThemesIndex: 0,
         /**
          * 菜单收展
          */
@@ -276,19 +220,6 @@ export default defineStore("MenuStore", () => {
     onChangeMenu(coreStore.state.isMobile);
 
     /**
-     * 改变自定义颜色
-     * @param index 索引
-     */
-    function onChangeMenuCustomThemesIndex(index: number) {
-        state.menuCustomThemesIndex = index;
-    }
-    onMounted(() => { state.menuCustomThemesIndex = MenuStoreUtil.getMenuCustomThemesIndex(); })
-    watch(() => state.menuCustomThemesIndex, value => {
-        setMenuCustomThemesIndex(value);
-        onChangeMenuCustomThemesIndex(value);
-    });
-
-    /**
      * 设置一级菜单 是否开启
      * @param menumode 
      */
@@ -296,18 +227,8 @@ export default defineStore("MenuStore", () => {
         state.menuMode = menumode;
     }
 
-    /**
-     * 持久化保存自定义颜色状态
-     * @param index 菜单主题索引
-     */
-    function setMenuCustomThemesIndex(index: number) {
-        MenuStoreUtil.setMenuCustomThemesIndex(index);
-    }
-
     return {
         state,
-        menuCustomThemes,
-        onChangeMenuCustomThemesIndex,
         onChangeCollapse,
         setMenuMode,
     }
@@ -318,24 +239,6 @@ export default defineStore("MenuStore", () => {
  * 保存菜单状态数据
  */
 class MenuStoreUtil {
-
-    /**
-     * 持久化保存自定义颜色状态
-     * @param menuCustomThemesIndex 
-     */
-    static setMenuCustomThemesIndex(menuCustomThemesIndex: number) {
-        localStorage.setItem(`${AppConsts.appPrefix}_menu_custom_themes_index`, menuCustomThemesIndex.toString());
-    }
-
-    /**
-     * 获取 MenuCustomThemesIndex
-     * @returns 
-     */
-    static getMenuCustomThemesIndex(): number {
-        var index = localStorage.getItem(`${AppConsts.appPrefix}_menu_custom_themes_index`);
-        if (index == null || index == undefined || index == "") return 0;
-        return parseInt(index);
-    }
 
     /**
      * 获取菜单收展状态

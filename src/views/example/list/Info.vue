@@ -49,7 +49,7 @@ defineExpose({ openForm });
       <el-button plain type="primary" v-loading="state.saveLoading" @click="save()"> 提交</el-button>
       <el-button plain type="danger" @click="state.visible = false">关闭</el-button>
     </template>
-    <el-row :gutter="20">
+    <el-row :gutter="16">
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
         <h4>用户名:</h4>
         <el-input v-model:value="state.vm.form.value" placeholder="请输入" />

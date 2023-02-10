@@ -34,8 +34,8 @@ let left = computed(() => {
         <LayoutTabsVue />
       </div>
       <!-- 中间内容 -->
-      <el-main style="height: calc(100vh); padding: 0; padding-top: 100px; overflow: hidden; overflow-y: auto">
-        <div style="min-height: calc(100vh - 100px); overflow: hidden">
+      <el-main>
+        <div class="content bg-color">
           <!-- 由于必须要输出 cacheViews 才能不让缓存页面丢失事件 所以用了下面隐藏的input组件 来激活cacheViews变化-->
           <!-- <input type="hidden" :value="tabsStore.state.cacheViews" /> -->
           <router-view v-slot="{ Component, route }">
@@ -56,9 +56,22 @@ let left = computed(() => {
   position: absolute;
   z-index: 9;
   right: 0;
-  // backdrop-filter: saturate(50%) blur(5px);
-  // -webkit-backdrop-filter: saturate(50%) blur(5px);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  // 对头部加透明度
+  backdrop-filter: saturate(50%) blur(1px);
+  -webkit-backdrop-filter: saturate(50%) blur(1px);
+}
+.el-main {
+  height: calc(100vh);
+  padding: 0;
+  padding-top: 100px;
+  overflow: hidden;
+  overflow-y: auto;
+
+  .content {
+    min-height: calc(100vh - 100px);
+    overflow: hidden;
+    // backdrop-filter: saturate(50%) blur(5px);
+    // -webkit-backdrop-filter: saturate(50%) blur(5px);
+  }
 }
 </style>

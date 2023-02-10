@@ -1,37 +1,41 @@
 <script lang="ts" setup>
-import { useDark } from "@vueuse/core";
-import { ref } from "vue";
+import { computed } from "vue";
 import LayoutMenuVue from "./menus/LayoutMenu.vue";
 import MenuStore from "@/core/store/layouts/MenuStore";
 import AppConsts from "@/utils/AppConsts";
+import ThemeStore from "@/core/store/layouts/ThemeStore";
 //
 const menuStore = MenuStore();
+const themeStore = ThemeStore();
 
-const isDark = ref(useDark());
+const textColor = computed(() => {
+  if (themeStore.state.menuThemeIndex > 0) {
+    return themeStore.menuThemes[themeStore.state.menuThemeIndex]?.textColor;
+  }
+  return themeStore.state.textColor ?? themeStore.menuThemes[themeStore.state.menuThemeIndex]?.textColor;
+});
 </script>
 
 <template>
-  <el-aside
-    :width="menuStore.state.width + 'px'"
-    :class="{ 'hzy-layout-menu-dark': isDark, 'hzy-layout-menu-light': !isDark }"
-    :style="{ backgroundColor: menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex].backgroundColor }"
-    style="backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px)"
-  >
-    <!-- style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px)" -->
+  <el-aside :width="menuStore.state.width + 'px'" :style="{ backgroundColor: themeStore.menuThemes[themeStore.state.menuThemeIndex]?.backgroundColor }">
     <div class="hzy-layou-menu">
-      <template v-if="menuStore.state.menuCustomThemesIndex > 0">
-        <div class="hzy-layou-menu-title" v-if="!menuStore.state.isCollapse" style="color: #ffffff">{{ AppConsts.appTitle }}</div>
-      </template>
-      <template v-else>
-        <div class="hzy-layou-menu-title" v-if="!menuStore.state.isCollapse">{{ AppConsts.appTitle }}</div>
-      </template>
-
+      <div class="hzy-layou-menu-title" v-if="!menuStore.state.isCollapse" :style="{ color: textColor }">
+        {{ AppConsts.appTitle }}
+      </div>
       <LayoutMenuVue />
     </div>
   </el-aside>
 </template>
 
 <style lang="less" scoped>
+.el-aside {
+  overflow: hidden;
+  overflow-y: auto;
+  z-index: 7;
+  // 对左侧区添加透明度
+  backdrop-filter: saturate(50%) blur(1px);
+  -webkit-backdrop-filter: saturate(50%) blur(1px);
+}
 .hzy-layou-menu {
   .el-menu {
     border-right: 0 !important;
@@ -45,16 +49,4 @@ const isDark = ref(useDark());
     align-items: center;
   }
 }
-
-.el-aside {
-  overflow-x: hidden;
-  z-index: 7;
-}
-
-// .hzy-layout-menu-dark {
-// box-shadow: var(--el-box-shadow-dark);
-// }
-// .hzy-layout-menu-light {
-// box-shadow: var(--el-box-shadow-light);
-// }
 </style>

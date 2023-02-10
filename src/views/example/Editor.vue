@@ -1,11 +1,12 @@
-<script lang="ts">
-// 组件命名
-export default { name: "EditorCom" };
-</script>
 <!-- 逻辑代码 -->
 <script lang="ts" setup>
 import { ref } from "vue";
 import WangEditor from "@/core/components/WangEditor.vue";
+import PageContainer from "@/core/components/PageContainer.vue";
+
+defineOptions({
+  name: "EditorCom",
+});
 
 const text = ref("");
 text.value = `
@@ -17,12 +18,12 @@ text.value = `
 </script>
 
 <template>
-  <div class="p-20">
-    <el-alert title="富文本编辑器 WangEditor" type="success" effect="dark" class="mb-20">
+  <PageContainer>
+    <el-alert title="富文本编辑器 WangEditor" type="success" effect="dark" class="mb-16">
       <a target="_blank" href="https://www.wangeditor.com/">查看示例</a>
     </el-alert>
 
-    <el-row :gutter="20">
+    <el-row :gutter="16">
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
         <WangEditor v-model:html="text" domainName="http://localhost:5600" previewDomainName="http://localhost:5600" :height="800" />
       </el-col>
@@ -32,7 +33,7 @@ text.value = `
         </el-card>
       </el-col>
     </el-row>
-  </div>
+  </PageContainer>
 </template>
 
 <style scoped></style>

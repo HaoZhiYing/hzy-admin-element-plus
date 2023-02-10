@@ -1,16 +1,17 @@
-<script lang="ts">
-// 组件命名
-export default { name: "ChartBaseCom" };
-</script>
 <!-- 逻辑代码 -->
 <script lang="ts" setup>
 import Char1 from "./components/Chart1.vue";
 import Char2 from "./components/Chart2.vue";
+import PageContainer from "@/core/components/PageContainer.vue";
+
+defineOptions({
+  name: "ChartBaseCom",
+});
 </script>
 
 <template>
-  <div class="p-20">
-    <el-row :gutter="20" class="pt-15">
+  <PageContainer>
+    <el-row :gutter="16">
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
         <el-card shadow="hover">
           <template #header>
@@ -28,5 +29,5 @@ import Char2 from "./components/Chart2.vue";
         </el-card>
       </el-col>
     </el-row>
-  </div>
+  </PageContainer>
 </template>

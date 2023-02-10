@@ -1,10 +1,11 @@
-<script lang="ts">
-// 组件命名
-export default { name: "ChartMoreCom" };
-</script>
 <!-- 逻辑代码 -->
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
+import PageContainer from "@/core/components/PageContainer.vue";
+
+defineOptions({
+  name: "ChartMoreCom",
+});
 
 const loading = ref(true);
 onMounted(() => {
@@ -28,10 +29,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="p-20" v-loading="loading" style="min-height: 200px">
-    <iframe src="https://g2.antv.vision/zh/examples/gallery" frameborder="0" id="iframe_g2" v-show="!loading"></iframe>
-    <!--    <iframe src="https://antv-g2.gitee.io/zh/examples/gallery" frameBorder="0" id="iframe_g2" v-show="!loading"></iframe>-->
-  </div>
+  <PageContainer>
+    <div v-loading="loading" style="min-height: 200px">
+      <iframe src="https://g2.antv.vision/zh/examples/gallery" frameborder="0" id="iframe_g2" v-show="!loading"></iframe>
+      <!--    <iframe src="https://antv-g2.gitee.io/zh/examples/gallery" frameBorder="0" id="iframe_g2" v-show="!loading"></iframe>-->
+    </div>
+  </PageContainer>
 </template>
 
 <style lang="less" scoped>

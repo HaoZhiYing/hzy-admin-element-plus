@@ -6,10 +6,6 @@ import { createPinia } from 'pinia';
 import { registerRouter } from '@/core/router';
 //element plus
 import ElementPlus from 'element-plus';
-//自定义 scss 样式
-import "./assets/styles/hzy-admin-ui-layout.scss";
-//自定义 less 样式
-import "./assets/styles/hzy-admin-ui-layout.less";
 //图标注册
 import { useAllIcons } from "@/core/utils/icons";
 //vxe-table
