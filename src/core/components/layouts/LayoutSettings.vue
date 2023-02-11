@@ -71,8 +71,8 @@ const themeStore = ThemeStore();
     flex-wrap: wrap;
     justify-content: center;
     .hzy-skin-item {
-      width: 30px;
-      height: 30px;
+      width: 35px;
+      height: 35px;
       margin: 2px;
       cursor: pointer;
       border-radius: 5px;
