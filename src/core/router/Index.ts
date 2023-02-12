@@ -50,11 +50,11 @@ router.beforeEach((to, from, next) => {
     //
     console.log('router-cmd', router.getRoutes(), router.options.routes, from.fullPath, to.fullPath);
     //如果初次add路由需要一下代码重新加载
-    // return next({ ...from });
-    return next({ ...to });
+    return next({ ...from });
+    // return next({ ...to });
   }
 
-  next({ ...to });
+  next();
 
 });
 
