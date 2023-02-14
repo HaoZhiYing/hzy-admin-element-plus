@@ -90,7 +90,7 @@ function handlePaths() {
         </div>
       </slot>
     </div>
-    <div :class="{ 'p-16': !bodyClassPadding }" :style="{ ...(props.bodyStyle ?? {}) }">
+    <div :class="{ 'p-16 pt-0': !bodyClassPadding }" :style="{ ...(props.bodyStyle ?? {}) }">
       <slot></slot>
     </div>
   </div>

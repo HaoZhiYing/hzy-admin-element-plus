@@ -35,18 +35,18 @@ defineExpose({
 <template>
   <div v-loading="tableData.loading">
     <!-- 高级检索 -->
-    <div class="mb-16">
-      <el-collapse-transition>
-        <el-card class="search-card" v-show="tableData.search.state">
-          <el-form label-position="left" label-width="auto">
-            <el-row :gutter="16">
-              <!-- 检索插槽 -->
-              <slot name="search"></slot>
-            </el-row>
-          </el-form>
-        </el-card>
-      </el-collapse-transition>
-    </div>
+    <!-- <div class="pb-16"> -->
+    <el-collapse-transition>
+      <el-card class="search-card mb-16" v-show="tableData.search.state">
+        <el-form label-position="left" label-width="auto">
+          <el-row :gutter="16">
+            <!-- 检索插槽 -->
+            <slot name="search"></slot>
+          </el-row>
+        </el-form>
+      </el-card>
+    </el-collapse-transition>
+    <!-- </div> -->
     <!-- 工具栏插槽 -->
     <div class="mb-16">
       <slot name="toolbar"></slot>

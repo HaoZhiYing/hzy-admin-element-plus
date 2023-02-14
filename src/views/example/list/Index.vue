@@ -99,9 +99,9 @@ function openForm(id: string) {
         <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
           <!--button-->
           <el-form-item>
-            <el-button plain type="primary" @click="findList">检索</el-button>
-            <el-button plain @click="findList()">重置</el-button>
-            <el-button plain type="danger" @click="state.search.state = false">关闭</el-button>
+            <el-button type="primary" @click="findList">检索</el-button>
+            <el-button type="danger" @click="findList()">重置</el-button>
+            <el-button @click="state.search.state = false">关闭</el-button>
           </el-form-item>
         </el-col>
       </template>
@@ -109,25 +109,19 @@ function openForm(id: string) {
       <!-- 工具栏插槽 -->
       <template #toolbar>
         <el-space wrap :size="[16, 16]">
-          <!-- 检索 -->
-          <el-input v-model="state.search.vm.value" placeholder="请输入姓名">
-            <template #append>
-              <el-button icon="Search" type="primary" @click="findList()" />
-            </template>
-          </el-input>
           <!-- 高级检索 -->
-          <el-button plain icon="Filter" @click="state.search.state = !state.search.state"> 高级检索 </el-button>
+          <el-button icon="Filter" @click="state.search.state = !state.search.state"> 高级检索 </el-button>
           <!-- 新建 -->
-          <el-button plain icon="PlusOutlined" type="primary" @click="openForm('')"> 新建 </el-button>
+          <el-button icon="PlusOutlined" type="primary" @click="openForm('')"> 新建 </el-button>
           <!-- 批量删除 -->
           <el-popconfirm title="您确定要删除?" @confirm="confirm()">
             <template #reference>
-              <el-button plain type="danger" icon="DeleteOutlined"> 批量删除 </el-button>
+              <el-button type="danger" icon="DeleteOutlined"> 批量删除 </el-button>
             </template>
           </el-popconfirm>
           <!-- 更多操作 -->
           <el-dropdown>
-            <el-button plain icon="DownOutlined"> 更多操作 </el-button>
+            <el-button icon="DownOutlined"> 更多操作 </el-button>
             <template #dropdown>
               <el-dropdown-menu>
                 <el-dropdown-item @click="exportExcel()">导出 Excel</el-dropdown-item>
