@@ -5,6 +5,7 @@
 ![输入图片说明](gitee/list2.png)
 ![输入图片说明](gitee/home.png)
 ![输入图片说明](gitee/home1.png) 
+![输入图片说明](gitee/new-home.png)
 #### 软件架构
 软件架构说明
 
